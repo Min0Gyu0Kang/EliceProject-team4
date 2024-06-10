@@ -6,20 +6,19 @@ Author : 강민규
 History
 Date        Author   Status    Description
 2024.06.10  강민규   Created
-2024.06.10  강민규   
+2024.06.10  강민규   Modified   
 */
 
-import logo from './logo.svg';
 import './App.css';
-import styled from 'styled-components';
+// import styled from 'styled-components'; learn to use
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          지도 찾기 설정 만들기
         </p>
         <a
           className="App-link"
@@ -27,7 +26,6 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
         </a>
       </header>
     </div>
