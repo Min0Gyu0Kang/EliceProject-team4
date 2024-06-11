@@ -11,7 +11,7 @@ Date        Author   Status    Description
 
 import React from 'react'
 import styled from 'styled-components'
-import HowToUse from '../components/HowToUse'
+import HowToUse from './HowToUse'
 import {ReactComponent as Tag} from '../assets/images/tag.svg'
 import {ReactComponent as Map} from '../assets/images/map.svg'
 import {ReactComponent as Review} from '../assets/images/review.svg'
