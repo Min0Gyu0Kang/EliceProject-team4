@@ -13,10 +13,10 @@ import styled from 'styled-components'
 
 const FooterContainer = styled.div`
     text-align: center;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100vw;
-    height: 35px;
+    height: 40px;
     font-size: 9pt;
 `
 
