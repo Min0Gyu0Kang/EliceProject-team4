@@ -9,11 +9,13 @@ Date        Author   Status    Description
 2024.06.10  강민규   Modified   지도 초안
 2024.06.11  강민규   Modified   Header 분리
 2024.06.11  강민규   Modified   지도 찾기 분리
+2024.06.11  강민규   Modified   헤더 Router 추가
 
 */
 
 import * as React from "react";
 import styled from "styled-components";
+import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 //지역 설정 직접 검색 토글 탭
 import LocationSearch from "./components/LocationSearch"; 
@@ -22,7 +24,9 @@ import DirectSearch from "./components/DirectSearch";
 function App() {
   return (
     <Div>
+      <Router>
       <Header />
+      </Router>
       <Div9>
         <Div10>
           <Column>
