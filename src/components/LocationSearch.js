@@ -6,15 +6,58 @@ Author : 강민규
 History
 Date        Author   Status    Description
 2024.06.11  강민규   Created   App에서 분리
-2024.06.11  강민규   Modified   
+2024.06.11  강민규   Modified  MUI 추가
 */
 
 import * as React from "react";
 import styled from "styled-components";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 function LocationSearch() {
+  const [value, setValue] = React.useState('one');
+  
+  const [city, setCity] = React.useState('');
+  const [state, setState] = React.useState('');
+
+// 탭 토글
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+// 지역 설정 선택창
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+  };
+  const handleStateChange = (event) => {
+    setState(event.target.value);
+  };
+  // 시설 태그
+  const handleClick = () => {
+    console.info('You clicked the Chip.');
+  };
   return (
 <Div11>
+<Box sx={{ width: '100%' }}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="wrapped label tabs example"
+      >
+        <Tab
+          value="one"
+          label="지역 검색"
+          wrapped
+        />
+        <Tab value="two" label="직접 검색" />
+      </Tabs>
+    </Box>
     <Div12>
       <Div13>
         <Div14>지역 검색</Div14>
@@ -26,28 +69,58 @@ function LocationSearch() {
     <Div17>
       <Div18>지역 설정</Div18>
       <Div19>
-        시
-        {/* <span style="font-family: Acme, sans-serif;">
-          /
-        </span> */}
-        도
+        시 / 도
       </Div19>
       <Div20>
+      <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">선택하기</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={city}
+          label="City"
+          onChange={handleCityChange}
+        >
+          {/* 실제 시 / 도 */}
+          <MenuItem value={10}>서울특별시</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
         <Div21>
           <Div22>선택</Div22>
-          <Img
+          {/* <Img
             loading="lazy"
             srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-          />
+          /> */}
         </Div21>
       </Div20>
       <Div23>
-        시
+        시 / 군 / 구
         {/* <span style="font-family: Acme, sans-serif;">
           /군/구
         </span> */}
       </Div23>
       <Div24>
+      <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">선택하기</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={state}
+          label="State"
+          onChange={handleStateChange}
+        >
+          {/* 실제 시 / 군 / 구 */}
+          <MenuItem value={10}>강남구</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
         <Div25>
           <Div26>선택</Div26>
           {/* <img
@@ -57,6 +130,12 @@ function LocationSearch() {
         </Div25>
       </Div24>
       <Div27>추천 태그</Div27>
+      <Stack direction="row" spacing={1}>
+      <Chip label="운동시설" onClick={handleClick} />
+      <Chip label="유희시설" variant="outlined" onClick={handleClick} />
+      <Chip label="기타시설" variant="outlined" onClick={handleClick} />
+      <Chip label="편의시설" variant="outlined" onClick={handleClick} />
+    </Stack>
       <Div28>
         <Div29>
           <Column2>
@@ -69,9 +148,6 @@ function LocationSearch() {
                   <Div35>유희시설</Div35>
                 </Div34>
               </Div31>
-              <Div36>
-                <Div37>운동시설</Div37>
-              </Div36>
             </Div30>
           </Column2>
           <Column3>
@@ -87,6 +163,10 @@ function LocationSearch() {
         </Div29>
       </Div28>
       <Div42>
+      <Stack direction="row" spacing={1}>
+      <Chip label="선택 초기화" variant="outlined" onClick={handleClick} />
+      <Chip label="추천 공원 검색" variant="outlined" onClick={handleClick} />
+      </Stack>
         <Div43>
           <Div44>선택 초기화</Div44>
         </Div43>

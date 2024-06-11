@@ -6,16 +6,33 @@ Author : 강민규
 History
 Date        Author   Status    Description
 2024.06.11  강민규   Created   LocationSearch 기반
-2024.06.11  강민규   Modified   
+2024.06.11  강민규   Modified  MUI 추가
 */
 
 import * as React from "react";
 import styled from "styled-components";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 function DirectSearch() {
   return (
 
     <Div11>
+      <Box sx={{ width: '100%' }}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="wrapped label tabs example"
+      >
+        <Tab
+          value="one"
+          label="지역 검색"
+          wrapped
+        />
+        <Tab value="two" label="직접 검색" />
+      </Tabs>
+    </Box>
         <Div12>
         <Div13>
             <Div14>지역 검색</Div14>
