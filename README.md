@@ -79,21 +79,6 @@ urbanoasis-backend/
 ├── package.json
 └── README.md
 
-.
-├── README.md
-├── package.json
-├── src
-│ ├── components
-│ │ ├── BarChart.css
-│ │ └── BarChart.js
-│ └── index.js
-└── temp
-├── package-lock.json
-├── package.json
-├── BarChart.css
-├── BarChart.js
-└── index.js
-
 ## 5. 프로젝트 팀원 역할 분담
 
 | 이름   | 담당 업무                    |
