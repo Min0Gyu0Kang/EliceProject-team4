@@ -14,6 +14,8 @@ import styled from "styled-components";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 
 function DirectSearch() {
   return (
@@ -44,6 +46,16 @@ function DirectSearch() {
         <Div17>이름 검색</Div17>
         <Div18>
         <Div19>
+        <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField id="outlined-basic" label="Outlined" variant="outlined" placeholder="공원 이름을 검색해보세요"/>
+      </Box>
             <Div20>공원 이름을 검색해보세요</Div20>
             <Img
             loading="lazy"
