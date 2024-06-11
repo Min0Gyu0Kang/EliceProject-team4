@@ -36,13 +36,13 @@
 
 ## 4. 프로젝트 구성도
 
-- 정보구조도 IA - Miro : [text](https://miro.com/app/board/uXjVKAL3YyE=/)
+- [정보구조도 IA - Miro](https://miro.com/app/board/uXjVKAL3YyE=/)
 
-- 플로우차트 - Miro : [text](https://miro.com/app/board/uXjVKAL3YyE=/)
+- [플로우차트 - Miro](https://miro.com/app/board/uXjVKAL3YyE=/)
 
-- 와이어프레임, MUI 스토리보드 : [text](https://www.figma.com/design/tqFBrGlnXRdnhCFwTdb2um/%EB%8F%84%EC%8B%9C%EC%9D%98-%EC%98%A4%EC%95%84%EC%8B%9C%EC%8A%A4-MUI?node-id=6036-164056&t=onlwaffESaDChIxb-0)
+- [와이어프레임, MUI 스토리보드](https://www.figma.com/design/tqFBrGlnXRdnhCFwTdb2um/%EB%8F%84%EC%8B%9C%EC%9D%98-%EC%98%A4%EC%95%84%EC%8B%9C%EC%8A%A4-MUI?node-id=6036-164056&t=onlwaffESaDChIxb-0)
 
-- ERD - DBdiagram.io : [text](https://dbdiagram.io/d/666047fb8f6e135d4a5a1d5f)
+- [ERD - DBdiagram.io](https://dbdiagram.io/d/666047fb8f6e135d4a5a1d5f)
 
 📁 디렉토리 구조 - 멀티 Repository 사용
 
@@ -78,6 +78,21 @@ urbanoasis-backend/
 ├── .gitignore
 ├── package.json
 └── README.md
+
+.
+├── README.md
+├── package.json
+├── src
+│ ├── components
+│ │ ├── BarChart.css
+│ │ └── BarChart.js
+│ └── index.js
+└── temp
+├── package-lock.json
+├── package.json
+├── BarChart.css
+├── BarChart.js
+└── index.js
 
 ## 5. 프로젝트 팀원 역할 분담
 
