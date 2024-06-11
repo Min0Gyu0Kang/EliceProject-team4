@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,react,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,react,java
 
+yarn.lock
+package.json
+
 ### Java ###
 # Compiled class file
 *.class
