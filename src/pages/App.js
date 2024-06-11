@@ -6,12 +6,14 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.10  임지영   Created
+2024.06.11  임지영   Modified    로그인 경로 추가
 */
 
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './Home'
-import Map from './Map' // Map 컴포넌트
+import Map from './Map'
+import Login from './Login'
 
 const App = () => {
     return (
@@ -19,6 +21,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/map" element={<Map />} />
+                <Route path="/login" element={<Login />} />
                 {/* 다른 경로들 */}
             </Routes>
         </BrowserRouter>
