@@ -1,5 +1,5 @@
 /**
-File Name : Header.js
+File Name : header.js
 Description : 메뉴창 js
 Author : 강민규
 
