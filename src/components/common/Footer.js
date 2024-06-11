@@ -1,3 +1,13 @@
+/**
+File Name : Footer
+Description : 하단 푸터
+Author : 임지영
+
+History
+Date        Author   Status    Description
+2024.06.11  임지영   Created
+*/
+
 import React from 'react'
 import styled from 'styled-components'
 
