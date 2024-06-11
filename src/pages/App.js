@@ -14,6 +14,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './Home'
 import Map from './Map'
 import Login from './Login'
+import SignUp from './SignUp'
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/map" element={<Map />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signUp" element={<SignUp />} />
                 {/* 다른 경로들 */}
             </Routes>
         </BrowserRouter>
