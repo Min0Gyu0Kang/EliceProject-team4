@@ -1,5 +1,5 @@
 /**
-File Name : header.js
+File Name : Header.js
 Description : 메뉴창 js
 Author : 강민규
 
@@ -13,17 +13,17 @@ import * as React from "react";
 import styled from "styled-components";
 
 
-function header() {
+function Header() {
     return (
 <Div2>
-        <Div3>도시의 오아시스</Div3>
-        <Div4>
-          <Div5>공원 찾기</Div5>
-          <Div6>데이터 스토리</Div6>
-          <Div7>커뮤니티</Div7>
-          <Div8>로그아웃</Div8>
-        </Div4>
-      </Div2>
+    <Div3>도시의 오아시스</Div3>
+    <Div4>
+        <Div5>공원 찾기</Div5>
+        <Div6>데이터 스토리</Div6>
+        <Div7>커뮤니티</Div7>
+        <Div8>로그아웃</Div8>
+    </Div4>
+</Div2>
     );
 }
 
@@ -44,8 +44,6 @@ const Div3 = styled.div`
   -webkit-text-stroke-width: 3;
   -webkit-text-stroke-color: #30cb6e;
   border-color: rgba(48, 203, 110, 1);
-  border-style: solid;
-  border-width: 3px;
   justify-content: center;
   color: #30cb6e;
   padding: 0 20px;
@@ -108,4 +106,4 @@ const Div8 = styled.div`
   }
 `;
 
-export default header;
+export default Header;
