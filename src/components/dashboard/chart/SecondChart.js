@@ -1,129 +1,126 @@
+/**
+File Name : FirstChart
+Description : 데이터 스토리 2번째 데이터 시각화 차트
+Author : 김유림
+
+History
+Date        Author   Status    Description
+2024.06.12  김유림   Created
+2024.06.12  김유림   Modified  필요없는 값 제거 및 원 위치 변경
+*/
 import React from 'react'
 import {
     ScatterChart,
-    ComposedChart,
     Scatter,
-    Line,
     XAxis,
     YAxis,
-    ZAxis,
     CartesianGrid,
     Tooltip,
-    ResponsiveContainer,
-    Legend,
+    Label,
 } from 'recharts'
+
 const data = [
-    {x: 349068, y: 22098, z: 63.3},
-    {x: 613564, y: 10201, z: 16.6},
-    {x: 1108668, y: 11367, z: 10.3},
-    {x: 1274319, y: 20165, z: 15.8},
-    {x: 1286778, y: 22098, z: 13.7},
+    {city: '서울', satisfaction: 55.9, park_area_per_thousand: 4.7},
+    {city: '부산', satisfaction: 59.0, park_area_per_thousand: 17.3},
+    {city: '대구', satisfaction: 53.3, park_area_per_thousand: 7.2},
+    // {city: '인천', satisfaction: 46.7, park_area_per_thousand: 13.6},
+    {city: '광주', satisfaction: 54.8, park_area_per_thousand: 12.4},
+    {city: '대전', satisfaction: 60.1, park_area_per_thousand: 12.4},
+    {city: '울산', satisfaction: 58.8, park_area_per_thousand: 10.3},
+    // {city: '세종', satisfaction: 69.0, park_area_per_thousand: 63.3},
+    {city: '경기', satisfaction: 59.4, park_area_per_thousand: 11.2},
+    // {city: '강원', satisfaction: 74.2, park_area_per_thousand: 15.8},
+    {city: '충북', satisfaction: 59.2, park_area_per_thousand: 13.7},
+    {city: '충남', satisfaction: 60.4, park_area_per_thousand: 11.5},
+    {city: '전북', satisfaction: 59.6, park_area_per_thousand: 24.6},
+    // {city: '전남', satisfaction: 71.0, park_area_per_thousand: 26.4},
+    {city: '경북', satisfaction: 60.3, park_area_per_thousand: 16.4},
+    // {city: '경남', satisfaction: 68.0, park_area_per_thousand: 15.8},
+    {city: '제주', satisfaction: 60.0, park_area_per_thousand: 16.6},
 ]
-// 나중에 백으로부터 실제 값 받기
+
+const CustomTooltip = ({active, payload}) => {
+    if (active && payload && payload.length) {
+        const data = payload[0].payload
+        return (
+            <div
+                className="custom-tooltip"
+                style={{
+                    backgroundColor: '#fff',
+                    padding: '10px',
+                    border: '1px solid #ccc',
+                }}
+            >
+                <p style={{color: '#8884d8'}}>
+                    {`지역: `}
+                    <span style={{color: 'black'}}>{`${data.city}`}</span>
+                </p>
+                <p style={{color: '#0088FE'}}>
+                    {`녹지환경 만족도(%): `}
+                    <span
+                        style={{color: 'black'}}
+                    >{`${data['satisfaction']}`}</span>
+                </p>
+                <p style={{color: '#82ca9d'}}>
+                    {`인구천명당 도시공원조성면적(천㎡): `}
+                    <span
+                        style={{color: 'black'}}
+                    >{`${data['park_area_per_thousand']}`}</span>
+                </p>
+            </div>
+        )
+    }
+
+    return null
+}
 
 const SecondChart = () => {
     return (
-        <ResponsiveContainer width="100%" height={400}>
-            <h1>천 명당 공원 면적 대비 지역 별 녹지환경 만족도</h1>
-            {/* SimpleScatterChart */}
-            <ScatterChart
-                margin={{
-                    top: 20,
-                    right: 20,
-                    bottom: 20,
-                    left: 20,
-                }}
+        <ScatterChart
+            width={500}
+            height={400}
+            margin={{top: 20, right: 20, bottom: 20, left: 20}}
+        >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+                type="number"
+                dataKey="park_area_per_thousand"
+                domain={[0, 70]} // x축 범위 설정
+                ticks={[0, 10, 20, 30, 40, 50, 60, 70]} // x축 눈금 설정
             >
-                <CartesianGrid />
-                <XAxis
-                    type="number"
-                    dataKey="x"
-                    name="도시지역인구"
-                    unit="명"
+                <Label
+                    value="인구천명당 도시공원조성면적(천㎡)"
+                    position="bottom"
+                    offset={0}
+                    style={{textAnchor: 'middle'}}
                 />
-                <YAxis
-                    type="number"
-                    dataKey="y"
-                    name="총도시공원면적"
-                    unit="m²"
-                />
-                <Tooltip cursor={{strokeDasharray: '3 3'}} />
-
-                <Legend
-                    width={700}
-                    wrapperStyle={{
-                        bottom: 0,
-                        left: 300,
-                        backgroundColor: '#f5f5f5',
-                        border: '1px solid #d5d5d5',
-                        borderRadius: 3,
-                        lineHeight: '40px',
-                    }}
-                />
-                <ScatterChart dataKey="x" fill="#f5f5f5" barSize={30} />
-                <Scatter name="도시지역인구" data={data} fill="#3fdea9" />
-                <Scatter name="총도시공원면적" data={data} fill="#38bb96" />
-                <Scatter
-                    name="인구 천명당 도시공원조성면적"
-                    data={data}
-                    fill="#31a383"
-                />
-                <Line fill="#0e2e25" />
-            </ScatterChart>
-            {/* ComposedChart for 군집화 */}
-            <ComposedChart
-                width={500}
-                height={400}
-                data={data}
-                margin={{
-                    top: 20,
-                    right: 20,
-                    bottom: 20,
-                    left: 20,
-                }}
+            </XAxis>
+            <YAxis
+                type="number"
+                dataKey="satisfaction"
+                domain={[40, 80]}
+                ticks={[40, 50, 60, 70, 80]}
             >
-                <CartesianGrid stroke="#f5f5f5" />
-                <Tooltip />
-                <Legend />
-
-                <XAxis
-                    type="number"
-                    dataKey="x"
-                    name="도시지역인구"
-                    unit="명"
+                <Label
+                    value="녹지환경 만족도(%)"
+                    position="left"
+                    angle={-90}
+                    offset={0}
+                    style={{textAnchor: 'middle'}}
                 />
-                <YAxis
-                    type="number"
-                    dataKey="y"
-                    name="총도시공원면적"
-                    unit="m²"
-                />
-                <ZAxis
-                    type="number"
-                    dataKey="z"
-                    name="인구 천명당 도시공원조성면적"
-                    unit="m²"
-                />
-                <Scatter name="도시지역인구" dataKey="x" fill="#3fdea9" />
-                <Scatter name="총도시공원면적" dataKey="y" fill="#38bb96" />
-                <Scatter
-                    name="인구 천명당 도시공원조성면적"
-                    dataKey="z"
-                    fill="#31a383"
-                />
-                {/* <Line type="monotone" dataKey="x" stroke="#3fdea9" strokeDasharray="5 5" legendType="none" /> */}
-                <Line
-                    type="monotone"
-                    dataKey="y"
-                    name=" "
-                    stroke="#38bb96"
-                    strokeDasharray="5 5"
-                    legendType="none"
-                />
-                {/* <Line type="monotone" dataKey="z" stroke="#31a383" strokeDasharray="5 5" legendType="none" /> */}
-                {/* 타원형 클러스터 */}
-            </ComposedChart>
-        </ResponsiveContainer>
+            </YAxis>
+            <Tooltip content={<CustomTooltip />} />
+            <Scatter name="A scatter" data={data} fill="#82ca9d" />
+            <ellipse
+                cx={170}
+                cy={220}
+                rx={80}
+                ry={50}
+                stroke="pink"
+                fill="none"
+                strokeWidth={3}
+            />
+        </ScatterChart>
     )
 }
 
