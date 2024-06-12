@@ -1,4 +1,12 @@
-// src/components/dashboard/Navigation.js
+/**
+File Name : Navigation
+Description : 내비게이션 컴포넌트
+Author : 김유림
+
+History
+Date        Author   Status    Description
+2024.06.10  김유림   Created
+*/
 import React from 'react'
 import styled from 'styled-components'
 import goalIcon from '../../assets/images/goal.svg'
