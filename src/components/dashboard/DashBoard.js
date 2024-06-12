@@ -6,7 +6,7 @@ Author : 김유림
 History
 Date        Author   Status    Description
 2024.06.10  김유림   Created
-2024.06.12  김유림   Modified  컨테이너별 4페이지 생성 초안
+2024.06.12  김유림   Modified  컨테이너별 4페이지 초안 생성 
 */
 import React from 'react'
 import styled from 'styled-components'
