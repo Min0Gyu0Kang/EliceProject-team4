@@ -5,7 +5,8 @@ Author : 김유림
 
 History
 Date        Author   Status    Description
-2024.06.10  김유림   Created
+2024.06.10  김유림   Created    
+2024.06.12  김유림   Modified  Y축 라벨 추가
 */
 import React from 'react'
 import {
@@ -86,7 +87,7 @@ const data = [
 
 const FirstChart = () => {
     return (
-        <ResponsiveContainer width={700} height={500}>
+        <ResponsiveContainer width="100%" height={500}>
             <ComposedChart
                 width={1200} // 너비를 조정합니다.
                 height={300}
@@ -99,8 +100,24 @@ const FirstChart = () => {
                 }}
             >
                 <XAxis dataKey="year" />
-                <YAxis yAxisId="left" />
-                <YAxis yAxisId="right" orientation="right" domain={[0, 70]} />
+                <YAxis
+                    yAxisId="left"
+                    label={{
+                        value: '면적(m²)',
+                        angle: -90,
+                        position: 'insideLeft',
+                    }}
+                />
+                <YAxis
+                    yAxisId="right"
+                    orientation="right"
+                    label={{
+                        value: '만족도(%)',
+                        angle: 90,
+                        position: 'insideRight',
+                    }}
+                    domain={[0, 70]}
+                />
                 <Tooltip />
                 <Legend
                     payload={[
