@@ -21,6 +21,9 @@ import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
+// svg에 필요한 파일
+import {ReactComponent as DownArrow1} from "../assets/left/DownArrow1.svg";
+
 function LocationSearch() {
   const [value, setValue] = React.useState('one');
   
@@ -95,6 +98,8 @@ function LocationSearch() {
             loading="lazy"
             srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
           /> */}
+          {/* Selection Drop Arrow */}
+          <DownArrow1 />
         </Div21>
       </Div20>
       <Div23>
@@ -127,6 +132,8 @@ function LocationSearch() {
             loading="lazy"
             srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
           /> */}
+          {/* Selection Drop Arrow */}
+          <DownArrow1 />
         </Div25>
       </Div24>
       <Div27>추천 태그</Div27>
