@@ -25,6 +25,8 @@ const Map = () => {
         };
 
         const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+        
+        //줌 인아웃
 
         // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
         const mapTypeControl = new kakao.maps.MapTypeControl();
@@ -36,6 +38,8 @@ const Map = () => {
         // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
         const zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+        
+        // 마커 생성
 
         // 마커를 표시할 위치와 title 객체 배열입니다 
         var positions = [
@@ -76,6 +80,10 @@ const Map = () => {
                 image : markerImage // 마커 이미지 
             });
         }  
+    
+        // 인포원도우
+
+
     }, []);
 
     
