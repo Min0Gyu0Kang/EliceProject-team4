@@ -78,16 +78,16 @@ const CustomTooltip = ({active, payload}) => {
 const SecondChart = () => {
     return (
         <ScatterChart
-            width={500}
-            height={400}
+            width={550}
+            height={500}
             margin={{top: 20, right: 20, bottom: 20, left: 20}}
         >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
                 type="number"
                 dataKey="park_area_per_thousand"
-                domain={[0, 70]} 
-                ticks={[0, 10, 20, 30, 40, 50, 60, 70]} 
+                domain={[0, 70]}
+                ticks={[0, 10, 20, 30, 40, 50, 60, 70]}
             >
                 <Label
                     value="인구천명당 도시공원조성면적(천㎡)"
@@ -111,7 +111,13 @@ const SecondChart = () => {
                 />
             </YAxis>
             <Tooltip content={<CustomTooltip />} />
-            <Scatter name="A scatter" data={data} fill="#EEF296" stroke="#9ADE7B" strokeWidth={1.5} />
+            <Scatter
+                name="A scatter"
+                data={data}
+                fill="#EEF296"
+                stroke="#9ADE7B"
+                strokeWidth={1.5}
+            />
             <ellipse
                 cx={170}
                 cy={220}

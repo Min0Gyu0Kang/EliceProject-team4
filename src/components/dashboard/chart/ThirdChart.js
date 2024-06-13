@@ -6,7 +6,7 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.10  임지영   Created
-2024.09.12  김유림   Modified  전체 코드 수정
+2024.06.12  김유림   Modified    전체 코드 수정
 */
 import React from 'react'
 import {
@@ -54,7 +54,7 @@ const ThirdChart = () => {
     return (
         <BarChart
             width={600}
-            height={400}
+            height={500}
             data={data}
             margin={{
                 top: 30,

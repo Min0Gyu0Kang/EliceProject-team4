@@ -5,8 +5,7 @@ Author : 김유림
 
 History
 Date        Author   Status    Description
-2024.06.10  김유림   Created    
-2024.06.12  김유림   Modified  Y축 라벨 추가
+2024.06.10  김유림   Created
 */
 import React from 'react'
 import {
@@ -87,41 +86,15 @@ const data = [
 
 const FirstChart = () => {
     return (
-        <ResponsiveContainer width="100%" height={500}>
+        <ResponsiveContainer width={600} height={500}>
             <ComposedChart
-                width={1200} 
-                height={300}
+                width={600} // 너비를 조정합니다.
+                height={500}
                 data={data}
-                margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                }}
             >
                 <XAxis dataKey="year" />
-                <YAxis
-                    yAxisId="left"
-                    label={{
-                        value: '(m²)',
-                        angle: 0,
-                        position: 'insideLeft',
-                        dx: 0,
-                        dy: -230 
-                    }}
-                />
-                <YAxis
-                    yAxisId="right"
-                    orientation="right"
-                    label={{
-                        value: '(%)',
-                        angle: 0,
-                        position: 'insideRight',
-                        dx: 0,
-                        dy: -230 
-                    }}
-                    domain={[0, 70]}
-                />
+                <YAxis yAxisId="left" />
+                <YAxis yAxisId="right" orientation="right" domain={[0, 70]} />
                 <Tooltip />
                 <Legend
                     payload={[
@@ -151,7 +124,7 @@ const FirstChart = () => {
                     yAxisId="right"
                     dataKey="satisfaction"
                     name="녹지환경 만족도(%)"
-                    fill="#4F98CA"
+                    fill="#0088FE"
                 />
                 <Line
                     yAxisId="left"
