@@ -19,7 +19,6 @@ import Email from '../assets/images/email.svg'
 import Password from '../assets/images/password.svg'
 import EyeIcon from '../assets/images/eye.svg' // 눈 아이콘 추가
 import EyeOffIcon from '../assets/images/eye-off.svg' // 눈 감김 아이콘 추가
-import ValidatePassword from './ValidatePassword'
 
 const LoginContainer = styled.div`
     margin-top: 40px;
@@ -50,7 +49,8 @@ const Logo = styled.div`
         0px 0.5px #30cb6e,
         0.5px 0px #30cb6e,
         0px -0.5px #30cb6e;
-    padding: 20px 0;
+    padding-top: 10px;
+    padding-bottom: 20px;
 `
 
 const DividingLine = styled.hr`
