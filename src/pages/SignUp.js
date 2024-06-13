@@ -6,7 +6,7 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.11  임지영    Created
-2024.06.12  임지영    Modified   비밀번호 입력칸 오른쪽 치우침 해결
+2024.06.13  임지영    Modified   비밀번호 입력칸 오른쪽 치우침 해결
 */
 
 import React, {useState} from 'react'
