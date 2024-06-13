@@ -11,8 +11,8 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Intro from './Intro'
-import MainPage from './MainPage'
-import StartMainPage from './StartMainPage'
+import MainPage from '../components/Main/MainPage'
+import StartMainPage from '../components/Main/StartMainPage'
 
 const Container = styled.div`
     height: 100vh; /* 부모 컨테이너의 높이를 전체 화면으로 설정 */
