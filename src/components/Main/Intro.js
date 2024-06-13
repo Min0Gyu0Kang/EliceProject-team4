@@ -7,14 +7,16 @@ History
 Date        Author   Status    Description
 2024.06.10  임지영   Created
 2024.06.11  임지영   Modified    이미지 경로 수정
+2024.06.13  임지영   Modified    폰트 css 적용
 */
 
 import React from 'react'
 import styled from 'styled-components'
+import '../../assets/font/font.css'
 import HowToUse from './HowToUse'
-import {ReactComponent as Tag} from '../assets/images/tag.svg'
-import {ReactComponent as Map} from '../assets/images/map.svg'
-import {ReactComponent as Review} from '../assets/images/review.svg'
+import {ReactComponent as Tag} from '../../assets/images/tag.svg'
+import {ReactComponent as Map} from '../../assets/images/map.svg'
+import {ReactComponent as Review} from '../../assets/images/review.svg'
 
 const FixedContainer = styled.div`
     width: 100%;
@@ -39,7 +41,7 @@ const Content = styled.p`
 `
 
 const ContentUrbanOasis = styled.span`
-    font-family: 'GmarketSansMedium';
+    font-family: 'gmarket Medium';
     font-weight: 900;
     color: #30cb6e;
     font-size: 26pt;
@@ -64,7 +66,7 @@ const ServiceItem = styled.div`
 `
 
 const ServiceContent = styled.p`
-    font-family: 'Gowun Dodum', sans-serif;
+    font-family: 'GowunDodum';
 `
 
 const Intro = () => {

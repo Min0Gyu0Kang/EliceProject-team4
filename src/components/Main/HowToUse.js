@@ -7,23 +7,24 @@ History
 Date        Author   Status    Description
 2024.06.10  임지영   Created
 2024.06.11  임지영   Modified    이미지 경로 수정
+2024.06.13  임지영   Modified    폰트 css 적용
 */
 
 import React from 'react'
 import styled from 'styled-components'
-import {ReactComponent as OthersReview} from '../assets/images/othersReview.svg'
-import {ReactComponent as Main} from '../assets/images/main.svg'
-import {ReactComponent as SearchPark} from '../assets/images/searchingPark.svg'
-import {ReactComponent as ParkList} from '../assets/images/searchingArea.svg'
-import {ReactComponent as MyReview} from '../assets/images/writingReview.svg'
+import {ReactComponent as OthersReview} from '../../assets/images/othersReview.svg'
+import {ReactComponent as Main} from '../../assets/images/main.svg'
+import {ReactComponent as SearchPark} from '../../assets/images/searchingPark.svg'
+import {ReactComponent as ParkList} from '../../assets/images/searchingArea.svg'
+import {ReactComponent as MyReview} from '../../assets/images/writingReview.svg'
 
 const Container = styled.div`
     margin-top: 120px;
 `
 
 const Title = styled.div`
-    font-family: 'GmarketSansMedium';
-    font-size: 16pt;
+    font-family: 'gmarket Medium';
+    font-size: 17pt;
     font-weight: 600;
     margin-bottom: 44px;
 `
@@ -33,7 +34,7 @@ const Highlight = styled.span`
 `
 
 const Section = styled.div`
-    font-family: 'Gowun Dodum', sans-serif;
+    font-family: 'GowunDodum';
     text-align: center;
     font-size: 15pt;
     line-height: 34px;

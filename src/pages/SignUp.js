@@ -7,10 +7,12 @@ History
 Date        Author   Status    Description
 2024.06.11  임지영    Created
 2024.06.13  임지영    Modified   비밀번호 입력칸 오른쪽 치우침 해결
+2024.06.13  임지영    Modified   폰트 적용
 */
 
 import React, {useState} from 'react'
 import styled, {css} from 'styled-components'
+import '../assets/font/font.css'
 import {BrowserRouter as Router, Link, useLocation} from 'react-router-dom'
 import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
@@ -21,6 +23,7 @@ import EyeIcon from '../assets/images/eye.svg' // 눈 아이콘 추가
 import EyeOffIcon from '../assets/images/eye-off.svg' // 눈 감김 아이콘 추가
 
 const LoginContainer = styled.div`
+    font-family: 'gmarket Medium';
     margin-top: 40px;
     display: flex;
     justify-content: center;
@@ -78,6 +81,12 @@ const inputStyles = css`
     background-repeat: no-repeat;
     background-position: 15px center;
     background-size: 30px 30px;
+
+    &::placeholder {
+        font-family: 'gmarket Medium';
+        font-size: 11pt;
+        color: #979494;
+    }
 `
 
 const NickNameInput = styled.input`
@@ -150,6 +159,7 @@ const SignUpConatiner = styled.div`
 `
 
 const SignUpText = styled.div`
+    font-weight: 400;
     text-align: center;
     margin: 12px;
     color: #737373;

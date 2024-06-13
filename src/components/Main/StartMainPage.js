@@ -6,6 +6,7 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.10  임지영   Created
+2024.06.13  임지영   Modified    폰트 css 적용
 */
 
 import React from 'react'
@@ -44,7 +45,7 @@ const MainPage = styled.div`
     align-items: center;
     text-align: center;
     color: white;
-    font-family: 'GmarketSansMedium';
+    font-family: 'gmarket Medium';
 `
 
 const FadeIn = styled.div`

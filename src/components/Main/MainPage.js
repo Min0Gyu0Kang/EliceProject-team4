@@ -6,10 +6,12 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.10  임지영   Created
+2024.06.13  임지영   Modified    폰트 css 적용
 */
 
 import React from 'react'
 import styled from 'styled-components'
+import '../../assets/font/font.css'
 import {useNavigate} from 'react-router-dom'
 
 const MainPageWrapper = styled.div`
@@ -30,15 +32,7 @@ const StartPage = styled.div`
 `
 
 const UrbanOasis = styled.p`
-    @font-face {
-        font-family: 'GmarketSansMedium';
-        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-            format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    font-family: 'GmarketSansMedium';
+    font-family: 'gmarket Medium';
     color: white;
     font-size: 4.5rem;
     font-weight: bold;
@@ -88,7 +82,7 @@ const MainPage = () => {
     const navigate = useNavigate()
 
     const handleStartClick = () => {
-        navigate('/map')
+        navigate('/login')
     }
 
     return (
