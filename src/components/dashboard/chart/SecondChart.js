@@ -120,9 +120,9 @@ const SecondChart = () => {
             />
             <ellipse
                 cx={170}
-                cy={220}
-                rx={80}
-                ry={50}
+                cy={270}
+                rx={85}
+                ry={60}
                 stroke="#FF8F8F"
                 fill="none"
                 strokeWidth={5}
