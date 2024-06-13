@@ -89,7 +89,7 @@ const FirstChart = () => {
     return (
         <ResponsiveContainer width="100%" height={500}>
             <ComposedChart
-                width={1200} // 너비를 조정합니다.
+                width={1200} 
                 height={300}
                 data={data}
                 margin={{
@@ -103,18 +103,22 @@ const FirstChart = () => {
                 <YAxis
                     yAxisId="left"
                     label={{
-                        value: '면적(m²)',
-                        angle: -90,
+                        value: '(m²)',
+                        angle: 0,
                         position: 'insideLeft',
+                        dx: 0,
+                        dy: -230 
                     }}
                 />
                 <YAxis
                     yAxisId="right"
                     orientation="right"
                     label={{
-                        value: '만족도(%)',
-                        angle: 90,
+                        value: '(%)',
+                        angle: 0,
                         position: 'insideRight',
+                        dx: 0,
+                        dy: -230 
                     }}
                     domain={[0, 70]}
                 />
@@ -147,7 +151,7 @@ const FirstChart = () => {
                     yAxisId="right"
                     dataKey="satisfaction"
                     name="녹지환경 만족도(%)"
-                    fill="#0088FE"
+                    fill="#4F98CA"
                 />
                 <Line
                     yAxisId="left"

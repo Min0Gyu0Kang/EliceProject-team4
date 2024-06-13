@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.12  김유림   Created
 2024.06.12  김유림   Modified  필요없는 값 제거 및 원 위치 변경
+2024.06.12  김유림   Modified  컬러 변경
 */
 import React from 'react'
 import {
@@ -85,8 +86,8 @@ const SecondChart = () => {
             <XAxis
                 type="number"
                 dataKey="park_area_per_thousand"
-                domain={[0, 70]} // x축 범위 설정
-                ticks={[0, 10, 20, 30, 40, 50, 60, 70]} // x축 눈금 설정
+                domain={[0, 70]} 
+                ticks={[0, 10, 20, 30, 40, 50, 60, 70]} 
             >
                 <Label
                     value="인구천명당 도시공원조성면적(천㎡)"
@@ -110,15 +111,15 @@ const SecondChart = () => {
                 />
             </YAxis>
             <Tooltip content={<CustomTooltip />} />
-            <Scatter name="A scatter" data={data} fill="#82ca9d" />
+            <Scatter name="A scatter" data={data} fill="#EEF296" stroke="#9ADE7B" strokeWidth={1.5} />
             <ellipse
                 cx={170}
                 cy={220}
                 rx={80}
                 ry={50}
-                stroke="pink"
+                stroke="#FF8F8F"
                 fill="none"
-                strokeWidth={3}
+                strokeWidth={5}
             />
         </ScatterChart>
     )
