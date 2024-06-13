@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.10  김유림     Created
 2024.06.13  김유림     Modified  네비게이션 컴포넌트 재사용하도록 수정 
+2024.06.14  김유림     Modified  웹폰트 적용
 */
 
 import React from 'react'
@@ -16,6 +17,7 @@ import Navigation from '../components/common/Navigation'
 import goalIcon from '../assets/images/goal.svg'
 import Footer from '../components/common/Footer'
 import styled from 'styled-components'
+import '../assets/fonts/font.css'
 
 const PageContainer = styled.div`
     display: flex;
@@ -32,18 +34,20 @@ const ContentWrapper = styled.div`
 
 const DashboardPage = () => {
     return (
-        <PageContainer>
+        <div>
             <Header />
-            <Navigation
-                title="데이터 스토리"
-                subtitle="데이터 시각화를 통해 도시의 오아시스가 전하는 이야기"
-                icon={goalIcon}
-            />
-            <ContentWrapper>
-                <DashBoard />
-            </ContentWrapper>
-            <Footer />
-        </PageContainer>
+            <PageContainer>
+                <Navigation
+                    title="데이터 스토리"
+                    subtitle="데이터 시각화를 통해 도시의 오아시스가 전하는 이야기"
+                    icon={goalIcon}
+                />
+                <ContentWrapper>
+                    <DashBoard />
+                </ContentWrapper>
+                <Footer />
+            </PageContainer>
+        </div>
     )
 }
 
