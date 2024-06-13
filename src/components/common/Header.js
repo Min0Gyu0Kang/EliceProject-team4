@@ -5,15 +5,16 @@ Author : 임지영
 
 History
 Date        Author   Status    Description
-2024.06.10  임지영   Created
+2024.06.10  임지영    Created
 */
 
 import React from 'react'
 import {BrowserRouter as Router, Link, useLocation} from 'react-router-dom'
 import styled from 'styled-components'
+import '../../assets/fonts/font.css'
 
 const HeaderWrapper = styled.div`
-    font-family: 'GmarketSansMedium';
+    font-family: 'gmarket Medium';
     padding-left: 0px;
     display: flex;
     justify-content: space-between;
