@@ -10,9 +10,9 @@
 
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import Intro from './Intro'
-import MainPage from '../components/Main/MainPage'
-import StartMainPage from '../components/Main/StartMainPage'
+import Intro from '../components/main/Intro'
+import MainPage from '../components/main/MainPage'
+import StartMainPage from '../components/main/StartMainPage'
 
 const Container = styled.div`
     height: 100vh; /* 부모 컨테이너의 높이를 전체 화면으로 설정 */
