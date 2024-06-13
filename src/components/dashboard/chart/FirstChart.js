@@ -5,8 +5,11 @@ Author : 김유림
 
 History
 Date        Author   Status    Description
-2024.06.10  김유림   Created
+2024.06.10  김유림   Created    
+2024.06.12  김유림   Modified   Y축 라벨 추가
+2024.06.13  김유림   Modified   디자인 수정
 */
+
 import React from 'react'
 import {
     ComposedChart,

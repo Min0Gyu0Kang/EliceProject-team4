@@ -7,7 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.12  김유림   Created
 2024.06.12  김유림   Modified  필요없는 값 제거 및 원 위치 변경
-2024.06.12  김유림   Modified  컬러 변경
+2024.06.13  김유림   Modified  컬러 변경, ellipse 좌표 변경
 */
 import React from 'react'
 import {
