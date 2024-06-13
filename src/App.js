@@ -42,10 +42,10 @@ function App() {
           </Column>
           <Column5>
           {/* 지도 API */}
-          {/* <Map /> */}
-            <Img3>
+          <Map />
+            {/* <Img3>
             <img src={Maptemp} alt="Map" style={{ width: '100%'}} />
-            </Img3>
+            </Img3> */}
           </Column5>
           {/* 검색결과, 리뷰 탭 */}
           <Column6>
