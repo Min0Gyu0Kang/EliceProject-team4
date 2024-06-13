@@ -7,13 +7,36 @@ History
 Date        Author   Status    Description
 2024.06.11  강민규   Created   App에서 분리
 2024.06.11  강민규   Modified  
+2024.06.13  강민규   Modified  MUI 추가
+2024.06.13  강민규   Modified    
 */
 
 import * as React from "react";
 import styled from "styled-components";
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+
+// svg에 필요한 파일
+import ColorWheel1 from "../assets/right/ColorWheel1.svg";
+import IconStar from "../assets/right/IconStar.svg";
+import Information1 from "../assets/right/Information1.svg";
+import ReviewInfoMap1 from "../assets/right/ReviewInfoMap1.svg";
+import Telephone1 from "../assets/Maptemp.svg";
+
+// 상세 리뷰 창 시에만 사용
+import LeftArrow1 from "../assets/right/LeftArrow1.svg"; 
 
 // 실제 DB 검색 결과를 반환해야 함.
 function DetailInfo() {
+  // 하단 버튼
+  // 별점
+  const [value, setValue] = React.useState(2);
+  const handleClick = () => {
+    console.info('You clicked the Chip.');
+  };
     return (
             <Div41>
               <Div42>내주변 공원</Div42>
@@ -28,10 +51,19 @@ function DetailInfo() {
                     </span>
                   </Div47>
                 </Div45>
-                <Img4
+                {/* 별 5개*/}
+                {/* <Img4
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
+                /> */}
+                <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
                 />
+                <Img4></Img4>
               </Div43>
               <Div48>
                 <Div49>2</Div49>
@@ -44,10 +76,19 @@ function DetailInfo() {
                     </span>
                   </Div52>
                 </Div50>
-                <Img5
+                {/* 별 5개*/}
+                <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                />
+                {/* <Img5
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                />
+                /> */}
+                <Img5></Img5>
               </Div48>
               <Div53>
                 <Div54>3</Div54>
@@ -60,10 +101,19 @@ function DetailInfo() {
                     </span>
                   </Div57>
                 </Div55>
-                <Img6
+                {/* 별 5개*/}
+                <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                />
+                {/* <Img6
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                />
+                /> */}
+                <Img6></Img6>
               </Div53>
               <Div58>
                 <Div59>4</Div59>
@@ -78,10 +128,19 @@ function DetailInfo() {
                       </span>
                     </Div63>
                   </Div61>
-                  <Img7
+                  {/* 별 5개*/}
+                  <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                  />
+                  {/* <Img7
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                  />
+                  /> */}
+                  <Img7></Img7>
                 </Div60>
               </Div58>
               <Div64>
@@ -96,10 +155,19 @@ function DetailInfo() {
                       </span>
                     </Div69>
                   </Div67>
-                  <Img8
+                  {/* 별 5개*/}
+                  <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                  />
+                  {/* <Img8
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                  />
+                  /> */}
+                  <Img8></Img8>
                 </Div66>
               </Div64>
               <Div70>
@@ -107,17 +175,29 @@ function DetailInfo() {
                   <Div72>공원 정보</Div72>
                   <Div73>늘벗공원 (10)</Div73>
                 </Div71>
-                <Img9
+                {/* 별 5개*/}
+                {/* <Img9
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/f03d69fe4718fb023f02900583fcb45cc572485dd8eba071fab279529e362557?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                />
+                /> */}
+                <Img9></Img9>
               </Div70>
+              <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                />
               <Div74>
                 <Div75>
-                  <Img10
+                  {/* ReviewInfoMap */}
+                  {/* <Img10
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3ddaf6287168308df0bc442e1889afdbeae6acb4833522e866675095810ef593?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/3ddaf6287168308df0bc442e1889afdbeae6acb4833522e866675095810ef593?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3ddaf6287168308df0bc442e1889afdbeae6acb4833522e866675095810ef593?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/3ddaf6287168308df0bc442e1889afdbeae6acb4833522e866675095810ef593?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/3ddaf6287168308df0bc442e1889afdbeae6acb4833522e866675095810ef593?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3ddaf6287168308df0bc442e1889afdbeae6acb4833522e866675095810ef593?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/3ddaf6287168308df0bc442e1889afdbeae6acb4833522e866675095810ef593?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/3ddaf6287168308df0bc442e1889afdbeae6acb4833522e866675095810ef593?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                  />
+                  /> */}
+                  <Img10> 
+                  </Img10>
                   <Div76>
                     <span>
                       서울특별시 강남구 대치동{" "}
@@ -128,24 +208,33 @@ function DetailInfo() {
                   </Div76>
                 </Div75>
                 <Div77>
-                  <Img11
+                  {/* ColorWheel1 */}
+                  {/* <Img11
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/d6340f3ff3bfdba8a539698d7de9cc278607bad8874cd2c773d56c96eaa2b15c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6340f3ff3bfdba8a539698d7de9cc278607bad8874cd2c773d56c96eaa2b15c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6340f3ff3bfdba8a539698d7de9cc278607bad8874cd2c773d56c96eaa2b15c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6340f3ff3bfdba8a539698d7de9cc278607bad8874cd2c773d56c96eaa2b15c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6340f3ff3bfdba8a539698d7de9cc278607bad8874cd2c773d56c96eaa2b15c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6340f3ff3bfdba8a539698d7de9cc278607bad8874cd2c773d56c96eaa2b15c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6340f3ff3bfdba8a539698d7de9cc278607bad8874cd2c773d56c96eaa2b15c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6340f3ff3bfdba8a539698d7de9cc278607bad8874cd2c773d56c96eaa2b15c?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                  />
+                  /> */}
+                  <Img11>
+                  </Img11>
                   <Div78>어린이 공원</Div78>
                 </Div77>
                 <Div79>
-                  <Img12
+                  {/* Telephone1 */}
+                  {/* <Img12
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ff14e53fe84748030dc40f2daed2cd62d93771850f560a2fa99c76012b626155?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ff14e53fe84748030dc40f2daed2cd62d93771850f560a2fa99c76012b626155?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ff14e53fe84748030dc40f2daed2cd62d93771850f560a2fa99c76012b626155?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ff14e53fe84748030dc40f2daed2cd62d93771850f560a2fa99c76012b626155?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ff14e53fe84748030dc40f2daed2cd62d93771850f560a2fa99c76012b626155?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ff14e53fe84748030dc40f2daed2cd62d93771850f560a2fa99c76012b626155?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ff14e53fe84748030dc40f2daed2cd62d93771850f560a2fa99c76012b626155?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ff14e53fe84748030dc40f2daed2cd62d93771850f560a2fa99c76012b626155?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                  />
+                  /> */}
+                  <Img12>
+                  </Img12>
                   <Div80>02-1234-1234</Div80>
                 </Div79>
                 <Div81>
-                  <Img13
+                  {/* Information1 */}
+                  {/* <Img13
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/e43042ad90422ab0d16f7ebacc1fcf08f511f765c4db5e5fe3c362fa5fe2a24c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/e43042ad90422ab0d16f7ebacc1fcf08f511f765c4db5e5fe3c362fa5fe2a24c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/e43042ad90422ab0d16f7ebacc1fcf08f511f765c4db5e5fe3c362fa5fe2a24c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/e43042ad90422ab0d16f7ebacc1fcf08f511f765c4db5e5fe3c362fa5fe2a24c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/e43042ad90422ab0d16f7ebacc1fcf08f511f765c4db5e5fe3c362fa5fe2a24c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/e43042ad90422ab0d16f7ebacc1fcf08f511f765c4db5e5fe3c362fa5fe2a24c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/e43042ad90422ab0d16f7ebacc1fcf08f511f765c4db5e5fe3c362fa5fe2a24c?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/e43042ad90422ab0d16f7ebacc1fcf08f511f765c4db5e5fe3c362fa5fe2a24c?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-                  />
+                  /> */}
+                  <Img13>
+                  </Img13>
                   <Div82>
                     운동시설 <br />
                     농구장, 축구장, 테니스장
@@ -153,6 +242,10 @@ function DetailInfo() {
                 </Div81>
               </Div74>
               <Div83>
+              <Stack direction="row" spacing={1}>
+              <Chip label="리뷰 작성하기" variant="outlined" onClick={handleClick} />
+              <Chip label="리뷰 상세 보기" variant="outlined" onClick={handleClick} />
+              </Stack>
                 <Div84>
                   <Div85>리뷰 작성하기</Div85>
                 </Div84>
