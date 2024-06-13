@@ -16,6 +16,8 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
+// svg에 필요한 파일
+import IconSearch1 from "../assets/left/IconSearch1.svg";
 
 function DirectSearch() {
   return (
@@ -57,10 +59,13 @@ function DirectSearch() {
       <TextField id="outlined-basic" label="Outlined" variant="outlined" placeholder="공원 이름을 검색해보세요"/>
       </Box>
             <Div20>공원 이름을 검색해보세요</Div20>
-            <Img
+            {/* <Img
             loading="lazy"
             srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-            />
+            /> */}
+            <Img>
+            <img src={IconSearch1} alt="Search" />
+            </Img>
         </Div19>
         </Div18>
     </Div11>
