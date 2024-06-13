@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.11  강민규   Created   LocationSearch 기반
 2024.06.11  강민규   Modified  MUI 추가
+2024.06.13  강민규   Modified  svg 추가
 */
 
 import * as React from "react";
