@@ -24,6 +24,9 @@ import DirectSearch from "./components/DirectSearch";
 import Map from "./services/Map"
 import DetailInfo from "./components/DetailInfo"; 
 
+// svg에 필요한 파일
+import Maptemp from "./assets/Maptemp.svg";
+
 function App() {
   return (
     <Div>
@@ -39,10 +42,9 @@ function App() {
           <Column5>
           {/* 지도 API */}
           {/* <Map /> */}
-            <Img3
-              loading="lazy"
-              srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/2678a9c688083429ddcdd59efba0e7db2f8b9f2cf69fa2759d3df77759b2aeeb?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/2678a9c688083429ddcdd59efba0e7db2f8b9f2cf69fa2759d3df77759b2aeeb?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/2678a9c688083429ddcdd59efba0e7db2f8b9f2cf69fa2759d3df77759b2aeeb?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/2678a9c688083429ddcdd59efba0e7db2f8b9f2cf69fa2759d3df77759b2aeeb?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/2678a9c688083429ddcdd59efba0e7db2f8b9f2cf69fa2759d3df77759b2aeeb?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/2678a9c688083429ddcdd59efba0e7db2f8b9f2cf69fa2759d3df77759b2aeeb?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/2678a9c688083429ddcdd59efba0e7db2f8b9f2cf69fa2759d3df77759b2aeeb?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/2678a9c688083429ddcdd59efba0e7db2f8b9f2cf69fa2759d3df77759b2aeeb?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-            />
+            <Img3>
+            <img src={Maptemp} alt="Map" style={{ width: '100%'}} />
+            </Img3>
           </Column5>
           {/* 검색결과, 리뷰 탭 */}
           <Column6>
@@ -104,7 +106,7 @@ const Column5 = styled.div`
   }
 `;
 
-const Img3 = styled.img`
+const Img3 = styled.div`
   aspect-ratio: 0.87;
   object-fit: auto;
   object-position: center;
