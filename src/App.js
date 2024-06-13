@@ -12,7 +12,6 @@ Date        Author   Status    Description
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
-import Map from './pages/Map'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 
@@ -21,7 +20,6 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/map" element={<Map />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signUp" element={<SignUp />} />
                 {/* 다른 경로들 */}
