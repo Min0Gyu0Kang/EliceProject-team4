@@ -7,12 +7,14 @@ History
 Date        Author   Status    Description
 2024.06.10  김유림   Created
 2024.06.12  김유림   Modified  컨테이너별 4페이지 초안 생성 
+2024.06.13  김유림   Modified  데이터 출처 추가
 */
 import React from 'react'
 import styled from 'styled-components'
 import FirstChart from './chart/FirstChart'
 import SecondChart from './chart/SecondChart'
 import ThirdChart from './chart/ThirdChart'
+import '../../assets/fonts/font.css'
 
 const DashboardWrapper = styled.div`
     display: flex;
@@ -39,39 +41,41 @@ const LeftSection = styled.div`
     flex: 1;
     width: 600px;
     font-family: 'Pretendard';
-    font-weight: 600;
+    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
 `
 
-const MiddleSection = styled.div`
+const RightSection = styled.div`
     flex: 1;
     padding: 100px 0px; /* 패딩 조정 */
     font-size: 16px;
     text-align: center; /* 텍스트를 가운데 정렬 */
     font-family: 'Pretendard';
     width: 450px;
-    font-weight: 600;
+    font-weight: 500;
     display: flex; /* 중앙 정렬을 위해 flex로 설정 */
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
 `
 
-const RightSection = styled.div`
-    display: flex;
-    padding: 150px 0px; /* 패딩 조정 */
-    flex-direction: column;
-`
-
 const Highlight = styled.span`
     color: #30cb6e;
+    font-weight: 700;
 `
 
 const BackgroundColor = styled.div`
     background-color: #f5f5f5;
 `
+const LinkText = styled.a`
+    color: #888; /* 연한 색상 */
+    text-decoration: none;
 
+    &:hover {
+        text-decoration: underline;
+    }
+`
 const Dashboard = () => {
     return (
         <DashboardWrapper>
@@ -80,7 +84,7 @@ const Dashboard = () => {
                     <LeftSection>
                         <FirstChart />
                     </LeftSection>
-                    <MiddleSection>
+                    <RightSection>
                         <p>
                             도시 환경에서 공원과 녹지는 환경적인 측면과
                             <br /> <Highlight>삶의 질 향상</Highlight>에 중요한
@@ -90,17 +94,11 @@ const Dashboard = () => {
                             증가하고 있으며 <br />
                             녹지 환경에 대한 시민의 만족도도 증가하고 있어요
                         </p>
-                    </MiddleSection>
-                    {/* <RightSection>
-                    <Icon src={FirstChartButton} alt="first chart icon" />
-                    <Icon src={SecondChartButton} alt="second chart icon" />
-                    <Icon src={ThirdChartButton} alt="third chart icon" />
-                    <Icon src={InsightButton} alt="insight icon" />
-                </RightSection> */}
+                    </RightSection>
                 </Container>
                 <Divider />
                 <Container>
-                    <MiddleSection>
+                    <RightSection>
                         <p>
                             각지역 별 도시공원 조성면적만을 늘린다면
                             <br /> 앞으로의 녹지환경의 만족도를 늘릴 수
@@ -119,7 +117,7 @@ const Dashboard = () => {
                             <Highlight>공원의 질적 수준을 향상</Highlight>시키는
                             것에 집중해야해요
                         </p>
-                    </MiddleSection>
+                    </RightSection>
                     <LeftSection>
                         <SecondChart />
                     </LeftSection>
@@ -129,7 +127,7 @@ const Dashboard = () => {
                     <LeftSection>
                         <ThirdChart />
                     </LeftSection>
-                    <MiddleSection>
+                    <RightSection>
                         <p>
                             공원의 질적 수준을 높이기 위해 노후화율 데이터에
                             주목하였고 <br />
@@ -139,11 +137,11 @@ const Dashboard = () => {
                             공원 유지 관리, 공원 정보 제공, 시민의 관심과
                             지자체의 노력이 필요해요
                         </p>
-                    </MiddleSection>
+                    </RightSection>
                 </Container>
                 <Divider />
                 <Container>
-                    <MiddleSection>
+                    <RightSection>
                         <p>
                             이에 도시의 오아시스는 '내 주변 공원 추천', '공원
                             정보 제공', '우리 공원 정보 알림' 등의 서비스를
@@ -163,7 +161,45 @@ const Dashboard = () => {
                             <br /> 저희와 더 나은 도시공원과 거주 환경을 위해
                             함께해요!
                         </p>
-                    </MiddleSection>
+                    </RightSection>
+                </Container>
+                <Divider />
+                <Container>
+                    <RightSection>
+                        <LinkText>
+                            <p>
+                                데이터출처
+                                <br />
+                                <br />
+                                공공데이터 포털 :
+                                <a
+                                    href="https://www.data.go.kr/index.do"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    https://www.data.go.kr/index.do
+                                </a>
+                                <br />
+                                통계청 KOSIS
+                                <a
+                                    href="https://kosis.kr/o"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    https://kosis.kr/
+                                </a>
+                                <br />
+                                지표누리
+                                <a
+                                    href="https://www.index.go.kr/unity/potal/main.do"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    https://www.index.go.kr/unity/potal/main.do
+                                </a>
+                            </p>
+                        </LinkText>
+                    </RightSection>
                 </Container>
             </BackgroundColor>
         </DashboardWrapper>
