@@ -26,29 +26,23 @@ function DirectSearch() {
     <Div11>
         <Div17>이름 검색</Div17>
         <Div18>
-        <Div19>
-        <Stack direction="row" spacing={1}>
-        <Div20>
         <Box
         component="form"
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
+        sx={{ minWidth: 400 }}
         noValidate
         autoComplete="off"
       >
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" placeholder="공원 이름을 검색해보세요"/>
+        <Stack direction="row" spacing={1}>
+        <TextField minwidth="400" id="outlined-basic" label="공원 이름을 검색해보세요" variant="outlined"/>
+        <img src={IconSearch1} alt="Search" height='45px' />
+        </Stack>
         </Box>
             {/* 공원 이름을 검색해보세요 */}
-            <img src={IconSearch1} alt="Search" />
-            </Div20>
-            </Stack>
             {/* <Img
             loading="lazy"
             srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
             /> */}
             
-        </Div19>
         </Div18>
     </Div11>
   );

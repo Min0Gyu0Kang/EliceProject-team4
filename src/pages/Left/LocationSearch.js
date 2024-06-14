@@ -51,6 +51,7 @@ function LocationSearch() {
         시 / 도
       </Div19>
       <Div20>
+      <StyledBox sx={{ minWidth: 400 }}>
       <FormControl fullWidth>
         <InputLabel id="selectCity">선택하기</InputLabel>
         <Select
@@ -66,6 +67,7 @@ function LocationSearch() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
+      </StyledBox>
         {/* <Div21> */}
           {/* <Div22>선택 </Div22> */}
           {/* <Img
@@ -83,12 +85,12 @@ function LocationSearch() {
         </span> */}
       </Div23>
       <Div24>
-      <Box sx={{ minWidth: 120 }}>
+      <StyledBox sx={{ minWidth: 400 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">선택하기</InputLabel>
+        <InputLabel id="selectState">선택하기</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId="selectState"
+          id="selectState"
           value={state}
           label="State"
           onChange={handleStateChange}
@@ -99,7 +101,7 @@ function LocationSearch() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-    </Box>
+    </StyledBox>
         {/* <Div25> */}
           {/* <Div26>선택</Div26> */}
           {/* <img
@@ -111,15 +113,17 @@ function LocationSearch() {
         {/* </Div25> */}
       </Div24>
       <Div27>추천 태그</Div27>
+      <Column2>
+      </Column2>
       <Stack direction="row" spacing={1}>
-      <Chip label="운동시설" onClick={handleClick} />
-      <Chip label="유희시설" variant="outlined" onClick={handleClick} />
-      <Chip label="기타시설" variant="outlined" onClick={handleClick} />
-      <Chip label="편의시설" variant="outlined" onClick={handleClick} />
+      <StyledChip label="운동시설" onClick={handleClick} />
+      <StyledChip label="유희시설" variant="outlined" onClick={handleClick} />
+      <StyledChip label="기타시설" variant="outlined" onClick={handleClick} />
+      <StyledChip label="편의시설" variant="outlined" onClick={handleClick} />
     </Stack>
       <Div28>
         <Div29>
-          <Column2>
+          {/* <Column2>
             <Div30>
               <Div31>
                 <Div32>
@@ -140,21 +144,23 @@ function LocationSearch() {
             <Div40>
               <Div41>편의시설</Div41>
             </Div40>
-          </Column4>
+          </Column4> */}
         </Div29>
       </Div28>
+      <Column2>
       <Div42>
       <Stack direction="row" spacing={1}>
-      <Chip label="선택 초기화" variant="outlined" onClick={handleClick} />
-      <Chip label="추천 공원 검색" variant="outlined" onClick={handleClick} />
+      <StyledChip label="선택 초기화" variant="outlined" onClick={handleClick} />
+      <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleClick} />
       </Stack>
-        <Div43>
+        {/* <Div43>
           <Div44>선택 초기화</Div44>
         </Div43>
         <Div45>
           <Div46>추천 공원 검색</Div46>
-        </Div45>
+        </Div45> */}
       </Div42>
+      </Column2>
   </Div11>
   );
 }
@@ -226,6 +232,10 @@ const Div20 = styled.div`
     margin: 0 10px;
   }
 `;
+
+const StyledBox = styled(Box)`
+  border-radius:30px 0px 0px 30px;
+`
 
 const Div21 = styled.div`
   border-radius: 30px;
@@ -542,47 +552,27 @@ const Div42 = styled.div`
   }
 `;
 
-const Div43 = styled.div`
+const StyledChip = styled(Chip)`
   justify-content: center;
   border-radius: 30px;
-  border-color: rgba(223, 223, 223, 1);
   border-style: solid;
   border-width: 1px;
-  background-color: var(--primary-contrast, #fff);
+  background-color: #7f7777;
   display: flex;
   flex-direction: column;
-  color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
   flex: 1;
+  font-family: Pretendard, sans-serif;
   padding: 8px 22px;
   @media (max-width: 991px) {
     padding: 0 20px;
   }
-`;
-
-const Div44 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-`;
-
-const Div45 = styled.div`
-  justify-content: center;
-  border-radius: 30px;
-  background-color: #30cb6e;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-  font-weight: 800;
-  flex: 1;
-  padding: 8px 22px;
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-`;
-
-const Div46 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
+  background-color: #7f7777;
+  color: #c7d1cb;
+  &.Mui-selected {
+    background-color: #30cb6e;
+    color: #fff;
+    }
 `;
 
 export default LocationSearch;

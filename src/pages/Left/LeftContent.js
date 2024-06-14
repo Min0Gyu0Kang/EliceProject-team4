@@ -65,18 +65,18 @@ function LeftContent() {
     <Div>
         <Column>
     <Div12>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
         <StyledTabs value={value} onChange={handleChange} aria-label="searchOptions">
           <StyledTab label="지역 검색" {...a11yProps(0)} /> 
           <StyledTab label="직접 검색" {...a11yProps(1)} /> 
         </StyledTabs>
       </Box>
-      <Div13>
+      {/* <Div13> */}
         {/* <Div14>지역 검색</Div14> */}
-      </Div13>
-      <Div15>
+      {/* </Div13> */}
+      {/* <Div15> */}
         {/* <Div16>직접 검색</Div16> */}
-      </Div15>
+      {/* </Div15> */}
     </Div12>
     <CustomTabPanel value={value} index={0}>
         <LocationSearch />
@@ -129,6 +129,7 @@ const StyledTabs = styled(Tabs)`
   text-transform: uppercase;
   letter-spacing: 0.46px;
   line-height: 144%;
+  border-radius: 10px 0px 0px 10px;
   @media (max-width: 991px) {
     flex-wrap: wrap;
   }
@@ -175,12 +176,6 @@ const StyledTab = styled(Tab)`
     }
 `;
 
-
-const Div14 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-`;
-
 const Div15 = styled.div`
   justify-content: center;
   align-items: center;
@@ -197,11 +192,6 @@ const Div15 = styled.div`
   @media (max-width: 991px) {
     padding: 0 20px;
   }
-`;
-
-const Div16 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
 `;
 
 export default LeftContent;
