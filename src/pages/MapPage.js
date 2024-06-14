@@ -1,3 +1,14 @@
+/**
+File Name : MapPage
+Description : 지도 레이아웃
+Author : 김유림
+
+History
+Date        Author   Status    Description
+2024.06.14  김유림   Created
+2024.06.14  임지영   Modified   RightTop 스타일 수정, 주변 공원 컴포넌트 추가
+*/
+
 import React from 'react'
 import Header from '../components/common/Header'
 import NearPark from '../components/map/output/NearPark'
@@ -57,10 +68,7 @@ const RightSection = styled.div`
 
 const RightTop = styled.div`
     flex: 1; /* 상위 섹션의 1/2를 차지하도록 설정 */
-    background-color: #f2d0b3; /* 예제용 배경색 */
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 10px;
 `
 
@@ -85,7 +93,9 @@ const MapPage = () => {
                     </LeftSection>
                     <MiddleSection>Middle Content</MiddleSection>
                     <RightSection>
-                        <RightTop>Right Top Content</RightTop>
+                        <RightTop>
+                            <NearPark />
+                        </RightTop>
                         <RightBottom>Right Bottom Content</RightBottom>
                     </RightSection>
                 </ContentWrapper>
