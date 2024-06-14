@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.14  김유림   Created
 2024.06.14  임지영   Modified   RightTop 스타일 수정, 주변 공원 컴포넌트 추가
 2024.06.14  김유림   Modified   Right스타일 수정, 공원정보 컴포넌트 추가
+2024.06.14  임지영   Modified   LeftTop 모달창 확인용 컴포넌트 추가
 */
 
 import React from 'react'
@@ -15,6 +16,7 @@ import Header from '../components/common/Header'
 import NearPark from '../components/map/output/NearPark'
 import InfoPark from '../components/map/output/InfoPark'
 import styled from 'styled-components'
+import ModalLogin from '../components/common/ModalLogin'
 import '../assets/fonts/font.css'
 
 const MainLayout = styled.div`
@@ -90,7 +92,9 @@ const MapPage = () => {
                 <Header />
                 <ContentWrapper>
                     <LeftSection>
-                        <LeftTop>Left Top Content</LeftTop>
+                        <LeftTop>
+                            <ModalLogin />
+                        </LeftTop>
                         <LeftBottom>Left Bottom Content</LeftBottom>
                     </LeftSection>
                     <MiddleSection>Middle Content</MiddleSection>
