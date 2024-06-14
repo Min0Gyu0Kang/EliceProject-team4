@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.14  김유림    Created   내주변 공원 컴포넌트
 2024.06.14  임지영    Modified  Empty 컨테이너 추가, 스타일 수정
+2024.06.14  임지영    Modified  ContentWrapper 좌우 패딩 10->15 수정
 */
 
 import React from 'react'
@@ -24,7 +25,7 @@ const RightSection = styled.div`
 const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 10px 10px;
+    padding: 10px 15px; /* 좌우 패딩 값 수정 */
     width: 100%;
 `
 const NearPark = () => {
