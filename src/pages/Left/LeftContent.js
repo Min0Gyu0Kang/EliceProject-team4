@@ -6,7 +6,7 @@ Author : 강민규
 History
 Date        Author   Status    Description
 2024.06.14  강민규   Created   지역 검색 직접 검색 총괄
-2024.06.14  강민규   Modified  if-else
+2024.06.14  강민규   Modified  토글 추가
 */
 
 import * as React from "react";
