@@ -13,8 +13,6 @@ Date        Author   Status    Description
 
 import * as React from "react";
 import styled from "styled-components";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -32,10 +30,7 @@ function LocationSearch() {
   const [city, setCity] = React.useState('');
   const [state, setState] = React.useState('');
 
-// 탭 토글
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+
 // 지역 설정 선택창
   const handleCityChange = (event) => {
     setCity(event.target.value);
@@ -49,28 +44,6 @@ function LocationSearch() {
   };
   return (
 <Div11>
-<Box sx={{ width: '100%' }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="wrapped label tabs example"
-      >
-        <Tab
-          value="one"
-          label="지역 검색"
-          wrapped
-        />
-        <Tab value="two" label="직접 검색" />
-      </Tabs>
-    </Box>
-    <Div12>
-      <Div13>
-        <Div14>지역 검색</Div14>
-      </Div13>
-      <Div15>
-        <Div16>직접 검색</Div16>
-      </Div15>
-    </Div12>
     <Div17>
       <Div18>지역 설정</Div18>
       <Div19>
@@ -201,65 +174,7 @@ const Div11 = styled.div`
   }
 `;
 
-const Div12 = styled.div`
-  display: flex;
-  width: 509px;
-  max-width: 100%;
-  gap: 0px;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.46px;
-  line-height: 144%;
-  @media (max-width: 991px) {
-    flex-wrap: wrap;
-  }
-`;
 
-const Div13 = styled.div`
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px 0px 0px 10px;
-  background-color: #30cb6e;
-  display: flex;
-  color: #fff;
-  font-weight: 500;
-  flex: 1;
-  flex-grow: 1;
-  flex-basis: 0;
-  width: fit-content;
-  padding: 8px 22px;
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-`;
-
-const Div14 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-`;
-
-const Div15 = styled.div`
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px 10px 10px 0px;
-  background-color: #c7d1cb;
-  display: flex;
-  color: #7f7777;
-  font-weight: 400;
-  flex: 1;
-  flex-grow: 1;
-  flex-basis: 0;
-  width: fit-content;
-  padding: 8px 22px;
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-`;
-
-const Div16 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-`;
 
 const Div17 = styled.div`
   display: flex;

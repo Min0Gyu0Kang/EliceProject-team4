@@ -59,7 +59,7 @@ const Header = () => {
         <HeaderWrapper>
             <Logo to="/">도시의 오아시스</Logo>
             <div>
-                <Nav to="/map" isActive={location.pathname === '/map'}>
+                <Nav to="/park" isActive={location.pathname === '/park'}>
                     공원 찾기
                 </Nav>
                 <Nav

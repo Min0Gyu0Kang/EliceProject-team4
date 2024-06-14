@@ -12,61 +12,40 @@ Date        Author   Status    Description
 
 import * as React from "react";
 import styled from "styled-components";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 
 // svg에 필요한 파일
 import IconSearch1 from "../../assets/left/IconSearch1.svg";
 
 function DirectSearch() {
   return (
-
     <Div11>
-      <Box sx={{ width: '100%' }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="wrapped label tabs example"
-      >
-        <Tab
-          value="one"
-          label="지역 검색"
-          wrapped
-        />
-        <Tab value="two" label="직접 검색" />
-      </Tabs>
-    </Box>
-        <Div12>
-        <Div13>
-            <Div14>지역 검색</Div14>
-        </Div13>
-        <Div15>
-            <Div16>직접 검색</Div16>
-        </Div15>
-        </Div12>
         <Div17>이름 검색</Div17>
         <Div18>
         <Div19>
+        <Stack direction="row" spacing={1}>
+        <Div20>
         <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" placeholder="공원 이름을 검색해보세요"/>
-      </Box>
-            <Div20>공원 이름을 검색해보세요</Div20>
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" placeholder="공원 이름을 검색해보세요"/>
+        </Box>
+            {/* 공원 이름을 검색해보세요 */}
+            <img src={IconSearch1} alt="Search" />
+            </Div20>
+            </Stack>
             {/* <Img
             loading="lazy"
             srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
             /> */}
-            <Img>
-            <img src={IconSearch1} alt="Search" />
-            </Img>
+            
         </Div19>
         </Div18>
     </Div11>
