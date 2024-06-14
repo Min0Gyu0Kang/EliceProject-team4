@@ -18,4 +18,6 @@ Date        Author   Status         Description
 
 2024.06.11  강민규   Restructured   파일 생성 및 구조 재구성
 
+2024.06.14  강민규   Restructured   파일 생성 및 구조 재구성
+
 */

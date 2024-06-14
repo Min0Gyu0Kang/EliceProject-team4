@@ -18,7 +18,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 // svg에 필요한 파일
-import IconSearch1 from "../assets/left/IconSearch1.svg";
+import IconSearch1 from "../../assets/left/IconSearch1.svg";
 
 function DirectSearch() {
   return (

@@ -24,7 +24,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
 // svg에 필요한 파일
-import {ReactComponent as DownArrow1} from "../assets/left/DownArrow1.svg";
+import {ReactComponent as DownArrow1} from "../../assets/left/DownArrow1.svg";
 
 function LocationSearch() {
   const [value, setValue] = React.useState('one');
