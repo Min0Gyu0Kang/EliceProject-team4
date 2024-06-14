@@ -15,6 +15,7 @@ import styled from 'styled-components'
 import Keyword from '../../common/Keyword'
 import Empty from '../../common/Empty'
 import '../../../assets/fonts/font.css'
+import ParkList from './ParkList'
 
 const RightSection = styled.div`
     flex: 3; /* 부모의 전체 너비를 차지하도록 함 */
@@ -33,7 +34,8 @@ const NearPark = () => {
         <RightSection>
             <ContentWrapper>
                 <Keyword text="내 주변 공원" />
-                <Empty text="공원을 검색해보세요" />
+                {/* <Empty text="공원을 검색해보세요" /> */}
+                <ParkList />
             </ContentWrapper>
         </RightSection>
     )
