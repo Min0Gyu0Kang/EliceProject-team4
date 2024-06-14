@@ -66,9 +66,9 @@ function LeftContent() {
         <Column>
     <Div12>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <StyledTabs value={value} onChange={handleChange} aria-label="Search Options">
-          <StyledTab label="지역 검색" {...a11yProps(0)} /> {/* Div14 */}
-          <StyledTab label="직접 검색" {...a11yProps(1)} /> {/* Div16 */}
+        <StyledTabs value={value} onChange={handleChange} aria-label="searchOptions">
+          <StyledTab label="지역 검색" {...a11yProps(0)} /> 
+          <StyledTab label="직접 검색" {...a11yProps(1)} /> 
         </StyledTabs>
       </Box>
       <Div13>
