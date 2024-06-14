@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.14  김유림   Created
 */
+
 import React from 'react'
 import styled from 'styled-components'
 import '../../assets/fonts/font.css' // 글꼴 CSS 파일
