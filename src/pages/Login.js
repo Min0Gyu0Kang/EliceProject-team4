@@ -11,7 +11,7 @@ Date        Author   Status    Description
 
 import React, {useState} from 'react'
 import styled, {css} from 'styled-components'
-import '../assets/font/font.css'
+import '../assets/fonts/font.css'
 import {BrowserRouter as Router, Link, useLocation} from 'react-router-dom'
 import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'

@@ -5,15 +5,17 @@ Author : 임지영
 
 History
 Date        Author   Status    Description
-2024.06.10  임지영   Created
+2024.06.10  임지영    Created
+2024.06.15  임지영    Modified   웹폰트 적용
 */
 
 import React from 'react'
 import {BrowserRouter as Router, Link, useLocation} from 'react-router-dom'
 import styled from 'styled-components'
+import '../../assets/fonts/font.css'
 
 const HeaderWrapper = styled.div`
-    font-family: 'GmarketSansMedium';
+    font-family: 'gmarket Medium';
     padding-left: 0px;
     display: flex;
     justify-content: space-between;
@@ -28,10 +30,7 @@ const Logo = styled(Link)`
     font-size: 20pt;
     color: #30cb6e;
     font-weight: 900;
-    text-shadow:
-        -0.5px 0px #30cb6e,
-        0px 0.5px #30cb6e,
-        0.5px 0px #30cb6e,
+    text-shadow: -0.5px 0px #30cb6e, 0px 0.5px #30cb6e, 0.5px 0px #30cb6e,
         0px -0.5px #30cb6e;
 
     &:hover {

@@ -12,7 +12,7 @@ Date        Author   Status    Description
 
 import React from 'react'
 import styled from 'styled-components'
-import '../../assets/font/font.css'
+import '../../assets/fonts/font.css'
 import HowToUse from './HowToUse'
 import {ReactComponent as Tag} from '../../assets/images/tag.svg'
 import {ReactComponent as Map} from '../../assets/images/map.svg'

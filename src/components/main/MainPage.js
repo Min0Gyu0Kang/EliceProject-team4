@@ -11,7 +11,7 @@ Date        Author   Status    Description
 
 import React from 'react'
 import styled from 'styled-components'
-import '../../assets/font/font.css'
+import '../../assets/fonts/font.css'
 import {useNavigate} from 'react-router-dom'
 
 const MainPageWrapper = styled.div`
