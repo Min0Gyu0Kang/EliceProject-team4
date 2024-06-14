@@ -23,11 +23,11 @@ const ParkListContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
-    margin-top: 23px;
+    margin-top: 16px;
 `
 
 const List = styled.div`
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 `
 
 const Number = styled.p`
