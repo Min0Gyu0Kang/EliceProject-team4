@@ -14,6 +14,10 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import React from 'react'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Dashboard from './pages/DashboardPage'
+import Community from './pages/CommunityPage'
 
 const App = () => {
     return (
@@ -22,7 +26,8 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signUp" element={<SignUp />} />
-                {/* 다른 경로들 */}
+                <Route path="/dataStory" element={<Dashboard />} />
+                <Route path="/community" element={<Community />} />
             </Routes>
         </BrowserRouter>
     )
