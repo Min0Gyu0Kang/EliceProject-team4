@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.14  김유림    Created   공원 정보 리스트 컴포넌트
 2024.06.15  임지영    Modified  리스트 컨테이너 높이 수정
+2024.06.15  김유림    Modified  리스트 컨테이너 높이 수정
 */
 
 import React, {useState} from 'react'
@@ -31,7 +32,7 @@ const Container = styled.div`
 const InfoListContainer = styled.div`
     width: 100%;
     max-width: 370px;
-    max-height: 260px; /* 리스트 높이 제한 설정 */
+    max-height: 330px; /* 리스트 높이 제한 설정 */
     border-radius: 16px;
     background-color: #ffffff; /* 배경색 설정 */
     border: 1px solid #e0e0e0; /* 테두리 설정 */

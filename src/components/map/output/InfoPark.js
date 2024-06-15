@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.14  김유림    Created   내주변 공원 컴포넌트
 2024.06.14  임지영    Modified  Empty 컨테이너 추가, 스타일 수정
+2024.06.15  김유림    Modified  ButtonWrapper 마진 수정
 */
 
 import React from 'react'
@@ -45,7 +46,7 @@ const Name = styled.div`
 const ButtonWrapper = styled.div`
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
-    margin-top: 20px; /* 위쪽 여백 추가 */
+    margin-top: 10px; /* 위쪽 여백 추가 */
 `
 const InfoPark = () => {
     return (
