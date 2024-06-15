@@ -1,0 +1,78 @@
+/**
+File Name : font.css
+Description : 폰트 
+Author : 임지영
+
+History
+Date        Author   Status    Description
+2024.06.13  임지영    Created
+*/
+
+@font-face {
+    font-family: 'gmarket Bold';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./GmarketSansBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'gmarket Medium';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./GmarketSansMedium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'gmarket Light';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./GmarketSansLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GowunDodum';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./GowunDodum-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 800;
+    src: url('./Pretendard-ExtraBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 700;
+    src: url('./Pretendard-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 600;
+    src: url('./Pretendard-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 500;
+    src: url('./Pretendard-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 400;
+    src: url('./Pretendard-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 300;
+    src: url('./Pretendard-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 200;
+    src: url('./Pretendard-ExtraLight.woff') format('woff');
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 100;
+    src: url('./Pretendard-Thin.woff') format('woff');
+}
