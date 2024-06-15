@@ -16,7 +16,7 @@ import Empty from '../../common/Empty'
 import Rating from '@mui/material/Rating'
 import InfoList from './InfoList'
 import '../../../assets/fonts/font.css'
-import Botton from './Botton'
+import Button from './Button'
 
 const RightSection = styled.div`
     background-color: #ffffff; /* 예제용 배경색 */
@@ -27,7 +27,7 @@ const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0px 15px;
-    width: 100%;
+    width: 950%;
 `
 const ParkNameContainer = styled.div`
     font-family: 'Pretendard';
@@ -42,7 +42,7 @@ const Name = styled.div`
     margin: 10px 10px;
     align-items: flex-start; /* 수직 상단 정렬 */
 `
-const BottonWrapper = styled.div`
+const ButtonWrapper = styled.div`
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
     margin-top: 20px; /* 위쪽 여백 추가 */
@@ -63,9 +63,9 @@ const InfoPark = () => {
                 </ParkNameContainer>
                 {/* <Empty text="공원을 검색해보세요" /> */}
                 <InfoList></InfoList>
-                <BottonWrapper>
-                    <Botton></Botton>
-                </BottonWrapper>
+                <ButtonWrapper>
+                    <Button></Button>
+                </ButtonWrapper>
             </ContentWrapper>
         </RightSection>
     )
