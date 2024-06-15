@@ -13,7 +13,7 @@ Date        Author   Status    Description
 
 import * as React from "react";
 import styled from "styled-components";
-import '../../assets/fonts/font.css';
+import '../../../../assets/fonts/font.css';
 // import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 
 import LocationSearch from "./LocationSearch"; 

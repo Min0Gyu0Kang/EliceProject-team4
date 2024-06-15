@@ -19,9 +19,9 @@ Date        Author   Status    Description
 import * as React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Park from './pages/Park';
+import Header from './components/common/Header';
+import Footer from './components/common/Footer';
+import Park from './components/map/Park';
 function App() {
   return (
     <Div>

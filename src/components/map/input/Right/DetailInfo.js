@@ -20,14 +20,14 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
 // svg에 필요한 파일
-import ColorWheel1 from "../../assets/right/ColorWheel1.svg";
-import IconStar from "../../assets/right/IconStar.svg";
-import Information1 from "../../assets/right/Information1.svg";
-import ReviewInfoMap1 from "../../assets/right/ReviewInfoMap1.svg";
-import Telephone1 from "../../assets/right/Telephone1.svg";
+import ColorWheel1 from "../../../../assets/right/ColorWheel1.svg";
+import IconStar from "../../../../assets/right/IconStar.svg";
+import Information1 from "../../../../assets/right/Information1.svg";
+import ReviewInfoMap1 from "../../../../assets/right/ReviewInfoMap1.svg";
+import Telephone1 from "../../../../assets/right/Telephone1.svg";
 
 // 상세 리뷰 창 시에만 사용
-import LeftArrow1 from "../../assets/right/LeftArrow1.svg"; 
+import LeftArrow1 from "../../../../assets/right/LeftArrow1.svg"; 
 
 // 실제 DB 검색 결과를 반환해야 함.
 function DetailInfo() {

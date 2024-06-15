@@ -8,7 +8,7 @@ Date        Author   Status    Description
 2024.06.10  임지영   Created
 */
 
-import React from 'react'
+import React from 'react' 
 import {BrowserRouter as Router, Link, useLocation} from 'react-router-dom'
 import styled from 'styled-components'
 

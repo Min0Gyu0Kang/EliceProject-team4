@@ -14,9 +14,9 @@ import * as React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 //지역 설정 직접 검색 토글 탭
-import LeftContent from "../pages/Left/LeftContent"; 
-import Map from "../pages/Map"
-import RightContent from "../pages/Right/RightContent"; 
+import LeftContent from "./input/Left/LeftContent"; 
+import Map from "./Map"
+import RightContent from "./input/Right/RightContent"; 
 
 // svg에 필요한 파일
 // import Maptemp from "./assets/Maptemp.svg";
