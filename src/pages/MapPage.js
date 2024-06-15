@@ -9,6 +9,7 @@ Date        Author   Status    Description
 2024.06.14  임지영   Modified   RightTop 스타일 수정, 주변 공원 컴포넌트 추가
 2024.06.14  김유림   Modified   Right스타일 수정, 공원정보 컴포넌트 추가
 2024.06.14  임지영   Modified   LeftTop 모달창 확인용 컴포넌트 추가
+2024.06.14  김유림   Modified   Right Section 배경색 변경
 */
 
 import React from 'react'
@@ -65,23 +66,18 @@ const MiddleSection = styled.div`
 
 const RightSection = styled.div`
     flex: 2.5; /* 오른쪽 섹션이 부모의 2/6을 차지하도록 설정 */
-    background-color: #f6f5f2; /* 예제용 배경색 */
+    background-color: #ffffff; /* 예제용 배경색 */
     display: flex;
     flex-direction: column; /* 세로로 요소 배치 설정 */
 `
 
 const RightTop = styled.div`
-    flex: 1; /* 상위 섹션의 1/2를 차지하도록 설정 */
     display: flex;
     margin: 10px;
 `
 
 const RightBottom = styled.div`
-    flex: 1; /* 하위 섹션의 1/2를 차지하도록 설정 */
-    background-color: #f5e1da; /* 예제용 배경색 */
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 10px;
 `
 
