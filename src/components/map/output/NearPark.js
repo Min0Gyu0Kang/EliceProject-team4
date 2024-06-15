@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.14  김유림    Created   내주변 공원 컴포넌트
 2024.06.14  임지영    Modified  Empty 컨테이너 추가, 스타일 수정
 2024.06.14  김유림    Modified  ContentWrapper 좌우 패딩 10->15 수정
+2024.06.14  김유림    Modified  RightSection background-color 변경
 */
 
 import React from 'react'
@@ -19,7 +20,7 @@ import ParkList from './ParkList'
 
 const RightSection = styled.div`
     flex: 3; /* 부모의 전체 너비를 차지하도록 함 */
-    background-color: #f6f5f2; /* 예제용 배경색 */
+    background-color: #ffffff;
     display: flex;
     flex: 1;
 `
