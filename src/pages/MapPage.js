@@ -17,7 +17,7 @@ import Header from '../components/common/Header'
 import NearPark from '../components/map/output/NearPark'
 import InfoPark from '../components/map/output/InfoPark'
 import styled from 'styled-components'
-import ModalLogin from '../components/common/ModalLogin'
+import ModalLogin from '../components/map/output/LoginModal'
 import '../assets/fonts/font.css'
 
 const MainLayout = styled.div`
@@ -79,6 +79,7 @@ const RightTop = styled.div`
 const RightBottom = styled.div`
     display: flex;
     margin: 10px;
+    margin-top: 0;
 `
 
 const MapPage = () => {
