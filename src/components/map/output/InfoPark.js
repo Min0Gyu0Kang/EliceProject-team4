@@ -13,12 +13,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Keyword from '../../common/Keyword'
 import Empty from '../../common/Empty'
+import Rating from '@mui/material/Rating'
 import InfoList from './InfoList'
 import '../../../assets/fonts/font.css'
+import Botton from './Botton'
 
 const RightSection = styled.div`
-    flex: 3; /* 부모의 전체 너비를 차지하도록 함 */
-    background-color: #f6f5f2; /* 예제용 배경색 */
+    background-color: #ffffff; /* 예제용 배경색 */
     display: flex;
     flex: 1;
 `
@@ -28,14 +29,43 @@ const ContentWrapper = styled.div`
     padding: 0px 15px;
     width: 100%;
 `
+const ParkNameContainer = styled.div`
+    font-family: 'Pretendard';
+    width: 100%;
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-between; /* 자식 요소 간의 공간을 최대화하여 양 끝에 정렬 */
+`
 
+const Name = styled.div`
+    font-size: 15pt;
+    margin: 10px 10px;
+    align-items: flex-start; /* 수직 상단 정렬 */
+`
+const BottonWrapper = styled.div`
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    margin-top: 20px; /* 위쪽 여백 추가 */
+`
 const InfoPark = () => {
     return (
         <RightSection>
             <ContentWrapper>
                 <Keyword text="공원 정보" />
+                <ParkNameContainer>
+                    <Name>늘벗공원</Name>
+                    <Rating
+                        name="half-rating"
+                        defaultValue={4}
+                        precision={0.5}
+                        readOnly
+                    />
+                </ParkNameContainer>
                 {/* <Empty text="공원을 검색해보세요" /> */}
                 <InfoList></InfoList>
+                <BottonWrapper>
+                    <Botton></Botton>
+                </BottonWrapper>
             </ContentWrapper>
         </RightSection>
     )
