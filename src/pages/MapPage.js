@@ -10,14 +10,17 @@ Date        Author   Status    Description
 2024.06.14  김유림   Modified   Right스타일 수정, 공원정보 컴포넌트 추가
 2024.06.14  임지영   Modified   LeftTop 모달창 확인용 컴포넌트 추가
 2024.06.14  김유림   Modified   Right Section 배경색 변경
+2024.06.16  김유림   Modified   main view , reviewDetail view생성
 */
 
-import React from 'react'
+import React, {useState} from 'react'
 import Header from '../components/common/Header'
 import NearPark from '../components/map/output/NearPark'
 import InfoPark from '../components/map/output/InfoPark'
 import styled from 'styled-components'
 import ModalLogin from '../components/map/output/LoginModal'
+import ReviewDetail from '../components/map/output/ReviewDetail'
+import Button from '../components/map/output/Button'
 import '../assets/fonts/font.css'
 
 const MainLayout = styled.div`
@@ -83,29 +86,58 @@ const RightBottom = styled.div`
 `
 
 const MapPage = () => {
+    const [view, setView] = useState('main')
+    const [selectedPark, setSelectedPark] = useState(null)
+
+    const handleParkClick = park => {
+        setSelectedPark(park) /* 선택한 공원 상태 업데이트*/
+    }
+
+    const handleReviewDetailClick = () => {
+        setView('reviewDetail') /* 리뷰 상세 보기 뷰 상태 업데이트 */
+    }
+
+    const handleBackClick = () => {
+        setView('main') /*메인 뷰로 돌아가기 뷰 상태 업데이트 */
+    }
+
     return (
-        <div>
-            <MainLayout>
-                <Header />
-                <ContentWrapper>
-                    <LeftSection>
-                        <LeftTop>
-                            <ModalLogin />
-                        </LeftTop>
-                        <LeftBottom>Left Bottom Content</LeftBottom>
-                    </LeftSection>
-                    <MiddleSection>Middle Content</MiddleSection>
-                    <RightSection>
-                        <RightTop>
-                            <NearPark />
-                        </RightTop>
-                        <RightBottom>
-                            <InfoPark />
-                        </RightBottom>
-                    </RightSection>
-                </ContentWrapper>
-            </MainLayout>
-        </div>
+        <MainLayout>
+            <Header />
+            <ContentWrapper>
+                <LeftSection>
+                    <LeftTop>
+                        <ModalLogin />
+                    </LeftTop>
+                    <LeftBottom>Left Bottom Content</LeftBottom>
+                </LeftSection>
+                <MiddleSection>Middle Content</MiddleSection>
+                <RightSection>
+                    {view === 'main' && (
+                        <>
+                            <RightTop>
+                                <NearPark onParkClick={handleParkClick} />
+                                {/* 공원 클릭 핸들러 전달 */}
+                            </RightTop>
+                            <RightBottom>
+                                <InfoPark
+                                    park={selectedPark}
+                                    onReviewDetailClick={
+                                        handleReviewDetailClick
+                                    }
+                                />
+                            </RightBottom>
+                        </>
+                    )}
+                    {view === 'reviewDetail' && selectedPark && (
+                        <ReviewDetail
+                            park={selectedPark}
+                            onBackClick={handleBackClick}
+                        />
+                    )}
+                </RightSection>
+            </ContentWrapper>
+        </MainLayout>
     )
 }
 
