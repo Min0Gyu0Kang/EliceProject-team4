@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.14  김유림    Created   내주변 공원 컴포넌트
 2024.06.14  임지영    Modified  Empty 컨테이너 추가, 스타일 수정
 2024.06.15  김유림    Modified  ButtonWrapper 마진 수정
+2024.06.16  김유림    Modified  조건부 렌더링 추가, Empty or InfoPark/Button
 */
 
 import React from 'react'
@@ -48,28 +49,34 @@ const ButtonWrapper = styled.div`
     justify-content: center; /* 수평 가운데 정렬 */
     margin-top: 10px; /* 위쪽 여백 추가 */
 `
-const InfoPark = () => {
+const InfoPark = ({park, onReviewDetailClick}) => {
     return (
         <RightSection>
             <ContentWrapper>
                 <Keyword text="공원 정보" />
-                <ParkNameContainer>
-                    <Name>늘벗공원</Name>
-                    <Rating
-                        name="half-rating"
-                        defaultValue={4}
-                        precision={0.5}
-                        readOnly
-                    />
-                </ParkNameContainer>
-                {/* <Empty text="공원을 검색해보세요" /> */}
-                <InfoList></InfoList>
-                <ButtonWrapper>
-                    <Button></Button>
-                </ButtonWrapper>
+                {!park ? (
+                    <Empty text="공원을 선택해주세요" />
+                ) : (
+                    <>
+                        <ParkNameContainer>
+                            <Name>{park.name}</Name>
+                            <Rating
+                                name="half-rating"
+                                defaultValue={park.rating}
+                                precision={0.5}
+                                readOnly
+                            />
+                        </ParkNameContainer>{' '}
+                        <InfoList park={park} />
+                        <ButtonWrapper>
+                            <Button onReviewDetailClick={onReviewDetailClick}>
+                                리뷰 상세 보기
+                            </Button>
+                        </ButtonWrapper>
+                    </>
+                )}
             </ContentWrapper>
         </RightSection>
     )
 }
-
 export default InfoPark
