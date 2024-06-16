@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.14  김유림    Created  
 2024.06.15  임지영    Modified   리뷰작성하기 버튼 클릭시 로그인 모달창 띄우기
+2024.06.15  김유림    Modified   리뷰상세보기 버튼 클릭시 onReviewDetailClick함수 실행
 */
 
 import * as React from 'react'
@@ -16,7 +17,7 @@ import Stack from '@mui/material/Stack'
 import LoginModal from './LoginModal'
 import ReviewModal from './ReviewModal'
 
-const ClickableChips = () => {
+const Button = ({onReviewDetailClick}) => {
     const [openModal, setOpenModal] = useState(false)
 
     const handleClick = () => {
@@ -35,19 +36,20 @@ const ClickableChips = () => {
                 sx={{
                     backgroundColor: '#ffffff',
                     color: 'grey',
-                    padding: '17px 18px', // Adjust padding to increase size
-                    fontSize: '1rem', // Optionally adjust font size
+                    padding: '17px 18px',
+                    fontSize: '1rem',
                 }}
                 variant="outlined"
                 size="large"
             />
             <Chip
                 label="리뷰상세보기"
+                onClick={onReviewDetailClick}
                 sx={{
                     backgroundColor: '#30cb6e',
                     color: 'white',
-                    padding: '17px 18px', // Adjust padding to increase size
-                    fontSize: '1rem', // Optionally adjust font size
+                    padding: '17px 18px',
+                    fontSize: '1rem',
                 }}
                 variant="outlined"
                 size="large"
@@ -58,4 +60,4 @@ const ClickableChips = () => {
     )
 }
 
-export default ClickableChips
+export default Button
