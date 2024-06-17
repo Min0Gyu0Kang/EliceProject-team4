@@ -134,7 +134,7 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
             <Keyword text="공원 정보" />
         </ContentWrapper>
     }
-    console.log('Facilities:', facilities)
+
     return (
         <RightSection>
             <ContentWrapper>
