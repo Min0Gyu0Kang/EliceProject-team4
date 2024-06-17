@@ -10,6 +10,7 @@ Date        Author   Status    Description
 2024.06.13  강민규   Modified  svg 추가
 2024.06.17  강민규   Modified  script 추가, 그러나 Result 창이 오른쪽이 아닌 이곳에 뜸!
 2024.06.17  강민규   Modified  handleClear 작동 확인
+2024.06.17  강민규   Modified  handleInputChange 작동 확인
 
 */
 
@@ -37,7 +38,9 @@ function DirectSearch() {
     setResultValue('');
   };
   const handleInputChange = () => {
-    setResultValue(setTextFieldValue);
+    setResultValue(`
+    Park Entered: ${TextFieldValue}
+    `);
   };
   return (
     <Div11>
@@ -70,7 +73,7 @@ function DirectSearch() {
         <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear} />
         <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} />
         </Stack>
-        <Result resultValue={resultValue} />
+        <Result value={resultValue} />
     </Div11>
   );
 }

@@ -11,8 +11,6 @@ Date        Author   Status    Description
 
 // Result.js
 import React from 'react';
-import LocationSearch from '../../input/Right/Left/LocationSearch';
-import DirectSearch from '../../input/Left/DirectSearch';
 
 const Result = ({ value }) => {
   return (

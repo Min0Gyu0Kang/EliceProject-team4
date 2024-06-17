@@ -10,6 +10,7 @@ Date        Author   Status    Description
 2024.06.13  강민규   Modified  svg 추가
 2024.06.17  강민규   Modified  script 추가, 그러나 Result 창이 오른쪽이 아닌 이곳에 뜸!
 2024.06.17  강민규   Modified  handleClear 작동 확인
+2024.06.17  강민규   Modified  
 
 */
 
@@ -27,11 +28,21 @@ import Result from "../../../output/Right/Result"
 
 function LocationSearch() {
   /**  입력 스크립트 */
-  const [resultValue, setResultValue] = useState('');
+  const [ResultValue, setResultValue] = useState('');
 // 지역 설정 선택창
   const [city, setCity] = React.useState('');
-  const [state, setState] = React.useState('');
 
+  const cities=[
+    {},
+    {},
+    {}
+  ]
+
+  const [state, setState] = React.useState('');
+  
+  const states=[
+
+  ]
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
@@ -49,7 +60,7 @@ function LocationSearch() {
   ];
 
   const handleClick = (index) => {
-    setSelectedChip(index); // 선택된 Chip의 인덱스를 저장
+    setSelectedChip(index); // 선택된 Chip의 라벨을 저장
   };
 
   // 칩 스크립트
@@ -62,9 +73,9 @@ function LocationSearch() {
   };
   const handleInputChange = () => {
     setResultValue(`
-    City: ${city}, 
-    State: ${state}, 
-    Selected Chip: ${selectedChip}
+    City: ${city}<br/>, 
+    State: ${state}<br/>, 
+    Selected Chip: ${selectedChip}<br/>
     `);
   };
   return (
@@ -190,7 +201,7 @@ function LocationSearch() {
         </Div45> */}
       </Div42>
       </Column2>
-      <Result resultValue={ResultValue} />
+      <Result value = {ResultValue} />
   </Div11>
   );
 }
