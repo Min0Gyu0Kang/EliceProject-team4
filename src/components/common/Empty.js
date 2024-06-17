@@ -16,7 +16,7 @@ const EmptyTextContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 270px;
 `
 
 const EmptyText = styled.div`
