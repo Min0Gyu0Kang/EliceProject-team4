@@ -40,30 +40,18 @@ const Container = styled.div`
   }
 `;
 
-const Div17 = styled.div`
+const Title = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   color: #262627;
   text-overflow: ellipsis;
   align-self: start;
-  margin: 53px 0 0 45px;
-  font: 400 36px Aguafina Script, sans-serif;
+  margin-left: 13px;
+  font-size: 10pt;
+  font-family:'PretendardBold';
   @media (max-width: 991px) {
-    margin: 40px 0 0 10px;
+    margin-left: 10px;
   }
-`;
-
-const Div18 = styled.div`
-  align-self: center;
-  display: flex;
-  margin-top: 28px;
-  width: 406px;
-  max-width: 100%;
-  flex-direction: column;
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 400;
-  justify-content: center;
 `;
 
 const StyledChip = styled(Chip)`
@@ -107,8 +95,7 @@ function DirectSearch() {
   };
   return (
     <Container>
-        <Div17>이름 검색</Div17>
-        <Div18>
+        <Title>이름 검색</Title>
         <Box
         component="form"
         sx={{ minWidth: 400 }}
@@ -118,18 +105,19 @@ function DirectSearch() {
         <Stack direction="row" spacing={1}>
         <TextField id="outlined-basic" label="공원 이름을 검색해보세요" variant="outlined"
         value={TextFieldValue}
-        onChange={(e) => setTextFieldValue(e.target.value)}/>
+        onChange={(e) => setTextFieldValue(e.target.value)}
+        sx={{
+          width: 200,
+          height: 40,
+          borderRadius: '15px',
+          fontSize: 'inherit',
+          fontFamily: 'Pretendard',
+        }}
+        />
         <img src={IconSearch1} alt="Search" height='45px' />
         </Stack>
         </Box>
             {/* 공원 이름을 검색해보세요 */}  
-        </Div18>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         <br/>
         <br/>
         <Stack direction="row" spacing={1}>

@@ -15,30 +15,23 @@ import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 
 import DetailInfo from "./DetailInfo"; 
 import Result from "./Result"
-function RightContent() {
-  return (
-    <Div>
-      <Top>
-      <DetailInfo />
-      </Top>
-      <Bottom>
-      <Result />
-      </Bottom>
-        
-    </Div>
-  );
-}
-const Div = styled.div`
+
+const Content = styled.div`
   background-color: #fff;
   display: flex;
   padding-top: 44px;
   flex-direction: column;
+  max-width: 30%;
+  max-height: 30%;
 `;
-
-const Top = styled.div`
-`;
-
-const Bottom = styled.div`
-`;
+function RightContent() {
+  return (
+    <Content>
+      <DetailInfo />
+      <Result />
+        
+    </Content>
+  );
+}
 
 export default RightContent;

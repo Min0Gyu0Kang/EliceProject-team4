@@ -67,7 +67,7 @@ const Map = () => {
         for (var i = 0; i < positions.length; i ++) {
             
             // 마커 이미지의 이미지 크기 입니다
-            var imageSize = new kakao.maps.Size(24, 35); 
+            var imageSize = new kakao.maps.Size(15, 20); 
             
             // 마커 이미지를 생성합니다    
             var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
@@ -89,7 +89,7 @@ const Map = () => {
     
 
     return (
-        <div id="map" style={{ width: '650px', height: '98%' }}></div>
+        <div id="map" style={{ width: '30%', height: '50%' }}></div>
     );
 };
 

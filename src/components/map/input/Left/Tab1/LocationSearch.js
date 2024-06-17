@@ -46,7 +46,7 @@ const Title = styled.div`
   text-overflow: ellipsis;
   align-self: start;
   margin-left: 13px;
-  font-size: 30pt;
+  font-size: 10pt;
   font-family:'PretendardBold';
   @media (max-width: 991px) {
     margin-left: 10px;
@@ -60,7 +60,7 @@ const StyledBox = styled(Box)`
 const SubText = styled.div`
   color: #262627;
   margin: 5px 0 0 48px;
-  font-size: 20pt;
+  font-size: 10pt;
   font-family:'PretendardBold';
   @media (max-width: 991px) {
     margin-left: 10px;
@@ -153,18 +153,17 @@ function LocationSearch() {
   return (
 <Container>
       <Title>지역 설정</Title>
-      <br/>
-      <br/>
-      <br/>
-      <StyledBox sx={{ minWidth: 400 }}>
+      <StyledBox sx={{ minWidth: 100 }}>
       <SubText> 시 / 도 </SubText>
       <FormControl fullWidth>
         <InputLabel id="selectCity">선택하기</InputLabel>
         <Select
           sx={{
-            width:400,
-            height:50,
+            width:200,
+            height:40,
             borderRadius: '15px', 
+            fontSize: 10,
+            fontFamily:'Pretendard,Bold',
           }}
           labelId="selectCity"
           id="selectCity"
@@ -172,9 +171,6 @@ function LocationSearch() {
           label="City"
           onChange={handleCityChange}
         >
-          <br/>
-          <br/>
-          <br/>
           {/* 실제 시 / 도 */}
           {cities.map((cityOption, index) => (
           <MenuItem key={index} value={cityOption.label}>
@@ -184,14 +180,16 @@ function LocationSearch() {
       </FormControl>
       </StyledBox>
       <SubText>시 / 군 / 구</SubText>
-      <StyledBox sx={{ minWidth: 400 }}>
+      <StyledBox>
       <FormControl fullWidth>
         <InputLabel id="selectState">선택하기</InputLabel>
         <Select
           sx={{
-            width:400,
-            height:50,
+            width:200,
+            height:40,
             borderRadius: '15px', 
+            fontSize: 10,
+            fontFamily:'Pretendard,Bold',
           }}
           labelId="selectState"
           id="selectState"
@@ -208,25 +206,16 @@ function LocationSearch() {
       </FormControl>
     </StyledBox>
       <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
       <Title>추천 태그</Title>
-      <br/>
-      <br/>
       <br/>
       <Stack direction="row" spacing={2.5} justifyContent={"left"}>
       {chips.map((chip, index) => (
       <StyledChip key={index} label={chip.label} variant={selectedChip === chip.label ? 'outlined' : 'default'} value={2} onClick={() => handleClick(index)} 
       sx={{
-        width:100,
-        height:50,
+        width:70,
+        height:30,
         borderRadius:30,
-        fontSize: 'inherit',
+        fontSize: '10',
         fontFamily:'Pretendard,Bold',
         // change color when chip is selected
         backgroundColor: selectedChip === chip.label ? '#30cb6e' : '#DFDFDF',
@@ -237,23 +226,13 @@ function LocationSearch() {
       <br/>
       <br/>
       <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
       <Stack direction="row" spacing={1} justifyContent={"left"}>
       <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear}
       sx={{
-        width:200,
-        height:50,
+        width:100,
+        height:30,
         borderRadius:30,
-        fontSize: 'inherit',
+        fontSize: 'inherit-10',
         fontFamily:'Pretendard,Bold',
         color:'#000',
         backgroundColor:'#DFDFDF',
@@ -261,8 +240,8 @@ function LocationSearch() {
       />
       <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} 
       sx={{
-        width:200,
-        height:50,
+        width:100,
+        height:30,
         borderRadius:30,
         fontSize: 'inherit',
         fontFamily:'Pretendard,Bold',

@@ -24,7 +24,7 @@ import Footer from './components/common/Footer';
 import Park from './components/map/Park';
 function App() {
   return (
-    <Div>
+    <Content>
       <Router>
       <Header />
       </Router>
@@ -32,14 +32,15 @@ function App() {
       <Router>
       <Footer />
       </Router>
-    </Div>
+    </Content>
   );
 }
-const Div = styled.div`
+const Content = styled.div`
   background-color: #fff;
   display: flex;
   padding-top: 44px;
   flex-direction: column;
+  height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
 `;
 
 export default App;

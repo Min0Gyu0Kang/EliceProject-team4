@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.14  강민규   Created   지역 검색 직접 검색 총괄
 2024.06.14  강민규   Modified  토글 추가
 2024.06.14  강민규   Modified  탭에 색상 추가
+2024.06.17  강민규   Modified  CSS 정리
 
 */
 
@@ -20,6 +21,62 @@ import LocationSearch from "./Tab1/LocationSearch";
 import DirectSearch from "./DirectSearch"; 
 import {Box,Tabs,Tab} from '@mui/material';
 import PropTypes from 'prop-types';
+
+const Content = styled.div`
+  background-color: #fff;
+  display: flex;
+  padding-top: 44px;
+  flex-direction: column;
+  max-width: 30%;
+`;
+
+const StyledTabs = styled(Tabs)`
+  display: flex;
+  max-width: 100%;
+  gap: 0px;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 20 0 0 0;
+  letter-spacing: 0.46px;
+  border-radius: 10px 0px 0px 10px;
+  @media (max-width: 991px) {
+    flex-wrap: wrap;
+  }
+`;
+
+const StyledTab = styled(Tab)`
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 0px 0px 10px;
+  display: flex;
+  font-weight: 500;
+  flex: 1;
+  flex-grow: 1;
+  flex-basis: 0;
+  width: fit-content;
+  padding: 8px 22px;
+  @media (max-width: 991px) {
+    padding: 0 20px;
+  }
+  background-color: #7f7777;
+  color: #c7d1cb;
+  &.Mui-selected {
+    background-color: #30cb6e;
+    color: #fff;
+    }
+`;
+
+const Divider = styled.div`
+    display:flex;
+    flex-direction:column;
+    line-height:normal;
+    widthL 53%;
+    margin-left:0;
+    @media (max-width:991px){
+      width:100%;
+    }
+
+`;
 
 //탭 함수
 function CustomTabPanel(props) {
@@ -60,136 +117,36 @@ function LeftContent() {
       setValue(newValue);
     };
   return (
-    <Div>
-        <Column>
-    <Div12>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
-        <StyledTabs value={value} onChange={handleChange} aria-label="searchOptions">
-          <StyledTab label="지역 검색" {...a11yProps(0)} /> 
-          <StyledTab label="직접 검색" {...a11yProps(1)} /> 
+    <Content>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', minWidth:200}}>
+        <StyledTabs 
+        value={value} onChange={handleChange} aria-label="searchOptions"
+        >
+          <StyledTab sx={{
+            fontFamily: 'PretendardBold',
+            fontSize: 'inherit',
+            width:50,
+          }}
+          label="지역 검색" {...a11yProps(0)} /> 
+          <StyledTab sx={{
+            fontFamily: 'PretendardBold',
+            fontSize: 'inherit',
+            width:50,
+          }}
+          label="직접 검색" {...a11yProps(1)} /> 
         </StyledTabs>
       </Box>
-      {/* <Div13> */}
-        {/* <Div14>지역 검색</Div14> */}
-      {/* </Div13> */}
-      {/* <Div15> */}
-        {/* <Div16>직접 검색</Div16> */}
-      {/* </Div15> */}
-    </Div12>
+    <Divider>
     <CustomTabPanel value={value} index={0}>
-        <LocationSearch />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <DirectSearch />
-      </CustomTabPanel>
-      </Column>
-    </Div>
+      <LocationSearch />
+    </CustomTabPanel>
+    <CustomTabPanel value={value} index={1}>
+      <DirectSearch />
+    </CustomTabPanel>
+    </Divider>
+    </Content>
   );
 }
-const Div = styled.div`
-  background-color: #fff;
-  display: flex;
-  padding-top: 44px;
-  flex-direction: column;
-`;
 
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 53%;
-  margin-left: 0px;
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
-
-const Div12 = styled.div`
-  display: flex;
-  width: 509px;
-  max-width: 100%;
-  gap: 0px;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.46px;
-  line-height: 144%;
-  @media (max-width: 991px) {
-    flex-wrap: wrap;
-  }
-`;
-
-const StyledTabs = styled(Tabs)`
-  display: flex;
-  width: 509px;
-  max-width: 100%;
-  gap: 0px;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.46px;
-  line-height: 144%;
-  border-radius: 10px 0px 0px 10px;
-  @media (max-width: 991px) {
-    flex-wrap: wrap;
-  }
-`;
-
-const Div13 = styled.div`
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px 0px 0px 10px;
-  background-color: #30cb6e;
-  display: flex;
-  color: #fff;
-  font-weight: 500;
-  flex: 1;
-  flex-grow: 1;
-  flex-basis: 0;
-  width: fit-content;
-  padding: 8px 22px;
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-`;
-
-const StyledTab = styled(Tab)`
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px 0px 0px 10px;
-  font-family: Pretendard, sans-serif;
-  display: flex;
-  font-weight: 500;
-  flex: 1;
-  flex-grow: 1;
-  flex-basis: 0;
-  width: fit-content;
-  padding: 8px 22px;
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-  background-color: #7f7777;
-  color: #c7d1cb;
-  &.Mui-selected {
-    background-color: #30cb6e;
-    color: #fff;
-    }
-`;
-
-const Div15 = styled.div`
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px 10px 10px 0px;
-  background-color: #c7d1cb;
-  display: flex;
-  color: #7f7777;
-  font-weight: 400;
-  flex: 1;
-  flex-grow: 1;
-  flex-basis: 0;
-  width: fit-content;
-  padding: 8px 22px;
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-`;
 
 export default LeftContent;

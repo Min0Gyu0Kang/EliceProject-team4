@@ -21,101 +21,38 @@ import RightContent from "./output/Right/RightContent";
 // svg에 필요한 파일
 // import Maptemp from "./assets/Maptemp.svg";
 
+const Content = styled.div`
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
+  width: 100vw; /* 화면 전체 너비를 차지하도록 설정 */
+  padding-top: 44px;
+`;
+
+const Display = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 100vw) {
+    flex-direction: row;
+  }
+`;
+
 function Park() {
   return (
-    <Div>
-      <Div9>
-        <Div10>
+    <Content>
           {/* 검색 탭 */}
-          <Column>
+          <Display>
             <LeftContent />
-          </Column>
-          <Column5>
           {/* 지도 API */}
           <Map />
-            {/* <Img3>
-            </Img3> */}
-          </Column5>
           {/* 검색결과, 리뷰 탭 */}
-          <Column6>
             <RightContent />
-            
-          </Column6>
-        </Div10>
-      </Div9>
-    </Div>
+          </Display>
+    </Content>
   );
 }
 
-const Div = styled.div`
-  background-color: #fff;
-  display: flex;
-  padding-top: 44px;
-  flex-direction: column;
-`;
 
-
-const Div9 = styled.div`
-  margin-top: 29px;
-  width: 100%;
-  padding: 0 20px;
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
-`;
-
-const Div10 = styled.div`
-  gap: 20px;
-  display: flex;
-  @media (max-width: 991px) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0px;
-  }
-`;
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 28%;
-  margin-left: 0px;
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
-
-const Column5 = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 44%;
-  margin-left: 20px;
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
-
-const Img3 = styled.div`
-  aspect-ratio: 0.87;
-  object-fit: auto;
-  object-position: center;
-  width: 100%;
-  flex-grow: 1;
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
-`;
-
-const Column6 = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 29%;
-  margin-left: 20px;
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
 
 export default Park;
