@@ -16,7 +16,7 @@ import styled from "styled-components";
 import '../../../../assets/fonts/font.css';
 // import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 
-import LocationSearch from "./LocationSearch"; 
+import LocationSearch from "./Tab1/LocationSearch"; 
 import DirectSearch from "./DirectSearch"; 
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';

@@ -33,17 +33,16 @@ function DirectSearch() {
         autoComplete="off"
       >
         <Stack direction="row" spacing={1}>
-        <TextField minwidth="400" id="outlined-basic" label="공원 이름을 검색해보세요" variant="outlined"/>
+        <TextField fullWidth="true" id="outlined-basic" label="공원 이름을 검색해보세요" variant="outlined"/>
         <img src={IconSearch1} alt="Search" height='45px' />
         </Stack>
         </Box>
-            {/* 공원 이름을 검색해보세요 */}
-            {/* <Img
-            loading="lazy"
-            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/b38be4098674daca7628e7ba68f38ff9f12052c438610abcf47f65385de99bd7?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-            /> */}
-            
+            {/* 공원 이름을 검색해보세요 */}  
         </Div18>
+        <Stack direction="row" spacing={1}>
+        <StyledChip label="선택 초기화" variant="outlined" onClick={handleClick} />
+        <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleClick} />
+        </Stack>
     </Div11>
   );
 }
