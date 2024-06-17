@@ -9,6 +9,7 @@ Date        Author   Status    Description
 2024.06.15  임지영    Modified  리스트 컨테이너 높이 수정
 2024.06.15  김유림    Modified  리스트 컨테이너 높이 수정
 2024.06.16  김유림    Modified  park 받아와서 공원정보 리스트 나열 높이 고정
+2024.06.17  김유림    Modified  api 데이터 형식에 맞춘 리스트로 변경
 */
 import React from 'react'
 import styled from 'styled-components'
@@ -66,7 +67,7 @@ const InfoItem = ({icon, primary, secondary}) => (
     </ListItem>
 )
 
-const InfoList = ({park}) => {
+const InfoList = ({park, facilities}) => {
     return (
         <StyledEngineProvider injectFirst>
             <Container>
@@ -88,10 +89,10 @@ const InfoList = ({park}) => {
                             secondary={park.phone}
                         />
                         {/* 운동 및 편익 시설을 리스트로 표시 */}
-                        {park.facilities && (
+                        {facilities && (
                             <>
-                                {park.facilities &&
-                                    park.facilities.map((facility, index) => (
+                                {facilities &&
+                                    facilities.map((facility, index) => (
                                         <InfoItem
                                             key={`facility-${index}`}
                                             icon={InformationIcon}
