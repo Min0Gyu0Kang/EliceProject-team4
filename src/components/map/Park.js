@@ -16,7 +16,7 @@ import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 //지역 설정 직접 검색 토글 탭
 import LeftContent from "./input/Left/LeftContent"; 
 import Map from "./Map"
-import RightContent from "./input/Right/RightContent"; 
+import RightContent from "./output/Right/RightContent"; 
 
 // svg에 필요한 파일
 // import Maptemp from "./assets/Maptemp.svg";

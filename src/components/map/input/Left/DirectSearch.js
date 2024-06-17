@@ -8,20 +8,37 @@ Date        Author   Status    Description
 2024.06.11  강민규   Created   LocationSearch 기반
 2024.06.11  강민규   Modified  MUI 추가
 2024.06.13  강민규   Modified  svg 추가
+2024.06.17  강민규   Modified  script 추가, 그러나 Result 창이 오른쪽이 아닌 이곳에 뜸!
+2024.06.17  강민규   Modified  handleClear 작동 확인
+
 */
 
-import * as React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
-import { StyledEngineProvider } from '@mui/styled-engine';
 
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
+import {TextField, Stack , Chip} from '@mui/material';
 
 // svg에 필요한 파일
 import IconSearch1 from "../../../../assets/left/IconSearch1.svg";
 
+//DetailInfo 대신 Result (임시)
+import Result from "../../output/Right/Result"
+
 function DirectSearch() {
+  // 입력 스크립트
+  const [TextFieldValue, setTextFieldValue] = useState('');
+  const [resultValue, setResultValue] = useState('');
+
+  
+  // 칩 스크립트
+  const handleClear = (event) => {
+    setTextFieldValue('');
+    setResultValue('');
+  };
+  const handleInputChange = () => {
+    setResultValue(setTextFieldValue);
+  };
   return (
     <Div11>
         <Div17>이름 검색</Div17>
@@ -33,30 +50,30 @@ function DirectSearch() {
         autoComplete="off"
       >
         <Stack direction="row" spacing={1}>
-        <TextField fullWidth="true" id="outlined-basic" label="공원 이름을 검색해보세요" variant="outlined"/>
+        <TextField id="outlined-basic" label="공원 이름을 검색해보세요" variant="outlined"
+        value={TextFieldValue}
+        onChange={(e) => setTextFieldValue(e.target.value)}/>
         <img src={IconSearch1} alt="Search" height='45px' />
         </Stack>
         </Box>
             {/* 공원 이름을 검색해보세요 */}  
         </Div18>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <Stack direction="row" spacing={1}>
-        <StyledChip label="선택 초기화" variant="outlined" onClick={handleClick} />
-        <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleClick} />
+        <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear} />
+        <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} />
         </Stack>
+        <Result resultValue={resultValue} />
     </Div11>
   );
 }
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 27%;
-  margin-left: 0px;
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
 
 const Div11 = styled.div`
   border-radius: 15px;
@@ -70,65 +87,6 @@ const Div11 = styled.div`
   @media (max-width: 991px) {
     max-width: 100%;
   }
-`;
-
-const Div12 = styled.div`
-  display: flex;
-  gap: 0px;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.46px;
-  line-height: 144%;
-  @media (max-width: 991px) {
-    max-width: 100%;
-    flex-wrap: wrap;
-  }
-`;
-
-const Div13 = styled.div`
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px 0px 0px 10px;
-  background-color: #c7d1cb;
-  display: flex;
-  color: #7f7777;
-  font-weight: 400;
-  flex: 1;
-  flex-grow: 1;
-  flex-basis: 0;
-  width: fit-content;
-  padding: 8px 22px;
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-`;
-
-const Div14 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-`;
-
-const Div15 = styled.div`
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px 10px 10px 0px;
-  background-color: #30cb6e;
-  display: flex;
-  color: #fff;
-  font-weight: 500;
-  flex: 1;
-  flex-grow: 1;
-  flex-basis: 0;
-  width: fit-content;
-  padding: 8px 22px;
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-`;
-
-const Div16 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
 `;
 
 const Div17 = styled.div`
@@ -157,36 +115,27 @@ const Div18 = styled.div`
   justify-content: center;
 `;
 
-const Div19 = styled.div`
+const StyledChip = styled(Chip)`
+  justify-content: center;
   border-radius: 30px;
-  border-color: rgba(0, 0, 0, 0.42);
   border-style: solid;
   border-width: 1px;
-  background-color: #fff;
+  background-color: #7f7777;
   display: flex;
-  gap: 20px;
-  padding: 12px 26px;
+  flex-direction: column;
+  font-weight: 500;
+  flex: 1;
+  font-family: Pretendard, sans-serif;
+  padding: 8px 22px;
   @media (max-width: 991px) {
-    padding-left: 20px;
+    padding: 0 20px;
   }
+  background-color: #7f7777;
+  color: #c7d1cb;
+  &.Mui-selected {
+    background-color: #30cb6e;
+    color: #fff;
+    }
 `;
-
-const Div20 = styled.div`
-  font-family: Aguafina Script, sans-serif;
-  flex-grow: 1;
-  flex-basis: auto;
-  margin: auto 0;
-`;
-
-const Img = styled.img`
-  aspect-ratio: 1.03;
-  object-fit: auto;
-  object-position: center;
-  width: 34px;
-`;
-
-
-
-
 
 export default DirectSearch;

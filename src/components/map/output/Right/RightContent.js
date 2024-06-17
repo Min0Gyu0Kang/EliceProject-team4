@@ -6,7 +6,7 @@ Author : 강민규
 History
 Date        Author   Status    Description
 2024.06.14  강민규   Created   검색한 정보 총괄
-2024.06.14  강민규   Modified  if-else
+2024.06.14  강민규   Modified  
 */
 
 import * as React from "react";
@@ -14,16 +14,16 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 
 import DetailInfo from "./DetailInfo"; 
-
+import Result from "./Result"
 function RightContent() {
   return (
     <Div>
-        {/* if(true){ */}
-            <DetailInfo />
-        {/* } */}
-        {/* else{
-            
-        } */}
+      <Top>
+      <DetailInfo />
+      </Top>
+      <Bottom>
+      <Result />
+      </Bottom>
         
     </Div>
   );
@@ -33,6 +33,12 @@ const Div = styled.div`
   display: flex;
   padding-top: 44px;
   flex-direction: column;
+`;
+
+const Top = styled.div`
+`;
+
+const Bottom = styled.div`
 `;
 
 export default RightContent;

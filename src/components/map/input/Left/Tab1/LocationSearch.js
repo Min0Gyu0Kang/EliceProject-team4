@@ -8,32 +8,30 @@ Date        Author   Status    Description
 2024.06.11  강민규   Created   App에서 분리
 2024.06.11  강민규   Modified  MUI 추가
 2024.06.13  강민규   Modified  svg 추가
+2024.06.17  강민규   Modified  script 추가, 그러나 Result 창이 오른쪽이 아닌 이곳에 뜸!
+2024.06.17  강민규   Modified  handleClear 작동 확인
 
 */
 
-import * as React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import '../../../../../assets/fonts/font.css';
 
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+import {Box, InputLabel,MenuItem,FormControl,Select,Chip,Stack} from '@mui/material';
 
 // svg에 필요한 파일
 import {ReactComponent as DownArrow1} from "../../../../../assets/left/DownArrow1.svg";
 
+//DetailInfo 대신 Result (임시)
+import Result from "../../../output/Right/Result"
+
 function LocationSearch() {
-  const [value, setValue] = React.useState('one');
-  
+  /**  입력 스크립트 */
+  const [resultValue, setResultValue] = useState('');
+// 지역 설정 선택창
   const [city, setCity] = React.useState('');
   const [state, setState] = React.useState('');
 
-
-// 지역 설정 선택창
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
@@ -41,8 +39,33 @@ function LocationSearch() {
     setState(event.target.value);
   };
   // 시설 태그
-  const handleClick = () => {
-    console.info('You clicked the Chip.');
+  const [selectedChip, setSelectedChip] = useState(null);
+
+  const chips = [
+    { label: '운동시설' },
+    { label: '유희시설' },
+    { label: '기타시설' },
+    { label: '편의시설' }
+  ];
+
+  const handleClick = (index) => {
+    setSelectedChip(index); // 선택된 Chip의 인덱스를 저장
+  };
+
+  // 칩 스크립트
+  
+  const handleClear = (event) => {
+    setResultValue('');
+    setCity('');
+    setState('');
+    setSelectedChip(null);
+  };
+  const handleInputChange = () => {
+    setResultValue(`
+    City: ${city}, 
+    State: ${state}, 
+    Selected Chip: ${selectedChip}
+    `);
   };
   return (
 <Div11>
@@ -63,8 +86,8 @@ function LocationSearch() {
         >
           {/* 실제 시 / 도 */}
           <MenuItem value={10}>서울특별시</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={20}>부산광역시</MenuItem>
+          <MenuItem value={30}>대구광역시</MenuItem>
         </Select>
       </FormControl>
       </StyledBox>
@@ -97,8 +120,8 @@ function LocationSearch() {
         >
           {/* 실제 시 / 군 / 구 */}
           <MenuItem value={10}>강남구</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={20}>달서구</MenuItem>
+          <MenuItem value={30}>금천구</MenuItem>
         </Select>
       </FormControl>
     </StyledBox>
@@ -116,11 +139,9 @@ function LocationSearch() {
       <Column2>
       </Column2>
       <Stack direction="row" spacing={1}>
-      <StyledChip label="운동시설" onClick={handleClick} />
-      <StyledChip label="유희시설" variant="outlined" onClick={handleClick} />
-      <StyledChip label="기타시설" variant="outlined" onClick={handleClick} />
-      <StyledChip label="편의시설" variant="outlined" onClick={handleClick} />
-    </Stack>
+      {chips.map((chip, index) => (
+      <StyledChip key={index} label={chip.label} variant={selectedChip === index ? 'outlined' : 'default'} value={0} onClick={() => handleClick(index)} />
+      ))}</Stack>
       <Div28>
         <Div29>
           {/* <Column2>
@@ -149,9 +170,17 @@ function LocationSearch() {
       </Div28>
       <Column2>
       <Div42>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <Stack direction="row" spacing={1}>
-      <StyledChip label="선택 초기화" variant="outlined" onClick={handleClick} />
-      <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleClick} />
+      <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear} />
+      <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} />
       </Stack>
         {/* <Div43>
           <Div44>선택 초기화</Div44>
@@ -161,6 +190,7 @@ function LocationSearch() {
         </Div45> */}
       </Div42>
       </Column2>
+      <Result resultValue={ResultValue} />
   </Div11>
   );
 }

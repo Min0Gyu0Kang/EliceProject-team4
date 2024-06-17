@@ -18,10 +18,8 @@ import '../../../../assets/fonts/font.css';
 
 import LocationSearch from "./Tab1/LocationSearch"; 
 import DirectSearch from "./DirectSearch"; 
-import Box from '@mui/material/Box';
+import {Box,Tabs,Tab} from '@mui/material';
 import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 
 //탭 함수
 function CustomTabPanel(props) {
