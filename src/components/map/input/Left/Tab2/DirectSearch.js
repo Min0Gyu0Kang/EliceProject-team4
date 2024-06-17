@@ -21,10 +21,10 @@ import Box from '@mui/material/Box';
 import {TextField, Stack , Chip} from '@mui/material';
 
 // svg에 필요한 파일
-import IconSearch1 from "../../../../assets/left/IconSearch1.svg";
+import IconSearch1 from "../../../../../assets/left/IconSearch1.svg";
 
 //DetailInfo 대신 Result (임시)
-import Result from "../../output/Right/Result"
+import Result from "../../../output/Right/Result"
 
 const Container = styled.div`
   border-radius: 15px;

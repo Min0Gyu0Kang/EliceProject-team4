@@ -16,31 +16,19 @@ Date        Author   Status    Description
 
 */
 
-import * as React from "react";
-import styled from "styled-components";
-import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
-import Header from './components/common/Header';
-import Footer from './components/common/Footer';
-import Park from './components/map/Park';
-function App() {
-  return (
-    <Content>
-      <Router>
-      <Header />
-      </Router>
-      <Park />
-      <Router>
-      <Footer />
-      </Router>
-    </Content>
-  );
+import React from 'react'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Park from './components/map/Park'
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/Park" element={<Park />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
-const Content = styled.div`
-  background-color: #fff;
-  display: flex;
-  padding-top: 44px;
-  flex-direction: column;
-  height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
-`;
+
 
 export default App;

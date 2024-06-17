@@ -13,10 +13,13 @@ Date        Author   Status    Description
 import * as React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
+import Header from "../common/Header"
+import Footer from "../common/Footer" 
 //지역 설정 직접 검색 토글 탭
 import LeftContent from "./input/Left/LeftContent"; 
 import Map from "./Map"
 import RightContent from "./output/Right/RightContent"; 
+
 
 // svg에 필요한 파일
 // import Maptemp from "./assets/Maptemp.svg";
@@ -41,6 +44,7 @@ const Display = styled.div`
 function Park() {
   return (
     <Content>
+        <Header />
           {/* 검색 탭 */}
           <Display>
             <LeftContent />
@@ -49,6 +53,7 @@ function Park() {
           {/* 검색결과, 리뷰 탭 */}
             <RightContent />
           </Display>
+        <Footer />
     </Content>
   );
 }

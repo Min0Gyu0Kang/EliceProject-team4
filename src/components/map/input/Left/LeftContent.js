@@ -18,7 +18,7 @@ import '../../../../assets/fonts/font.css';
 // import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 
 import LocationSearch from "./Tab1/LocationSearch"; 
-import DirectSearch from "./DirectSearch"; 
+import DirectSearch from "./Tab2/DirectSearch"; 
 import {Box,Tabs,Tab} from '@mui/material';
 import PropTypes from 'prop-types';
 
