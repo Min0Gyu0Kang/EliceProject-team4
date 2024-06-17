@@ -11,7 +11,6 @@ Date        Author   Status    Description
 2024.06.14  임지영   Modified   LeftTop 모달창 확인용 컴포넌트 추가
 2024.06.14  김유림   Modified   Right Section 배경색 변경
 2024.06.16  김유림   Modified   main view , reviewDetail view생성
-2024.06.17  임지영   Modified   공원 검색 샘플 버튼 클릭 이벤트 추가
 */
 
 import React, {useState} from 'react'
@@ -21,7 +20,6 @@ import InfoPark from '../components/map/output/InfoPark'
 import styled from 'styled-components'
 import ModalLogin from '../components/map/output/LoginModal'
 import ReviewDetail from '../components/map/output/ReviewDetail'
-import Button from '../components/map/output/Button'
 import '../assets/fonts/font.css'
 
 const MainLayout = styled.div`
@@ -88,10 +86,11 @@ const RightBottom = styled.div`
 
 const MapPage = () => {
     const [view, setView] = useState('main')
-    const [selectedPark, setSelectedPark] = useState(null)
+    const [selectedParkId, setSelectedParkId] = useState(null)
 
-    const handleParkClick = park => {
-        setSelectedPark(park) /* 선택한 공원 상태 업데이트*/
+    const handleParkClick = parkId => {
+        console.log('Selected Park ID:', parkId)
+        setSelectedParkId(parkId)
     }
 
     const handleReviewDetailClick = () => {
@@ -105,6 +104,7 @@ const MapPage = () => {
     const [showParkList, setShowParkList] = useState(false)
     const openParkList = () => {
         setShowParkList(!showParkList)
+        setSelectedParkId(null) // 공원 선택 다시 누르면 selectedParkId 초기화 => 공원정보 빔
     }
 
     return (
@@ -132,7 +132,7 @@ const MapPage = () => {
                             </RightTop>
                             <RightBottom>
                                 <InfoPark
-                                    park={selectedPark}
+                                    parkId={selectedParkId}
                                     onReviewDetailClick={
                                         handleReviewDetailClick
                                     }
@@ -140,9 +140,9 @@ const MapPage = () => {
                             </RightBottom>
                         </>
                     )}
-                    {view === 'reviewDetail' && selectedPark && (
+                    {view === 'reviewDetail' && selectedParkId && (
                         <ReviewDetail
-                            park={selectedPark}
+                            park={selectedParkId}
                             onBackClick={handleBackClick}
                         />
                     )}
