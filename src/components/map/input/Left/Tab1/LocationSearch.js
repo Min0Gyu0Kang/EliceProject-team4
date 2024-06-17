@@ -10,7 +10,7 @@ Date        Author   Status    Description
 2024.06.13  강민규   Modified  svg 추가
 2024.06.17  강민규   Modified  script 추가, 그러나 Result 창이 오른쪽이 아닌 이곳에 뜸!
 2024.06.17  강민규   Modified  handleClear 작동 확인
-2024.06.17  강민규   Modified  
+2024.06.17  강민규   Modified  CSS 정리
 
 */
 
@@ -26,7 +26,7 @@ import {ReactComponent as DownArrow1} from "../../../../../assets/left/DownArrow
 //DetailInfo 대신 Result (임시)
 import Result from "../../../output/Right/Result"
 
-const Div11 = styled.div`
+const Container = styled.div`
   border-radius: 15px;
   background-color: rgba(244, 244, 244, 0.45);
   display: flex;
@@ -39,44 +39,17 @@ const Div11 = styled.div`
   }
 `;
 
-const Div18 = styled.div`
+const Title = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   color: #262627;
   text-overflow: ellipsis;
   align-self: start;
   margin-left: 13px;
-  font: 400 36px/213% Aguafina Script, -apple-system, Roboto, Helvetica,
-    sans-serif;
+  font-size: 30pt;
+  font-family:'PretendardBold';
   @media (max-width: 991px) {
     margin-left: 10px;
-  }
-`;
-
-const Div19 = styled.div`
-  color: #262627;
-  align-self: start;
-  margin: 26px 0 0 48px;
-  font: 400 16px/213% Aguafina Script, -apple-system, Roboto, Helvetica,
-    sans-serif;
-  @media (max-width: 991px) {
-    margin-left: 10px;
-  }
-`;
-
-const Div20 = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-size: 24px;
-  color: #262627;
-  font-weight: 400;
-  white-space: nowrap;
-  line-height: 213%;
-  justify-content: center;
-  margin: 0 19px;
-  @media (max-width: 991px) {
-    white-space: initial;
-    margin: 0 10px;
   }
 `;
 
@@ -84,69 +57,13 @@ const StyledBox = styled(Box)`
   border-radius:30px 0px 0px 30px;
 `
 
-const Div23 = styled.div`
+const SubText = styled.div`
   color: #262627;
-  align-self: start;
-  margin: 13px 0 0 48px;
-  font: 400 16px/213% Aguafina Script, -apple-system, Roboto, Helvetica,
-    sans-serif;
+  margin: 5px 0 0 48px;
+  font-size: 20pt;
+  font-family:'PretendardBold';
   @media (max-width: 991px) {
     margin-left: 10px;
-  }
-`;
-
-const Div24 = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-size: 24px;
-  color: #262627;
-  font-weight: 400;
-  white-space: nowrap;
-  line-height: 213%;
-  justify-content: center;
-  margin: 0 19px;
-  @media (max-width: 991px) {
-    white-space: initial;
-    margin: 0 10px;
-  }
-`;
-
-const Div27 = styled.div`
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  color: #262627;
-  text-overflow: ellipsis;
-  align-self: start;
-  margin: 78px 0 0 13px;
-  font: 400 36px/213% Aguafina Script, -apple-system, Roboto, Helvetica,
-    sans-serif;
-  @media (max-width: 991px) {
-    margin: 40px 0 0 10px;
-  }
-`;
-
-const Column2 = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 53%;
-  margin-left: 0px;
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
-
-const Div42 = styled.div`
-  display: flex;
-  margin-top: 333px;
-  gap: 20px;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.46px;
-  line-height: 130%;
-  @media (max-width: 991px) {
-    margin-top: 40px;
-    flex-wrap: wrap;
   }
 `;
 
@@ -234,22 +151,30 @@ function LocationSearch() {
   `);
   };
   return (
-<Div11>
-      <Div18>지역 설정</Div18>
-      <Div19>
-        시 / 도
-      </Div19>
-      <Div20>
+<Container>
+      <Title>지역 설정</Title>
+      <br/>
+      <br/>
+      <br/>
       <StyledBox sx={{ minWidth: 400 }}>
+      <SubText> 시 / 도 </SubText>
       <FormControl fullWidth>
         <InputLabel id="selectCity">선택하기</InputLabel>
         <Select
+          sx={{
+            width:400,
+            height:50,
+            borderRadius: '15px', 
+          }}
           labelId="selectCity"
           id="selectCity"
           value={city}
           label="City"
           onChange={handleCityChange}
         >
+          <br/>
+          <br/>
+          <br/>
           {/* 실제 시 / 도 */}
           {cities.map((cityOption, index) => (
           <MenuItem key={index} value={cityOption.label}>
@@ -258,15 +183,16 @@ function LocationSearch() {
           </Select>
       </FormControl>
       </StyledBox>
-      </Div20>
-      <Div23>
-        시 / 군 / 구
-      </Div23>
-      <Div24>
+      <SubText>시 / 군 / 구</SubText>
       <StyledBox sx={{ minWidth: 400 }}>
       <FormControl fullWidth>
         <InputLabel id="selectState">선택하기</InputLabel>
         <Select
+          sx={{
+            width:400,
+            height:50,
+            borderRadius: '15px', 
+          }}
           labelId="selectState"
           id="selectState"
           value={state}
@@ -281,17 +207,33 @@ function LocationSearch() {
           </Select>
       </FormControl>
     </StyledBox>
-      </Div24>
-      <Div27>추천 태그</Div27>
-      <Column2>
-      </Column2>
-      <Stack direction="row" spacing={1}>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <Title>추천 태그</Title>
+      <br/>
+      <br/>
+      <br/>
+      <Stack direction="row" spacing={2.5} justifyContent={"left"}>
       {chips.map((chip, index) => (
-      <StyledChip key={index} label={chip.label} variant={selectedChip === chip.label ? 'outlined' : 'default'} value={2} onClick={() => handleClick(index)} />
+      <StyledChip key={index} label={chip.label} variant={selectedChip === chip.label ? 'outlined' : 'default'} value={2} onClick={() => handleClick(index)} 
+      sx={{
+        width:100,
+        height:50,
+        borderRadius:30,
+        fontSize: 'inherit',
+        fontFamily:'Pretendard,Bold',
+        // change color when chip is selected
+        backgroundColor: selectedChip === chip.label ? '#30cb6e' : '#DFDFDF',
+        color: selectedChip === chip.label ? '#ffffff' : '#000',
+      }} />
       ))}
       </Stack>
-      <Column2>
-      <Div42>
       <br/>
       <br/>
       <br/>
@@ -300,14 +242,37 @@ function LocationSearch() {
       <br/>
       <br/>
       <br/>
-      <Stack direction="row" spacing={1}>
-      <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear} />
-      <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <Stack direction="row" spacing={1} justifyContent={"left"}>
+      <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear}
+      sx={{
+        width:200,
+        height:50,
+        borderRadius:30,
+        fontSize: 'inherit',
+        fontFamily:'Pretendard,Bold',
+        color:'#000',
+        backgroundColor:'#DFDFDF',
+      }}
+      />
+      <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} 
+      sx={{
+        width:200,
+        height:50,
+        borderRadius:30,
+        fontSize: 'inherit',
+        fontFamily:'Pretendard,Bold',
+        color:'#ffffff',
+        backgroundColor:'#30cb6e',
+      }}
+      />
       </Stack>
-      </Div42>
-      </Column2>
       <Result value = {ResultValue} />
-  </Div11>
+  </Container>
   );
 }
 

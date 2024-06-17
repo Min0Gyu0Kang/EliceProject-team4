@@ -26,59 +26,7 @@ import IconSearch1 from "../../../../assets/left/IconSearch1.svg";
 //DetailInfo 대신 Result (임시)
 import Result from "../../output/Right/Result"
 
-function DirectSearch() {
-  // 입력 스크립트
-  const [TextFieldValue, setTextFieldValue] = useState('');
-  const [resultValue, setResultValue] = useState('');
-
-  
-  // 칩 스크립트
-  const handleClear = (event) => {
-    setTextFieldValue('');
-    setResultValue('');
-  };
-  const handleInputChange = () => {
-    setResultValue(`
-    Park Entered: ${TextFieldValue}
-    `);
-  };
-  return (
-    <Div11>
-        <Div17>이름 검색</Div17>
-        <Div18>
-        <Box
-        component="form"
-        sx={{ minWidth: 400 }}
-        noValidate
-        autoComplete="off"
-      >
-        <Stack direction="row" spacing={1}>
-        <TextField id="outlined-basic" label="공원 이름을 검색해보세요" variant="outlined"
-        value={TextFieldValue}
-        onChange={(e) => setTextFieldValue(e.target.value)}/>
-        <img src={IconSearch1} alt="Search" height='45px' />
-        </Stack>
-        </Box>
-            {/* 공원 이름을 검색해보세요 */}  
-        </Div18>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <Stack direction="row" spacing={1}>
-        <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear} />
-        <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} />
-        </Stack>
-        <Result value={resultValue} />
-    </Div11>
-  );
-}
-
-const Div11 = styled.div`
+const Container = styled.div`
   border-radius: 15px;
   background-color: rgba(244, 244, 244, 0.45);
   display: flex;
@@ -140,5 +88,57 @@ const StyledChip = styled(Chip)`
     color: #fff;
     }
 `;
+
+function DirectSearch() {
+  // 입력 스크립트
+  const [TextFieldValue, setTextFieldValue] = useState('');
+  const [resultValue, setResultValue] = useState('');
+
+  
+  // 칩 스크립트
+  const handleClear = (event) => {
+    setTextFieldValue('');
+    setResultValue('');
+  };
+  const handleInputChange = () => {
+    setResultValue(`
+    Park Entered: ${TextFieldValue}
+    `);
+  };
+  return (
+    <Container>
+        <Div17>이름 검색</Div17>
+        <Div18>
+        <Box
+        component="form"
+        sx={{ minWidth: 400 }}
+        noValidate
+        autoComplete="off"
+      >
+        <Stack direction="row" spacing={1}>
+        <TextField id="outlined-basic" label="공원 이름을 검색해보세요" variant="outlined"
+        value={TextFieldValue}
+        onChange={(e) => setTextFieldValue(e.target.value)}/>
+        <img src={IconSearch1} alt="Search" height='45px' />
+        </Stack>
+        </Box>
+            {/* 공원 이름을 검색해보세요 */}  
+        </Div18>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <Stack direction="row" spacing={1}>
+        <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear} />
+        <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} />
+        </Stack>
+        <Result value={resultValue} />
+    </Container>
+  );
+}
 
 export default DirectSearch;
