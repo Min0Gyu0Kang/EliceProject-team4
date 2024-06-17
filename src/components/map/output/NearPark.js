@@ -9,7 +9,8 @@ Date        Author   Status    Description
 2024.06.14  임지영    Modified  Empty 컨테이너 추가, 스타일 수정
 2024.06.14  김유림    Modified  ContentWrapper 좌우 패딩 10->15 수정
 2024.06.14  김유림    Modified  RightSection background-color 변경
-2024.06.16 김유림     Modified  onParkClick 함수 추가
+2024.06.16  김유림    Modified  onParkClick 함수 추가
+2024.06.17  임지영    Modified  공원 검색 샘플 버튼 클릭 이벤트 추가
 */
 
 import React from 'react'
@@ -31,13 +32,16 @@ const ContentWrapper = styled.div`
     padding: 10px 15px; /* 좌우 패딩 값 수정 */
     width: 100%;
 `
-const NearPark = ({onParkClick}) => {
+const NearPark = ({onParkClick, showParkList}) => {
     return (
         <RightSection>
             <ContentWrapper>
                 <Keyword text="내 주변 공원" />
-                {/* <Empty text="공원을 검색해보세요" /> */}
-                <ParkList onParkClick={onParkClick} />
+                {showParkList ? (
+                    <ParkList onParkClick={onParkClick} />
+                ) : (
+                    <Empty text="공원을 검색해보세요" />
+                )}
             </ContentWrapper>
         </RightSection>
     )

@@ -11,6 +11,7 @@ Date        Author   Status    Description
 2024.06.14  임지영   Modified   LeftTop 모달창 확인용 컴포넌트 추가
 2024.06.14  김유림   Modified   Right Section 배경색 변경
 2024.06.16  김유림   Modified   main view , reviewDetail view생성
+2024.06.17  임지영   Modified   공원 검색 샘플 버튼 클릭 이벤트 추가
 */
 
 import React, {useState} from 'react'
@@ -101,13 +102,20 @@ const MapPage = () => {
         setView('main') /*메인 뷰로 돌아가기 뷰 상태 업데이트 */
     }
 
+    const [showParkList, setShowParkList] = useState(false)
+    const openParkList = () => {
+        setShowParkList(!showParkList)
+    }
+
     return (
         <MainLayout>
             <Header />
             <ContentWrapper>
                 <LeftSection>
                     <LeftTop>
-                        <ModalLogin />
+                        <button onClick={openParkList}>
+                            공원 검색 샘플 버튼
+                        </button>
                     </LeftTop>
                     <LeftBottom>Left Bottom Content</LeftBottom>
                 </LeftSection>
