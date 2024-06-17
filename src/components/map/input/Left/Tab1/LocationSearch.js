@@ -105,9 +105,9 @@ function LocationSearch() {
   ];
 
   // 시 / 군 / 구
-  const [state, setState] = React.useState('');
+  const [district, setDistrict] = React.useState('');
   
-  const states = [
+  const districts = [
     { label: '강남구' },
     { label: '달서구' },
     { label: '구로구' },
@@ -117,8 +117,8 @@ function LocationSearch() {
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
-  const handleStateChange = (event) => {
-    setState(event.target.value);
+  const handleDistrictChange = (event) => {
+    setDistrict(event.target.value);
   };
 
   // 시설 태그
@@ -140,13 +140,13 @@ function LocationSearch() {
   const handleClear = (event) => {
     setResultValue('');
     setCity('');
-    setState('');
+    setDistrict('');
     setSelectedChip(null);
   };
   const handleInputChange = () => {
     setResultValue(`Park Entered:
   시/도: ${city},
-  시/군/구: ${state},
+  시/군/구: ${district},
   시설: ${selectedChip}
   `);
   };
@@ -182,7 +182,7 @@ function LocationSearch() {
       <SubText>시 / 군 / 구</SubText>
       <StyledBox>
       <FormControl fullWidth>
-        <InputLabel id="selectState">선택하기</InputLabel>
+        <InputLabel id="selectDistrict">선택하기</InputLabel>
         <Select
           sx={{
             width:200,
@@ -191,16 +191,16 @@ function LocationSearch() {
             fontSize: 10,
             fontFamily:'Pretendard,Bold',
           }}
-          labelId="selectState"
-          id="selectState"
-          value={state}
-          label="State"
-          onChange={handleStateChange}
+          labelId="selectDistrict"
+          id="selectDistrict"
+          value={district}
+          label="District"
+          onChange={handleDistrictChange}
         >
           {/* 실제 시 / 군 / 구 */}
-          {states.map((stateOption, index) => (
-          <MenuItem key={index} value={stateOption.label}>
-            {stateOption.label}
+          {districts.map((districtOption, index) => (
+          <MenuItem key={index} value={districtOption.label}>
+            {districtOption.label}
           </MenuItem>))}
           </Select>
       </FormControl>
