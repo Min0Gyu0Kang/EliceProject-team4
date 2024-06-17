@@ -124,7 +124,10 @@ const MapPage = () => {
                     {view === 'main' && (
                         <>
                             <RightTop>
-                                <NearPark onParkClick={handleParkClick} />
+                                <NearPark
+                                    onParkClick={handleParkClick}
+                                    showParkList={showParkList}
+                                />
                                 {/* 공원 클릭 핸들러 전달 */}
                             </RightTop>
                             <RightBottom>
