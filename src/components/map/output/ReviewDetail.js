@@ -1,47 +1,122 @@
-/**
-File Name : ReviewDetail
-Description : 리뷰 상세보기 컴포넌트
-Author : 김유림
-
-History
-Date        Author   Status    Description
-2024.06.14  김유림    Created    
-*/
-import React from 'react'
-import styled from 'styled-components'
+import * as React from 'react'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemAvatar from '@mui/material/ListItemAvatar'
+import Avatar from '@mui/material/Avatar'
+import IconButton from '@mui/material/IconButton'
 import Keyword from '../../common/Keyword'
-import ParkList from './ParkList'
+import Divider from '@mui/material/Divider'
+import styled from 'styled-components'
+import BackIcon from '../../../assets/images/back.svg'
 
 const RightSection = styled.div`
-    flex: 3;
     background-color: #ffffff;
     display: flex;
     flex: 1;
 `
+
+const Container = styled.div`
+    width: 100%;
+    max-width: 400px;
+    overflow-y: auto;
+    margin: 0 auto;
+`
+
+const StyledListItem = styled(ListItem)`
+    height: 100px;
+    display: flex;
+    align-items: center;
+
+    .MuiListItemText-root {
+        flex: 1;
+        word-wrap: break-word;
+    }
+`
+
 const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 10px 15px;
-    width: 100%;
+    padding: 0px 15px;
+    width: 950%;
+`
+
+const IconButtonWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
 `
 
 const ReviewDetail = ({parkId, onBackClick}) => {
-    // api로 변경 예정
     const park = {
         id: parkId,
-        name: '늘벗공원', // 예시로 고정된 공원 이름
+        name: '늘벗공원',
         nickname: '하하하',
-        content: '로로로',
+        content: '공원이 너무 좋아요!',
     }
+
+    const handleBackClick = () => {
+        onBackClick()
+    }
+
     return (
         <RightSection>
             <ContentWrapper>
-                <button onClick={onBackClick}>Back</button>
-                <Keyword text={`${park.name}에 대한 리뷰`} />
-                <div>
-                    <p>닉네임: {park.nickname}</p>
-                    <p>내용: {park.content}</p>
-                </div>
+                <Container>
+                    <IconButtonWrapper>
+                        {/* IconButton을 사용하여 SVG 아이콘 넣기 */}
+                        <IconButton onClick={handleBackClick}>
+                            <img
+                                src={BackIcon}
+                                alt="Back"
+                                style={{
+                                    width: '24px',
+                                    height: '24px',
+                                    marginRight: '5px',
+                                }}
+                            />
+                        </IconButton>
+                        <Keyword text={`${park.name}에 대한 리뷰`} />
+                    </IconButtonWrapper>
+                    <List
+                        sx={{
+                            width: '100%',
+                            bgcolor: 'background.paper',
+                        }}
+                    >
+                        <StyledListItem>
+                            <ListItemAvatar>
+                                <Avatar />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={park.nickname}
+                                secondary={park.content}
+                            />
+                        </StyledListItem>
+                        <Divider />
+                        <StyledListItem>
+                            <ListItemAvatar>
+                                <Avatar />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={park.nickname}
+                                secondary={park.content}
+                            />
+                        </StyledListItem>
+                        <Divider />
+                        <StyledListItem>
+                            <ListItemAvatar>
+                                <Avatar />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={park.nickname}
+                                secondary={park.content}
+                            />
+                        </StyledListItem>
+                        {/* 추가적인 ListItem들을 여기에 추가 */}
+                        <Divider />
+                    </List>
+                </Container>
             </ContentWrapper>
         </RightSection>
     )
