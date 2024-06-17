@@ -26,186 +26,6 @@ import {ReactComponent as DownArrow1} from "../../../../../assets/left/DownArrow
 //DetailInfo 대신 Result (임시)
 import Result from "../../../output/Right/Result"
 
-function LocationSearch() {
-  /**  입력 스크립트 */
-  const [ResultValue, setResultValue] = useState('');
-// 지역 설정 선택창
-  const [city, setCity] = React.useState('');
-
-  const cities=[
-    {},
-    {},
-    {}
-  ]
-
-  const [state, setState] = React.useState('');
-  
-  const states=[
-
-  ]
-  const handleCityChange = (event) => {
-    setCity(event.target.value);
-  };
-  const handleStateChange = (event) => {
-    setState(event.target.value);
-  };
-  // 시설 태그
-  const [selectedChip, setSelectedChip] = useState(null);
-
-  const chips = [
-    { label: '운동시설' },
-    { label: '유희시설' },
-    { label: '기타시설' },
-    { label: '편의시설' }
-  ];
-
-  const handleClick = (index) => {
-    setSelectedChip(index); // 선택된 Chip의 라벨을 저장
-  };
-
-  // 칩 스크립트
-  
-  const handleClear = (event) => {
-    setResultValue('');
-    setCity('');
-    setState('');
-    setSelectedChip(null);
-  };
-  const handleInputChange = () => {
-    setResultValue(`
-    City: ${city}<br/>, 
-    State: ${state}<br/>, 
-    Selected Chip: ${selectedChip}<br/>
-    `);
-  };
-  return (
-<Div11>
-      <Div18>지역 설정</Div18>
-      <Div19>
-        시 / 도
-      </Div19>
-      <Div20>
-      <StyledBox sx={{ minWidth: 400 }}>
-      <FormControl fullWidth>
-        <InputLabel id="selectCity">선택하기</InputLabel>
-        <Select
-          labelId="selectCity"
-          id="selectCity"
-          value={city}
-          label="City"
-          onChange={handleCityChange}
-        >
-          {/* 실제 시 / 도 */}
-          <MenuItem value={10}>서울특별시</MenuItem>
-          <MenuItem value={20}>부산광역시</MenuItem>
-          <MenuItem value={30}>대구광역시</MenuItem>
-        </Select>
-      </FormControl>
-      </StyledBox>
-        {/* <Div21> */}
-          {/* <Div22>선택 </Div22> */}
-          {/* <Img
-            loading="lazy"
-            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-          /> */}
-          {/* Selection Drop Arrow */}
-          {/* <DownArrow1 /> */}
-        {/* </Div21> */}
-      </Div20>
-      <Div23>
-        시 / 군 / 구
-        {/* <span style="font-family: Acme, sans-serif;">
-          /군/구
-        </span> */}
-      </Div23>
-      <Div24>
-      <StyledBox sx={{ minWidth: 400 }}>
-      <FormControl fullWidth>
-        <InputLabel id="selectState">선택하기</InputLabel>
-        <Select
-          labelId="selectState"
-          id="selectState"
-          value={state}
-          label="State"
-          onChange={handleStateChange}
-        >
-          {/* 실제 시 / 군 / 구 */}
-          <MenuItem value={10}>강남구</MenuItem>
-          <MenuItem value={20}>달서구</MenuItem>
-          <MenuItem value={30}>금천구</MenuItem>
-        </Select>
-      </FormControl>
-    </StyledBox>
-        {/* <Div25> */}
-          {/* <Div26>선택</Div26> */}
-          {/* <img
-            loading="lazy"
-            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/dc40da5d0490f257b09abc03288ffe286746fb38f99f5c6d071f0c26824d2c74?apiKey=09b7b117ffe147409c9bb38f6b617fab&"
-          /> */}
-          {/* Selection Drop Arrow */}
-          {/* <DownArrow1 /> */}
-        {/* </Div25> */}
-      </Div24>
-      <Div27>추천 태그</Div27>
-      <Column2>
-      </Column2>
-      <Stack direction="row" spacing={1}>
-      {chips.map((chip, index) => (
-      <StyledChip key={index} label={chip.label} variant={selectedChip === index ? 'outlined' : 'default'} value={0} onClick={() => handleClick(index)} />
-      ))}</Stack>
-      <Div28>
-        <Div29>
-          {/* <Column2>
-            <Div30>
-              <Div31>
-                <Div32>
-                  <Div33>운동시설</Div33>
-                </Div32>
-                <Div34>
-                  <Div35>유희시설</Div35>
-                </Div34>
-              </Div31>
-            </Div30>
-          </Column2>
-          <Column3>
-            <Div38>
-              <Div39>기타시설</Div39>
-            </Div38>
-          </Column3>
-          <Column4>
-            <Div40>
-              <Div41>편의시설</Div41>
-            </Div40>
-          </Column4> */}
-        </Div29>
-      </Div28>
-      <Column2>
-      <Div42>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <Stack direction="row" spacing={1}>
-      <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear} />
-      <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} />
-      </Stack>
-        {/* <Div43>
-          <Div44>선택 초기화</Div44>
-        </Div43>
-        <Div45>
-          <Div46>추천 공원 검색</Div46>
-        </Div45> */}
-      </Div42>
-      </Column2>
-      <Result value = {ResultValue} />
-  </Div11>
-  );
-}
-
 const Div11 = styled.div`
   border-radius: 15px;
   background-color: rgba(244, 244, 244, 0.45);
@@ -216,20 +36,6 @@ const Div11 = styled.div`
   padding: 1px 0 28px;
   @media (max-width: 991px) {
     max-width: 100%;
-  }
-`;
-
-
-
-const Div17 = styled.div`
-  display: flex;
-  margin-top: 54px;
-  flex-direction: column;
-  padding: 0 35px;
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
-    padding: 0 20px;
   }
 `;
 
@@ -278,34 +84,6 @@ const StyledBox = styled(Box)`
   border-radius:30px 0px 0px 30px;
 `
 
-const Div21 = styled.div`
-  border-radius: 30px;
-  border-color: rgba(0, 0, 0, 0.42);
-  border-style: solid;
-  border-width: 1px;
-  background-color: #fff;
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-  padding: 15px 26px;
-  @media (max-width: 991px) {
-    padding-left: 20px;
-    white-space: initial;
-  }
-`;
-
-const Div22 = styled.div`
-  font-family: Aguafina Script, sans-serif;
-  margin: auto 0;
-`;
-
-const Img = styled.img`
-  aspect-ratio: 0.93;
-  object-fit: auto;
-  object-position: center;
-  width: 25px;
-`;
-
 const Div23 = styled.div`
   color: #262627;
   align-self: start;
@@ -333,27 +111,6 @@ const Div24 = styled.div`
   }
 `;
 
-const Div25 = styled.div`
-  border-radius: 30px;
-  border-color: rgba(0, 0, 0, 0.42);
-  border-style: solid;
-  border-width: 1px;
-  background-color: #fff;
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-  padding: 15px 26px;
-  @media (max-width: 991px) {
-    padding-left: 20px;
-    white-space: initial;
-  }
-`;
-
-const Div26 = styled.div`
-  font-family: Aguafina Script, sans-serif;
-  margin: auto 0;
-`;
-
 const Div27 = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -368,24 +125,6 @@ const Div27 = styled.div`
   }
 `;
 
-const Div28 = styled.div`
-  margin-top: 29px;
-  padding: 0 1px;
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
-`;
-
-const Div29 = styled.div`
-  gap: 20px;
-  display: flex;
-  @media (max-width: 991px) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0px;
-  }
-`;
-
 const Column2 = styled.div`
   display: flex;
   flex-direction: column;
@@ -394,188 +133,6 @@ const Column2 = styled.div`
   margin-left: 0px;
   @media (max-width: 991px) {
     width: 100%;
-  }
-`;
-
-const Div30 = styled.div`
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  font-size: 16px;
-  font-weight: 400;
-  white-space: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 0.46px;
-  line-height: 162.5%;
-  @media (max-width: 991px) {
-    margin-top: 27px;
-    white-space: initial;
-  }
-`;
-
-const Div31 = styled.div`
-  display: flex;
-  gap: 20px;
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const Div32 = styled.div`
-  justify-content: center;
-  border-radius: 30px;
-  background-color: #30cb6e;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-  flex: 1;
-  padding: 8px 17px;
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const Div33 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const Div34 = styled.div`
-  justify-content: center;
-  border-radius: 30px;
-  border-color: rgba(0, 0, 0, 0.42);
-  border-style: solid;
-  border-width: 1px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  color: #262627;
-  flex: 1;
-  padding: 8px 17px;
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const Div35 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const Div36 = styled.div`
-  justify-content: center;
-  border-radius: 30px;
-  border-color: rgba(0, 0, 0, 0.42);
-  border-style: solid;
-  border-width: 1px;
-  background-color: #fff;
-  display: flex;
-  margin-top: 18px;
-  flex-direction: column;
-  color: #262627;
-  padding: 8px 17px;
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const Div37 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const Column3 = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 23%;
-  margin-left: 20px;
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
-
-const Div38 = styled.div`
-  justify-content: center;
-  border-radius: 30px;
-  border-color: rgba(0, 0, 0, 0.42);
-  border-style: solid;
-  border-width: 1px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-  color: #262627;
-  font-weight: 400;
-  white-space: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 0.46px;
-  line-height: 162.5%;
-  width: 100%;
-  padding: 8px 17px;
-  @media (max-width: 991px) {
-    margin-top: 27px;
-    white-space: initial;
-  }
-`;
-
-const Div39 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const Column4 = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 23%;
-  margin-left: 20px;
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
-
-const Div40 = styled.div`
-  justify-content: center;
-  border-radius: 30px;
-  border-color: rgba(0, 0, 0, 0.42);
-  border-style: solid;
-  border-width: 1px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-  color: #262627;
-  font-weight: 400;
-  white-space: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 0.46px;
-  line-height: 162.5%;
-  width: 100%;
-  padding: 8px 17px;
-  @media (max-width: 991px) {
-    margin-top: 27px;
-    white-space: initial;
-  }
-`;
-
-const Div41 = styled.div`
-  font-family: Pretendard, sans-serif;
-  justify-content: center;
-  @media (max-width: 991px) {
-    white-space: initial;
   }
 `;
 
@@ -615,5 +172,144 @@ const StyledChip = styled(Chip)`
     color: #fff;
     }
 `;
+
+function LocationSearch() {
+  /**  입력 스크립트 */
+  const [ResultValue, setResultValue] = useState('');
+// 지역 설정 선택창
+  // 시 / 도
+  const [city, setCity] = React.useState('');
+
+  const cities = [
+    { label: '서울특별시' },
+    { label: '부산광역시' },
+    { label: '대구광역시' },
+    { label: '인천광역시' }
+  ];
+
+  // 시 / 군 / 구
+  const [state, setState] = React.useState('');
+  
+  const states = [
+    { label: '강남구' },
+    { label: '달서구' },
+    { label: '구로구' },
+    { label: '노원구' }
+  ];
+
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+  };
+  const handleStateChange = (event) => {
+    setState(event.target.value);
+  };
+
+  // 시설 태그
+  const [selectedChip, setSelectedChip] = useState(null);
+
+  const chips = [
+    { label: '운동시설' },
+    { label: '유희시설' },
+    { label: '기타시설' },
+    { label: '편의시설' }
+  ];
+
+  const handleClick = (index) => {
+    setSelectedChip(chips[index].label); // 선택된 Chip의 라벨을 저장
+  };
+
+  // 칩 스크립트
+  
+  const handleClear = (event) => {
+    setResultValue('');
+    setCity('');
+    setState('');
+    setSelectedChip(null);
+  };
+  const handleInputChange = () => {
+    setResultValue(`Park Entered:
+  시/도: ${city},
+  시/군/구: ${state},
+  시설: ${selectedChip}
+  `);
+  };
+  return (
+<Div11>
+      <Div18>지역 설정</Div18>
+      <Div19>
+        시 / 도
+      </Div19>
+      <Div20>
+      <StyledBox sx={{ minWidth: 400 }}>
+      <FormControl fullWidth>
+        <InputLabel id="selectCity">선택하기</InputLabel>
+        <Select
+          labelId="selectCity"
+          id="selectCity"
+          value={city}
+          label="City"
+          onChange={handleCityChange}
+        >
+          {/* 실제 시 / 도 */}
+          {cities.map((cityOption, index) => (
+          <MenuItem key={index} value={cityOption.label}>
+            {cityOption.label}
+          </MenuItem>))}
+          </Select>
+      </FormControl>
+      </StyledBox>
+      </Div20>
+      <Div23>
+        시 / 군 / 구
+      </Div23>
+      <Div24>
+      <StyledBox sx={{ minWidth: 400 }}>
+      <FormControl fullWidth>
+        <InputLabel id="selectState">선택하기</InputLabel>
+        <Select
+          labelId="selectState"
+          id="selectState"
+          value={state}
+          label="State"
+          onChange={handleStateChange}
+        >
+          {/* 실제 시 / 군 / 구 */}
+          {states.map((stateOption, index) => (
+          <MenuItem key={index} value={stateOption.label}>
+            {stateOption.label}
+          </MenuItem>))}
+          </Select>
+      </FormControl>
+    </StyledBox>
+      </Div24>
+      <Div27>추천 태그</Div27>
+      <Column2>
+      </Column2>
+      <Stack direction="row" spacing={1}>
+      {chips.map((chip, index) => (
+      <StyledChip key={index} label={chip.label} variant={selectedChip === chip.label ? 'outlined' : 'default'} value={2} onClick={() => handleClick(index)} />
+      ))}
+      </Stack>
+      <Column2>
+      <Div42>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <Stack direction="row" spacing={1}>
+      <StyledChip label="선택 초기화" variant="outlined" onClick={handleClear} />
+      <StyledChip label="추천 공원 검색" variant="outlined" onClick={handleInputChange} />
+      </Stack>
+      </Div42>
+      </Column2>
+      <Result value = {ResultValue} />
+  </Div11>
+  );
+}
+
 
 export default LocationSearch;
