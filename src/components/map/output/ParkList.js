@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.14  임지영    Created   
 2024.06.16  김유림    Modified   각 리스트 클릭시 onParkClick함수 실행 
+2024.06.17  임지영    Modified   API 연결
 */
 
 import React, {useState} from 'react'
@@ -18,6 +19,7 @@ import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 import {useParkData} from '../../common/useParkData'
 import ParkName from '../../common/ParkName'
+import API from '../../../config'
 
 const ParkListContainer = styled.div`
     font-family: 'Pretendard';
@@ -38,26 +40,12 @@ const Number = styled.p`
     text-align: center;
 `
 
-const ParkList = ({onParkClick}) => {
+const ParkList = ({city, district, onParkClick}) => {
     const [url, setUrl] = useState('')
-    const {parkData, error} = useParkData(url)
 
-    //페이지네이션
-    // const page = parkData.maxPage
-
-    // 왼쪽 컴포넌트의 >추천 공원 검색< 버튼 클릭시 실행될 함수
-    const handleLoadClick = () => {
-        setUrl('API 주소 넣어야 함')
-    }
-    /* 추천공원검색 버튼 예시
-        <div>
-            <button onClick={handleLoadClick}>추천 공원 검색</button>
-            {error && <p>Error: {error.message}</p>}
-        </div> 
-    */
-    const [rating, setRating] = useState(4.5)
-    //const [rating, setRating] = useState(null);
-    // setValue(parkData.data.average_review)
+    const {parkData, error} = useParkData(
+        `${API.recommend_park}?city=${city}&district=${district}`,
+    )
 
     const parks = [
         {
@@ -139,6 +127,33 @@ const ParkList = ({onParkClick}) => {
                 ))}
             </ParkListContainer>
         </StyledEngineProvider>
+        // <StyledEngineProvider injectFirst>
+        //     <ParkListContainer>
+        //         {parkData &&
+        //             parkData.data &&
+        //             parkData.data.slice(0, 5).map((park, index) => (
+        //                 <List
+        //                     key={park.id || index}
+        //                     onClick={() => onParkClick(park)}
+        //                 >
+        //                     <Stack direction="row" spacing={1.5}>
+        //                         <Number>{index + 1}</Number>
+        //                         <ParkName
+        //                             name={park.name}
+        //                             address={park.address}
+        //                         />
+        //                         <Rating
+        //                             name="half-rating"
+        //                             defaultValue={park.average_review}
+        //                             precision={0.5}
+        //                             readOnly
+        //                         />
+        //                     </Stack>
+        //                 </List>
+        //             ))}
+        //         {error && <p>Error: {error.message}</p>}
+        //     </ParkListContainer>
+        // </StyledEngineProvider>
     )
 }
 
