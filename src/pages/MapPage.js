@@ -11,6 +11,8 @@ Date        Author   Status    Description
 2024.06.14  임지영   Modified   LeftTop 모달창 확인용 컴포넌트 추가
 2024.06.14  김유림   Modified   Right Section 배경색 변경
 2024.06.16  김유림   Modified   main view , reviewDetail view생성
+2024.06.17  김유림   Modified   검색 다시 누를경우 공원 정보 창 리셋
+2024.06.18  김유림   Modified   리뷰 상세보기 갔다가 검색 다시 누를경우 main 뷰로 전환
 */
 
 import React, {useState} from 'react'
@@ -105,6 +107,7 @@ const MapPage = () => {
     const openParkList = () => {
         setShowParkList(!showParkList)
         setSelectedParkId(null) // 공원 선택 다시 누르면 selectedParkId 초기화 => 공원정보 빔
+        setView('main') // 리뷰 상세보기 보다가 공원 검색 버튼을 누르면 view를 다시 'main'으로 설정
     }
 
     return (
@@ -117,7 +120,11 @@ const MapPage = () => {
                             공원 검색 샘플 버튼
                         </button>
                     </LeftTop>
-                    <LeftBottom>Left Bottom Content</LeftBottom>
+                    <LeftBottom>
+                        <button onClick={openParkList}>
+                            직접 검색 샘플 버튼
+                        </button>
+                    </LeftBottom>
                 </LeftSection>
                 <MiddleSection>Middle Content</MiddleSection>
                 <RightSection>
