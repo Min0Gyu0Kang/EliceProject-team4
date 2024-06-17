@@ -25,12 +25,23 @@ const ContentWrapper = styled.div`
     width: 100%;
 `
 
-const ReviewDetail = ({park, onBackClick}) => {
+const ReviewDetail = ({parkId, onBackClick}) => {
+    // api로 변경 예정
+    const park = {
+        id: parkId,
+        name: '늘벗공원', // 예시로 고정된 공원 이름
+        nickname: '하하하',
+        content: '로로로',
+    }
     return (
         <RightSection>
             <ContentWrapper>
                 <button onClick={onBackClick}>Back</button>
                 <Keyword text={`${park.name}에 대한 리뷰`} />
+                <div>
+                    <p>닉네임: {park.nickname}</p>
+                    <p>내용: {park.content}</p>
+                </div>
             </ContentWrapper>
         </RightSection>
     )
