@@ -71,6 +71,7 @@ const BackgroundColor = styled.div`
 const LinkTextContainer = styled.div`
     text-align: center; /* 데이터출처 텍스트 가운데 정렬 */
     width: 100%; /* 전체 너비 사용 */
+    color: #888; /* 연한 색상 */
     display: flex;
     flex-direction: column;
     margin: 30px;
@@ -175,7 +176,7 @@ const Dashboard = () => {
                     <LinkTextContainer>
                         데이터출처
                         <LinkText>
-                            공공데이터 포털 :
+                            공공데이터 포털:
                             <a
                                 href="https://www.data.go.kr/index.do"
                                 target="_blank"
@@ -184,7 +185,7 @@ const Dashboard = () => {
                                 https://www.data.go.kr/index.do
                             </a>
                             <br />
-                            통계청 KOSIS :
+                            통계청 KOSIS:
                             <a
                                 href="https://kosis.kr/index/index.do"
                                 target="_blank"
@@ -193,7 +194,7 @@ const Dashboard = () => {
                                 https://kosis.kr/index/index.do
                             </a>
                             <br />
-                            지표누리 :
+                            지표누리:
                             <a
                                 href="https://www.index.go.kr/unity/potal/main.do"
                                 target="_blank"
