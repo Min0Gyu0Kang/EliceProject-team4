@@ -9,8 +9,8 @@ Date        Author   Status    Description
 2024.06.15  임지영    Modified  리스트 컨테이너 높이 수정
 2024.06.15  김유림    Modified  리스트 컨테이너 높이 수정
 2024.06.16  김유림    Modified  park 받아와서 공원정보 리스트 나열 높이 고정
-2024.06.17  임지영    Modified  리스트 컨테이너 높이 수정..ㅎㅎ 
-                              이렇게 해야 스크롤이 안 생기고 한 화면에 보이더라구요🥹
+2024.06.17  김유림    Modified  api 데이터 형식에 맞춘 리스트로 변경
+2024.06.18  김유림    Modified  스크롤바 활성화 경우 추가
 */
 import React from 'react'
 import styled from 'styled-components'
@@ -33,25 +33,21 @@ const Container = styled.div`
 const InfoListContainer = styled.div`
     width: 100%;
     max-width: 370px;
-    height: 260px; /* 높이 고정 */
+    height: 340px; /* 높이 고정 */
     border-radius: 16px;
+    margin: 5px;
     background-color: #ffffff; /* 배경색 설정 */
     border: 1px solid #e0e0e0; /* 테두리 설정 */
     overflow-y: scroll; /* 스크롤 항상 활성화 */
     padding: 5px;
+
     /* 스크롤바 스타일링 */
     &::-webkit-scrollbar {
-        width: 5px;
+        width: 4px;
     }
     &::-webkit-scrollbar-thumb {
         background-color: #888; /* 스크롤바 색상 */
         border-radius: 16px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background-color: #555; /* 호버 시 색상 */
-    }
-    &::-webkit-scrollbar-track {
-        background-color: #f1f1f1; /* 트랙 색상 */
     }
 `
 
@@ -68,7 +64,7 @@ const InfoItem = ({icon, primary, secondary}) => (
     </ListItem>
 )
 
-const InfoList = ({park}) => {
+const InfoList = ({park, facilities}) => {
     return (
         <StyledEngineProvider injectFirst>
             <Container>
@@ -90,10 +86,10 @@ const InfoList = ({park}) => {
                             secondary={park.phone}
                         />
                         {/* 운동 및 편익 시설을 리스트로 표시 */}
-                        {park.facilities && (
+                        {facilities && (
                             <>
-                                {park.facilities &&
-                                    park.facilities.map((facility, index) => (
+                                {facilities &&
+                                    facilities.map((facility, index) => (
                                         <InfoItem
                                             key={`facility-${index}`}
                                             icon={InformationIcon}

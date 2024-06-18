@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.14  임지영    Created   
 2024.06.16  김유림    Modified   각 리스트 클릭시 onParkClick함수 실행 
 2024.06.17  임지영    Modified   API 연결
+2024.06.17  김유림    Modified   api 와 맞게 더미데이터 수정 
 */
 
 import React, {useState} from 'react'

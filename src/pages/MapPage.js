@@ -11,8 +11,9 @@ Date        Author   Status    Description
 2024.06.14  임지영   Modified   LeftTop 모달창 확인용 컴포넌트 추가
 2024.06.14  김유림   Modified   Right Section 배경색 변경
 2024.06.16  김유림   Modified   main view , reviewDetail view생성
-2024.06.17  임지영   Modified   공원 검색 샘플 버튼 클릭 이벤트 추가
-2024.06.17  임지영   Modified   추천 공원 검색 클릭시 공원 리스트 출력
+2024.06.17  김유림   Modified   검색 다시 누를경우 공원 정보 창 리셋
+2024.06.18  김유림   Modified   리뷰 상세보기 갔다가 검색 다시 누를경우 main 뷰로 전환
+2024.06.18  김유림   Modified   리뷰 상세보기 연결
 */
 
 import React, {useState, useRef} from 'react'
@@ -25,6 +26,7 @@ import '../assets/fonts/font.css'
 import TapContainer from '../components/map/input/TapContainer'
 import InputButton from '../components/map/input/LocationInputButton'
 import {useParkData} from '../components/common/useParkData'
+import Map from '../components/map/Main/map'
 
 const MainLayout = styled.div`
     display: flex;
@@ -114,7 +116,9 @@ const MapPage = () => {
                         openParkList={openParkList}
                     />
                 </LeftSection>
-                <MiddleSection>Middle Content</MiddleSection>
+                <MiddleSection>
+                    <Map></Map>
+                </MiddleSection>
                 <RightSection>
                     {view === 'main' && (
                         <>
@@ -128,7 +132,7 @@ const MapPage = () => {
                             </RightTop>
                             <RightBottom>
                                 <InfoPark
-                                    park={selectedParkId}
+                                    parkId={selectedParkId}
                                     onReviewDetailClick={
                                         handleReviewDetailClick
                                     }
@@ -138,7 +142,7 @@ const MapPage = () => {
                     )}
                     {view === 'reviewDetail' && selectedParkId && (
                         <ReviewDetail
-                            park={selectedParkId}
+                            parkId={selectedParkId}
                             onBackClick={handleBackClick}
                         />
                     )}
