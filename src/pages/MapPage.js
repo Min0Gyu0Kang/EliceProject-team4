@@ -12,22 +12,24 @@ Date        Author   Status    Description
 2024.06.14  김유림   Modified   Right Section 배경색 변경
 2024.06.16  김유림   Modified   main view , reviewDetail view생성
 2024.06.17  임지영   Modified   공원 검색 샘플 버튼 클릭 이벤트 추가
+2024.06.17  임지영   Modified   추천 공원 검색 클릭시 공원 리스트 출력
 */
 
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import Header from '../components/common/Header'
 import NearPark from '../components/map/output/NearPark'
 import InfoPark from '../components/map/output/InfoPark'
 import styled from 'styled-components'
-import ModalLogin from '../components/map/output/LoginModal'
 import ReviewDetail from '../components/map/output/ReviewDetail'
-import Button from '../components/map/output/Button'
 import '../assets/fonts/font.css'
+import TapContainer from '../components/map/input/TapContainer'
+import InputButton from '../components/map/input/LocationInputButton'
+import {useParkData} from '../components/common/useParkData'
 
 const MainLayout = styled.div`
     display: flex;
     flex-direction: column;
-    height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
+    height: 100%; /* 화면 전체 높이를 차지하도록 설정 */
 `
 
 const ContentWrapper = styled.div`
@@ -37,27 +39,6 @@ const ContentWrapper = styled.div`
 
 const LeftSection = styled.div`
     flex: 2.5; /* 왼쪽 섹션이 부모의 1/6을 차지하도록 설정 */
-    background-color: #f6f5f2; /* 예제용 배경색 */
-    display: flex;
-    flex-direction: column; /* 세로로 요소 배치 설정 */
-`
-
-const LeftTop = styled.div`
-    flex: 1; /* 상위 섹션의 1/2를 차지하도록 설정 */
-    background-color: #d9e6dc; /* 예제용 배경색 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-`
-
-const LeftBottom = styled.div`
-    flex: 1; /* 하위 섹션의 1/2를 차지하도록 설정 */
-    background-color: #e0edc6; /* 예제용 배경색 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
 `
 
 const MiddleSection = styled.div`
@@ -88,10 +69,11 @@ const RightBottom = styled.div`
 
 const MapPage = () => {
     const [view, setView] = useState('main')
-    const [selectedPark, setSelectedPark] = useState(null)
+    const [selectedParkId, setSelectedParkId] = useState(null)
 
-    const handleParkClick = park => {
-        setSelectedPark(park) /* 선택한 공원 상태 업데이트*/
+    const handleParkClick = parkId => {
+        console.log('Selected Park ID:', parkId)
+        setSelectedParkId(parkId)
     }
 
     const handleReviewDetailClick = () => {
@@ -105,6 +87,21 @@ const MapPage = () => {
     const [showParkList, setShowParkList] = useState(false)
     const openParkList = () => {
         setShowParkList(!showParkList)
+        setSelectedParkId(null) // 공원 선택 다시 누르면 selectedParkId 초기화 => 공원정보 빔
+        setView('main') // 리뷰 상세보기 보다가 공원 검색 버튼을 누르면 view를 다시 'main'으로 설정
+    }
+
+    // const handleClear = () => {
+    //     setCity('')
+    //     setDistrict('')
+    //     setSelectedChips([])
+    // }
+
+    const [searchResults, setSearchResults] = useState(null)
+
+    const handleSearchComplete = data => {
+        setSearchResults(data)
+        console.log('검색 결과:', data)
     }
 
     return (
@@ -112,12 +109,10 @@ const MapPage = () => {
             <Header />
             <ContentWrapper>
                 <LeftSection>
-                    <LeftTop>
-                        <button onClick={openParkList}>
-                            공원 검색 샘플 버튼
-                        </button>
-                    </LeftTop>
-                    <LeftBottom>Left Bottom Content</LeftBottom>
+                    <TapContainer
+                        onSearchComplete={handleSearchComplete}
+                        openParkList={openParkList}
+                    />
                 </LeftSection>
                 <MiddleSection>Middle Content</MiddleSection>
                 <RightSection>
@@ -127,12 +122,13 @@ const MapPage = () => {
                                 <NearPark
                                     onParkClick={handleParkClick}
                                     showParkList={showParkList}
+                                    parkData={searchResults}
                                 />
                                 {/* 공원 클릭 핸들러 전달 */}
                             </RightTop>
                             <RightBottom>
                                 <InfoPark
-                                    park={selectedPark}
+                                    park={selectedParkId}
                                     onReviewDetailClick={
                                         handleReviewDetailClick
                                     }
@@ -140,9 +136,9 @@ const MapPage = () => {
                             </RightBottom>
                         </>
                     )}
-                    {view === 'reviewDetail' && selectedPark && (
+                    {view === 'reviewDetail' && selectedParkId && (
                         <ReviewDetail
-                            park={selectedPark}
+                            park={selectedParkId}
                             onBackClick={handleBackClick}
                         />
                     )}

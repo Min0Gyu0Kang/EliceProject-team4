@@ -31,27 +31,26 @@ const Button = ({onReviewDetailClick}) => {
     return (
         <Stack direction="row" spacing={4}>
             <Chip
-                label="리뷰작성하기"
+                label="리뷰 작성하기"
                 onClick={handleClick}
                 sx={{
                     backgroundColor: '#ffffff',
                     color: 'grey',
-                    padding: '17px 18px',
+                    padding: '18px 21px',
                     fontSize: '1rem',
                 }}
                 variant="outlined"
                 size="large"
             />
             <Chip
-                label="리뷰상세보기"
+                label="리뷰 상세보기"
                 onClick={onReviewDetailClick}
                 sx={{
                     backgroundColor: '#30cb6e',
                     color: 'white',
-                    padding: '17px 18px',
+                    padding: '19px 15px',
                     fontSize: '1rem',
                 }}
-                variant="outlined"
                 size="large"
             />
             {/* <LoginModal open={openModal} handleClose={handleClose} /> */}
