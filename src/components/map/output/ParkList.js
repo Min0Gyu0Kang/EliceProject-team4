@@ -11,16 +11,13 @@ Date        Author   Status    Description
 2024.06.17  김유림    Modified   api 와 맞게 더미데이터 수정 
 */
 
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import '../../../assets/fonts/font.css'
-import IconStar from '../../../assets/images/IconStar.svg'
 import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
-import {useParkData} from '../../common/useParkData'
 import ParkName from '../../common/ParkName'
-import API from '../../../config'
 
 const ParkListContainer = styled.div`
     font-family: 'Pretendard';

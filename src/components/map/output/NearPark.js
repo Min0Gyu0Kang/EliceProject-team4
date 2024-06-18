@@ -32,17 +32,14 @@ const ContentWrapper = styled.div`
     padding: 10px 15px; /* 좌우 패딩 값 수정 */
     width: 100%;
 `
-const NearPark = ({handleParkClick, showParkList, parkData}) => {
+const NearPark = ({onParkClick, showParkList, parkData}) => {
     console.log('NearPark parkData:', parkData) // 데이터 확인용 로그
     return (
         <RightSection>
             <ContentWrapper>
                 <Keyword text="내 주변 공원" />
                 {showParkList ? (
-                    <ParkList
-                        parkData={parkData}
-                        onParkClick={handleParkClick}
-                    />
+                    <ParkList parkData={parkData} onParkClick={onParkClick} />
                 ) : (
                     <Empty text="공원을 검색해보세요" />
                 )}
