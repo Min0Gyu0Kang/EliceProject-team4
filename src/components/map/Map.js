@@ -13,16 +13,18 @@ Date        Author   Status    Description
 2024.06.17  강민규   Modified  지도 마커 연동된 정보창  
 */
 
-import {React,useEffect} from "react";
+import {React,useEffect,useState} from "react";
 import styled from "styled-components";
 import { KakaoMap, MarkerClusterer, Marker } from 'react-kakao-maps';
 import $ from "jquery";
+import axios from 'axios';
 
 const Content = styled.div``;
 
 const Layout = styled.div``;
 
 const Map = () => {
+    const [positions, setPositions] = useState([]);
     useEffect(() => {
         const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
 
@@ -49,25 +51,45 @@ const Map = () => {
         //**마커 생성
 
         // 마커를 표시할 위치와 title 객체 배열입니다 
-        var positions = [
-            {
-                title: '카카오', 
-                latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-            },
-            {
-                title: '생태연못', 
-                latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-            },
-            {
-                title: '텃밭', 
-                latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-            },
-            {
-                title: '근린공원',
-                latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-            },
+        // var positions = [
+        //     {
+        //         title: '카카오', 
+        //         latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+        //     },
+        //     {
+        //         title: '생태연못', 
+        //         latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+        //     },
+        //     {
+        //         title: '텃밭', 
+        //         latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+        //     },
+        //     {
+        //         title: '근린공원',
+        //         latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+        //     },
 
-        ];
+        // ];
+        const fetchData = async () => {
+            try {
+              const response = await fetch('http://localhost:3000/map');
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              const data = await response.json();
+              // Assuming data is an array of park objects with 'name', 'latitude', and 'longitude' fields
+              const newPositions = data.map(map => ({
+                title: map.name,
+                latlng: new kakao.maps.LatLng(map.latitude, map.longitude)
+              }));
+              setPositions(newPositions);
+              console.log(positions);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          fetchData();
 
         // 마커 이미지의 이미지 주소입니다
         var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
