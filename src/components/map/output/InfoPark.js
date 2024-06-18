@@ -10,6 +10,7 @@ Date        Author   Status    Description
 2024.06.15  김유림    Modified  ButtonWrapper 마진 수정
 2024.06.16  김유림    Modified  조건부 렌더링 추가, Empty or InfoPark/Button
 2024.06.17  김유림    Modified  더미데이터 추가
+2024.06.17  김유림    Modified  버튼 margin 수정
 */
 
 import React from 'react'
@@ -48,7 +49,7 @@ const Name = styled.div`
 const ButtonWrapper = styled.div`
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
-    margin-top: 10px; /* 위쪽 여백 추가 */
+    margin-top: 7px; /* 위쪽 여백 추가 */
 `
 const information = {
     park: [
