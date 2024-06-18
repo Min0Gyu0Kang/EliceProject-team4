@@ -199,6 +199,14 @@ const LocationSearch = ({
                                 <MenuItem value="">
                                     <Text>선택</Text>
                                 </MenuItem>
+                                <MenuItem
+                                    key="all"
+                                    value={districtOptions.map(
+                                        option => option.label,
+                                    )}
+                                >
+                                    전체
+                                </MenuItem>
                                 {districtOptions.map(
                                     (districtOption, index) => (
                                         <MenuItem
