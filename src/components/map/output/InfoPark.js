@@ -37,7 +37,7 @@ const ContentWrapper = styled.div`
 `
 const ParkNameContainer = styled.div`
     font-family: 'Pretendard';
-    width: 100%;
+    width: 93%;
     display: flex;
     align-items: center; /* 수직 중앙 정렬 */
     justify-content: space-between; /* 자식 요소 간의 공간을 최대화하여 양 끝에 정렬 */
@@ -46,7 +46,7 @@ const ParkNameContainer = styled.div`
 
 const Name = styled.div`
     font-size: 15pt;
-    margin: 10px 10px;
+    margin: 10px 0 10px 8%;
     align-items: flex-start; /* 수직 상단 정렬 */
 `
 const ButtonWrapper = styled.div`
@@ -88,16 +88,9 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
     }
 
     const park = data.park.find(p => p.id === parkId)
-    let facilities = []
-    data.facilities.forEach(facilityGroup => {
-        if (Array.isArray(facilityGroup)) {
-            facilities = facilities.concat(
-                facilityGroup.filter(f => f.id === parkId),
-            )
-        } else if (facilityGroup.id === parkId) {
-            facilities.push(facilityGroup)
-        }
-    })
+    let facilities = data.facilities.filter(
+        facility => facility.park_id === parkId,
+    )
 
     return (
         <RightSection>

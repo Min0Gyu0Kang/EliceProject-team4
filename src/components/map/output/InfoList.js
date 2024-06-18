@@ -89,15 +89,14 @@ const InfoList = ({park, facilities}) => {
                         {/* 운동 및 편익 시설을 리스트로 표시 */}
                         {facilities && (
                             <>
-                                {facilities &&
-                                    facilities.map((facility, index) => (
-                                        <InfoItem
-                                            key={`facility-${index}`}
-                                            icon={InformationIcon}
-                                            primary={facility.category}
-                                            secondary={facility.name}
-                                        />
-                                    ))}
+                                {facilities.map((facility, index) => (
+                                    <InfoItem
+                                        key={`facility-${index}`}
+                                        icon={InformationIcon}
+                                        primary={facility.category}
+                                        secondary={facility.name}
+                                    />
+                                ))}
                             </>
                         )}
                     </StyledList>
