@@ -13,6 +13,7 @@ Date        Author   Status    Description
 2024.06.16  김유림   Modified   main view , reviewDetail view생성
 2024.06.17  김유림   Modified   검색 다시 누를경우 공원 정보 창 리셋
 2024.06.18  김유림   Modified   리뷰 상세보기 갔다가 검색 다시 누를경우 main 뷰로 전환
+2024.06.18  김유림   Modified   리뷰 상세보기 연결
 */
 
 import React, {useState} from 'react'
