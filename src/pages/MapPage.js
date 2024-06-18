@@ -59,7 +59,8 @@ const RightSection = styled.div`
 
 const RightTop = styled.div`
     display: flex;
-    margin: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
 `
 
 const RightBottom = styled.div`
@@ -74,7 +75,7 @@ const MapPage = () => {
 
     const handleParkClick = parkId => {
         console.log('Selected Park ID:', parkId)
-        setSelectedParkId(parkId)
+        setSelectedParkId(prevId => (prevId === parkId ? null : parkId)) // 동일한 공원 클릭 시 null로 설정
     }
 
     const handleReviewDetailClick = () => {
@@ -92,10 +93,9 @@ const MapPage = () => {
         setView('main') // 리뷰 상세보기 보다가 공원 검색 버튼을 누르면 view를 다시 'main'으로 설정
     }
 
-    // const handleClear = () => {
-    //     setCity('')
-    //     setDistrict('')
-    //     setSelectedChips([])
+    // const [showParkInfo, setShowParkInfo] = useState(false)
+    // const openParkInfo = () => {
+    //     setShowParkInfo(!showParkInfo)
     // }
 
     const [searchResults, setSearchResults] = useState(null)
@@ -113,6 +113,7 @@ const MapPage = () => {
                     <TapContainer
                         onSearchComplete={handleSearchComplete}
                         openParkList={openParkList}
+                        // openParkInfo={openParkInfo}
                     />
                 </LeftSection>
                 <MiddleSection>
