@@ -153,7 +153,7 @@ const MapPage = () => {
                     )}
                     {view === 'reviewDetail' && selectedParkId && (
                         <ReviewDetail
-                            park={selectedParkId}
+                            parkId={selectedParkId}
                             onBackClick={handleBackClick}
                         />
                     )}
