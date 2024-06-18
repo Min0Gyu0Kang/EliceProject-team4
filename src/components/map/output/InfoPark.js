@@ -147,7 +147,7 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
                             <Name>{park.name}</Name>
                             <Rating
                                 name="half-rating"
-                                defaultValue={park.average_review}
+                                value={park.average_review}
                                 precision={0.5}
                                 readOnly
                             />
