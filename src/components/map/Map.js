@@ -10,6 +10,7 @@ Date        Author   Status    Description
 2024.06.13  강민규   Modified  지도 시각화(초안)  
 2024.06.13  강민규   Modified  지도 줌인아웃  
 2024.06.13  강민규   Modified  지도 임시위치 마커  
+2024.06.17  강민규   Modified  지도 마커 연동된 정보창  
 */
 
 import {React,useEffect} from "react";
