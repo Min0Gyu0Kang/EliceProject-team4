@@ -23,6 +23,7 @@ import styled from 'styled-components'
 import ModalLogin from '../components/map/output/LoginModal'
 import ReviewDetail from '../components/map/output/ReviewDetail'
 import '../assets/fonts/font.css'
+import Map from '../components/map/Main/map'
 
 const MainLayout = styled.div`
     display: flex;
@@ -126,7 +127,9 @@ const MapPage = () => {
                         </button>
                     </LeftBottom>
                 </LeftSection>
-                <MiddleSection>Middle Content</MiddleSection>
+                <MiddleSection>
+                    <Map></Map>
+                </MiddleSection>
                 <RightSection>
                     {view === 'main' && (
                         <>
