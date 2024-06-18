@@ -13,6 +13,7 @@ Date        Author   Status    Description
 2024.06.11  강민규   Modified   결과 / 리뷰 분리
 2024.06.13  강민규   Modified   지도 (임시) svg 추가
 2024.06.14  강민규   Modified   Park.js로 분리
+2024.06.17  강민규   Modified   헤더 푸터 분리
 
 */
 
