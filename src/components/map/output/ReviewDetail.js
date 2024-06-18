@@ -59,51 +59,50 @@ const RatingWrapper = styled(Box)`
 
 const ReviewDetail = ({parkId, onBackClick}) => {
     const [data, setData] = useState({
-        park: [
-            {
-                id: 1,
-                name: '늘벗공원',
-                average_review: 1,
-            },
-            {
-                id: 2,
-                name: '늘푸른공원',
-                average_review: 2,
-            },
-            {
-                id: 3,
-                name: '신사근린공원',
-                average_review: 3,
-            },
-            {
-                id: 4,
-                name: '포이근린공원',
-                average_review: 4,
-            },
-            {
-                id: 5,
-                name: '청수근린공원',
-                average_review: 4.5,
-            },
-        ],
-        review: [],
+        // park: [
+        //     {
+        //         id: 1,
+        //         name: '늘벗공원',
+        //         average_review: 1,
+        //     },
+        //     {
+        //         id: 2,
+        //         name: '늘푸른공원',
+        //         average_review: 2,
+        //     },
+        //     {
+        //         id: 3,
+        //         name: '신사근린공원',
+        //         average_review: 3,
+        //     },
+        //     {
+        //         id: 4,
+        //         name: '포이근린공원',
+        //         average_review: 4,
+        //     },
+        //     {
+        //         id: 5,
+        //         name: '청수근린공원',
+        //         average_review: 4.5,
+        //     },
+        // ],
+        // review: [],
     })
 
     useEffect(() => {
         // 실제 API 호출 대신 더미 데이터를 사용하여 초기 데이터 설정
         // API 호출 시 주석 해제 후 사용 가능
-        /*
+
         const fetchData = async () => {
             try {
-                const response = await fetch(`/park-review/details/${parkId}`);
-                const result = await response.json();
-                setData(result);
+                const response = await fetch(`/park-review/details/${parkId}`)
+                const result = await response.json()
+                setData(result)
             } catch (error) {
-                console.error('Error fetching the data', error);
+                console.error('Error fetching the data', error)
             }
-        };
-        fetchData();
-        */
+        }
+        fetchData()
     }, [parkId])
 
     const handleBackClick = () => {
