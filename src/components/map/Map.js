@@ -11,6 +11,8 @@ Date        Author   Status    Description
 2024.06.13  강민규   Modified  지도 줌인아웃  
 2024.06.13  강민규   Modified  지도 임시위치 마커  
 2024.06.17  강민규   Modified  지도 마커 연동된 정보창  
+2024.06.17  강민규   Modified  지도 클러스터 없음
+2024.06.17  강민규   Modified  지도 백엔드 /map 성공    
 */
 
 import {React,useEffect,useState} from "react";
