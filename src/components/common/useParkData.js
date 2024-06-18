@@ -17,11 +17,17 @@ export const useParkData = url => {
 
     useEffect(() => {
         if (!url) return
+
         const fetchData = async () => {
             try {
                 const response = await fetch(url, {
                     method: 'GET',
+                    mode: 'cors',
                 })
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`)
+                }
+
                 const data = await response.json()
                 setParkData(data)
             } catch (err) {
@@ -31,5 +37,5 @@ export const useParkData = url => {
         fetchData()
     }, [url])
 
-    return {parkData, error}
+    return {parkData}
 }

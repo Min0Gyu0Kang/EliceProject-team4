@@ -40,120 +40,33 @@ const Number = styled.p`
     text-align: center;
 `
 
-const ParkList = ({city, district, onParkClick}) => {
-    const [url, setUrl] = useState('')
-
-    const {parkData, error} = useParkData(
-        `${API.recommend_park}?city=${city}&district=${district}`,
-    )
-
-    const parks = [
-        {
-            id: 1,
-            name: '늘벗공원',
-            address: '서울시 강남구 대치동 501',
-            rating: 4,
-            type: '어린이공원',
-            phone: '02-1234-1234',
-            facilities: [{category: '운동시설', name: '농구장'}],
-        },
-        {
-            id: 2,
-            name: '늘푸른공원',
-            address: '서울시 강남구 일원동 690',
-            rating: 4,
-            type: '어린이공원',
-            phone: '02-1234-1235',
-            facilities: [
-                {category: '운동시설', name: '농구장'},
-                {category: '편익시설', name: '화장실'},
-            ],
-        },
-        {
-            id: 3,
-            name: '신사근린공원',
-            address: '서울시 강남구 압구정동 422',
-            rating: 4,
-            type: '근린공원',
-            phone: '02-1234-1236',
-            facilities: [
-                {category: '운동시설', name: '농구장'},
-                {category: '편익시설', name: '화장실'},
-            ],
-        },
-        {
-            id: 4,
-            name: '포이근린공원',
-            address: '서울시 강남구 개포동 218',
-            rating: 4,
-            type: '근린공원',
-            phone: '02-1234-1237',
-            facilities: [
-                {category: '운동시설', name: '농구장'},
-                {category: '편익시설', name: '화장실'},
-            ],
-        },
-        {
-            id: 4,
-            name: '청수근린공원',
-            address: '서울시 강남구 청담동 123-13',
-            rating: 4,
-            type: '근린공원',
-            phone: '02-1234-1237',
-            facilities: [
-                {category: '운동시설', name: '농구장'},
-                {category: '편익시설', name: '화장실'},
-                {category: '유희시설', name: '놀이대'},
-            ],
-        },
-    ]
-
+const ParkList = ({onParkClick, parkData, error}) => {
+    console.log('ParkList parkData:', parkData) // 데이터 확인용 로그
     return (
         <StyledEngineProvider injectFirst>
             <ParkListContainer>
-                {parks.map((park, index) => (
-                    <List key={index} onClick={() => onParkClick(park)}>
-                        <Stack direction="row" spacing={1.5}>
-                            <Number>{index + 1}</Number>
-                            <ParkName name={park.name} address={park.address} />
-                            <Rating
-                                name="half-rating"
-                                defaultValue={park.rating}
-                                precision={0.5}
-                                readOnly
-                            />
-                        </Stack>
-                    </List>
-                ))}
+                {parkData &&
+                    parkData.data &&
+                    parkData.data.slice(0, 5).map((park, index) => (
+                        <List key={index} onClick={() => onParkClick(park.id)}>
+                            <Stack direction="row" spacing={1.5}>
+                                <Number>{index + 1}</Number>
+                                <ParkName
+                                    name={park.name}
+                                    address={park.address}
+                                />
+                                <Rating
+                                    name="half-rating"
+                                    defaultValue={park.average_review}
+                                    precision={0.5}
+                                    readOnly
+                                />
+                            </Stack>
+                        </List>
+                    ))}
+                {error && <p>Error: {error.message}</p>}
             </ParkListContainer>
         </StyledEngineProvider>
-        // <StyledEngineProvider injectFirst>
-        //     <ParkListContainer>
-        //         {parkData &&
-        //             parkData.data &&
-        //             parkData.data.slice(0, 5).map((park, index) => (
-        //                 <List
-        //                     key={park.id || index}
-        //                     onClick={() => onParkClick(park)}
-        //                 >
-        //                     <Stack direction="row" spacing={1.5}>
-        //                         <Number>{index + 1}</Number>
-        //                         <ParkName
-        //                             name={park.name}
-        //                             address={park.address}
-        //                         />
-        //                         <Rating
-        //                             name="half-rating"
-        //                             defaultValue={park.average_review}
-        //                             precision={0.5}
-        //                             readOnly
-        //                         />
-        //                     </Stack>
-        //                 </List>
-        //             ))}
-        //         {error && <p>Error: {error.message}</p>}
-        //     </ParkListContainer>
-        // </StyledEngineProvider>
     )
 }
 
