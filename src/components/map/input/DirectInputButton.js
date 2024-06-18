@@ -14,7 +14,7 @@ import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 
 // 추천공원 검색 시
-function DirectInputButton({onSearchComplete, openParkList, name}) {
+function DirectInputButton({onSearchComplete, openParkInfo, name}) {
     const handleClick = async () => {
         const url = `/park/search/${name})}`
 
@@ -27,7 +27,7 @@ function DirectInputButton({onSearchComplete, openParkList, name}) {
             const data = await response.json() // 응답을 JSON으로 변환
             if (typeof onSearchComplete === 'function') {
                 onSearchComplete(data) // 상위 컴포넌트로 데이터 전달
-                openParkList() // 검색이 완료되면 openParkList 함수 호출
+                openParkInfo() // 검색이 완료되면 openParkList 함수 호출
             } else {
                 console.error('onSearchComplete is not a function')
             }

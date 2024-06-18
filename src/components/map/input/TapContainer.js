@@ -47,7 +47,11 @@ function a11yProps(index) {
     }
 }
 
-export default function TapContainer({onSearchComplete, openParkList}) {
+export default function TapContainer({
+    onSearchComplete,
+    openParkList,
+    openParkInfo,
+}) {
     const [selectedValues, setSelectedValues] = useState({
         city: '',
         district: '',
@@ -60,6 +64,10 @@ export default function TapContainer({onSearchComplete, openParkList}) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
+    }
+
+    const handleClearSelection = () => {
+        setSelectedValues({city: '', district: '', chips: []})
     }
 
     return (
@@ -113,18 +121,20 @@ export default function TapContainer({onSearchComplete, openParkList}) {
                 <LocationSearch
                     selectedValues={selectedValues}
                     setSelectedValues={setSelectedValues}
+                    onClearSelection={handleClearSelection}
                 />
                 <LocationInputButton
                     selectedValues={selectedValues}
                     onSearchComplete={onSearchComplete}
                     openParkList={openParkList}
+                    onClearSelection={handleClearSelection}
                 />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
                 <DirectSearch name={name} setName={setName} />
                 <DirectInputButton
                     onSearchComplete={onSearchComplete}
-                    openParkList={openParkList}
+                    openParkInfo={openParkInfo}
                     name={name}
                 />
             </CustomTabPanel>

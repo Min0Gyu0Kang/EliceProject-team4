@@ -63,7 +63,11 @@ const StyledChip = styled(Chip)`
     }
 `
 
-const LocationSearch = ({selectedValues, setSelectedValues}) => {
+const LocationSearch = ({
+    selectedValues,
+    setSelectedValues,
+    onClearSelection,
+}) => {
     // 시/도 데이터 불러오기
     const {parkData: cityData, error: cityError} = useParkData(
         '/park/recommend/city',

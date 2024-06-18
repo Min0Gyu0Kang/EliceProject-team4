@@ -19,9 +19,10 @@ const LocationInputButton = ({
     selectedValues,
     onSearchComplete,
     openParkList,
+    onClearSelection,
 }) => {
     const handleSearchClick = async () => {
-        const {city, district, chips} = selectedValues // selectedValues가 undefined일 경우 빈 객체로 초기화
+        const {city, district, chips} = selectedValues
 
         const queryParams = new URLSearchParams()
         if (city) queryParams.append('city', city)
@@ -49,6 +50,15 @@ const LocationInputButton = ({
             console.error('Error fetching park recommendations:', error)
         }
     }
+
+    const handleClearClick = () => {
+        if (typeof onClearSelection === 'function') {
+            onClearSelection() // 상위 컴포넌트로 초기화 요청
+        } else {
+            console.error('onClearSelection is not a function')
+        }
+    }
+
     return (
         <StyledEngineProvider injectFirst>
             <Stack direction="row" spacing={6.5} justifyContent="center">
@@ -62,7 +72,7 @@ const LocationInputButton = ({
                     }}
                     variant="outlined"
                     size="large"
-                    // onClick={handleClear}
+                    onClick={handleClearClick}
                 />
                 <Chip
                     label="추천 공원 검색"

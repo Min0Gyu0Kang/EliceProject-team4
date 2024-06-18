@@ -15,13 +15,12 @@ Date        Author   Status    Description
 2024.06.18  임지영   Modified  버튼 및 전체 스타일 수정
 */
 
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Keyword from '../../common/Keyword'
 import Box from '@mui/material/Box'
 import {TextField, Stack} from '@mui/material'
 import IconSearch1 from '../../../assets/images/IconSearch1.svg'
-import {useParkData} from '../../common/useParkData'
 
 const Container = styled.div``
 
