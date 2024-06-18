@@ -14,6 +14,7 @@ Date        Author   Status    Description
 2024.06.17  김유림   Modified   검색 다시 누를경우 공원 정보 창 리셋
 2024.06.18  김유림   Modified   리뷰 상세보기 갔다가 검색 다시 누를경우 main 뷰로 전환
 2024.06.18  김유림   Modified   리뷰 상세보기 연결
+2024.06.18  임지영   Modified   Middle 및 LeftSection 가로폭 수정
 */
 
 import React, {useState, useRef} from 'react'
@@ -24,9 +25,7 @@ import styled from 'styled-components'
 import ReviewDetail from '../components/map/output/ReviewDetail'
 import '../assets/fonts/font.css'
 import TapContainer from '../components/map/input/TapContainer'
-import InputButton from '../components/map/input/LocationInputButton'
-import {useParkData} from '../components/common/useParkData'
-import Map from '../components/map/Main/map'
+import Map from '../components/map/main/Map'
 
 const MainLayout = styled.div`
     display: flex;
@@ -40,11 +39,11 @@ const ContentWrapper = styled.div`
 `
 
 const LeftSection = styled.div`
-    flex: 2.5; /* 왼쪽 섹션이 부모의 1/6을 차지하도록 설정 */
+    flex: 2.3; /* 왼쪽 섹션이 부모의 1/6을 차지하도록 설정 */
 `
 
 const MiddleSection = styled.div`
-    flex: 5; /* 가운데 섹션이 부모의 4/6을 차지하도록 설정 */
+    flex: 4; /* 가운데 섹션이 부모의 4/6을 차지하도록 설정 */
     background-color: #e0e0e0; /* 예제용 배경색 */
     display: flex;
     justify-content: center;

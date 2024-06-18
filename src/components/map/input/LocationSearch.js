@@ -21,8 +21,6 @@ import '../../../assets/fonts/font.css'
 import Keyword from '../../common/Keyword'
 import {Box, MenuItem, FormControl, Select, Chip, Stack} from '@mui/material'
 import {useParkData} from '../../common/useParkData'
-import {usePost} from '../../common/usePost'
-import InputButton from './LocationInputButton'
 
 const Container = styled.div`
     font-family: 'Pretendard';
