@@ -8,7 +8,7 @@ Date        Author   Status    Description
 2024.06.18  김유림    Created   
 */
 
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
@@ -32,10 +32,12 @@ const Container = styled.div`
 const StyledListItem1 = styled(ListItem)`
     display: flex;
 `
+
 const StyledListItem2 = styled(ListItem)`
     display: flex;
     margin-top: -15px;
 `
+
 const ContentWrapper = styled.div`
     flex-direction: column;
     padding: 0px 15px;
@@ -56,128 +58,166 @@ const RatingWrapper = styled(Box)`
 `
 
 const ReviewDetail = ({parkId, onBackClick}) => {
-    // 더미 데이터 예시
-    const data = {
-        park: {
-            parkId: 1,
-            name: '늘벗공원',
-            average_review: '4.5',
-        },
-        review: [
+    const [data, setData] = useState({
+        park: [
             {
-                nickname: '하하하',
-                grade: 4.5,
-                content: '공원이 너무 좋아요!',
+                id: 1,
+                name: '늘벗공원',
+                average_review: 1,
             },
             {
-                nickname: '호호호',
-                grade: 3,
-                content:
-                    '이 공원은 자연의 아름다움을 최대한 즐길 수 있는 곳입니다. 넓은 잔디밭과 맑고 깨끗한 공기가 매력적이며, 다채로운 식물과 새들의 노래가 경치를 더욱 아름답게 만듭니다. 가족 모두가 함께 즐길 수 있는 좋은 장소입니다.',
+                id: 2,
+                name: '늘푸른공원',
+                average_review: 2,
             },
             {
-                nickname: '후후후',
-                grade: 5.0,
-                content: '완벽한 공원입니다!',
+                id: 3,
+                name: '신사근린공원',
+                average_review: 3,
+            },
+            {
+                id: 4,
+                name: '포이근린공원',
+                average_review: 4,
+            },
+            {
+                id: 5,
+                name: '청수근린공원',
+                average_review: 4.5,
             },
         ],
-    }
+        review: [],
+    })
+
+    useEffect(() => {
+        // 실제 API 호출 대신 더미 데이터를 사용하여 초기 데이터 설정
+        // API 호출 시 주석 해제 후 사용 가능
+        /*
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`/park-review/details/${parkId}`);
+                const result = await response.json();
+                setData(result);
+            } catch (error) {
+                console.error('Error fetching the data', error);
+            }
+        };
+        fetchData();
+        */
+    }, [parkId])
 
     const handleBackClick = () => {
         onBackClick()
     }
 
-    return (
-        <ContentWrapper>
-            <Container>
-                <IconButton onClick={handleBackClick}>
-                    <img
-                        src={BackIcon}
-                        alt="Back"
-                        style={{
-                            width: '20px',
-                            height: '20px',
-                            marginTop: '10px',
-                        }}
-                    />
-                </IconButton>
-                <ParkNameWrapper>
-                    <Keyword text={data.park.name} />
-                    <RatingWrapper>
-                        <Typography
+    // parkId가 유효하고 data.park에 해당하는 공원 정보가 있는 경우
+    if (parkId && data.park.some(park => park.id === parkId)) {
+        const parkInformation = data.park.find(park => park.id === parkId)
+
+        return (
+            <ContentWrapper>
+                <Container>
+                    <IconButton onClick={handleBackClick}>
+                        <img
+                            src={BackIcon}
+                            alt="Back"
                             style={{
-                                fontSize: '22px',
-                                minWidth: '30px',
-                                marginBottom: '6px',
-                            }}
-                        >
-                            ({data.park.average_review})
-                        </Typography>
-                        <Rating
-                            name="half-rating"
-                            value={1}
-                            max={1}
-                            readOnly
-                            style={{
-                                marginLeft: '8px',
-                                marginBottom: '5px',
+                                width: '20px',
+                                height: '20px',
+                                marginTop: '10px',
                             }}
                         />
-                    </RatingWrapper>
-                </ParkNameWrapper>
-                <Divider sx={{margin: '10px'}} />
+                    </IconButton>
+                    <ParkNameWrapper>
+                        <Keyword text={parkInformation.name} />
+                        <RatingWrapper>
+                            <Typography
+                                style={{
+                                    fontSize: '22px',
+                                    minWidth: '30px',
+                                    marginBottom: '6px',
+                                }}
+                            >
+                                ({parkInformation.average_review.toFixed(1)})
+                            </Typography>
+                            <Rating
+                                name="half-rating"
+                                value={1}
+                                max={1}
+                                readOnly
+                                style={{
+                                    marginLeft: '8px',
+                                    marginBottom: '5px',
+                                }}
+                            />
+                        </RatingWrapper>
+                    </ParkNameWrapper>
+                    <Divider sx={{margin: '10px'}} />
 
-                <List
-                    sx={{
-                        width: '100%',
-                        bgcolor: 'background.paper',
-                    }}
-                >
-                    {data.review.map((review, index) => (
-                        <div key={index}>
-                            <StyledListItem1>
-                                <ListItemAvatar>
-                                    <Avatar />
-                                </ListItemAvatar>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        flex: 1,
-                                    }}
-                                >
-                                    <ListItemText
-                                        primary={review.nickname}
-                                        style={{flex: 1}}
-                                    />
-                                    <Rating
-                                        name="half-rating"
-                                        value={review.grade}
-                                        precision={0.5}
-                                        readOnly
+                    {data.review.length === 0 && (
+                        <Typography
+                            variant="body2"
+                            style={{textAlign: 'center', padding: '100px'}}
+                        >
+                            아직 리뷰가 없어요. 작성해주세요!
+                        </Typography>
+                    )}
+
+                    <List
+                        sx={{
+                            width: '100%',
+                            bgcolor: 'background.paper',
+                        }}
+                    >
+                        {data.review.map((review, index) => (
+                            <div key={index}>
+                                <StyledListItem1>
+                                    <ListItemAvatar>
+                                        <Avatar />
+                                    </ListItemAvatar>
+                                    <div
                                         style={{
-                                            marginLeft: '8px',
-                                            marginRight: '8px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            flex: 1,
                                         }}
+                                    >
+                                        <ListItemText
+                                            primary={review.nickname}
+                                            style={{flex: 1}}
+                                        />
+                                        <Rating
+                                            name={`rating-${index}`}
+                                            value={review.grade}
+                                            precision={0.5}
+                                            readOnly
+                                            style={{
+                                                marginLeft: '8px',
+                                                marginRight: '8px',
+                                            }}
+                                        />
+                                        <Typography variant="body2">
+                                            ({review.grade.toFixed(1)})
+                                        </Typography>
+                                    </div>
+                                </StyledListItem1>
+                                <StyledListItem2>
+                                    <ListItemText
+                                        secondary={review.content}
+                                        style={{flex: 1, marginLeft: '58px'}}
                                     />
-                                    <Typography variant="body2">
-                                        ({review.grade.toFixed(1)})
-                                    </Typography>
-                                </div>
-                            </StyledListItem1>
-                            <StyledListItem2>
-                                <ListItemText
-                                    secondary={review.content}
-                                    style={{flex: 1, marginLeft: '58px'}}
-                                />
-                            </StyledListItem2>
-                            <Divider sx={{margin: '10px'}} />
-                        </div>
-                    ))}
-                </List>
-            </Container>
-        </ContentWrapper>
-    )
+                                </StyledListItem2>
+                                <Divider sx={{margin: '10px'}} />
+                            </div>
+                        ))}
+                    </List>
+                </Container>
+            </ContentWrapper>
+        )
+    }
+
+    // parkId가 유효하지 않거나 data.park에 해당하는 공원 정보가 없는 경우
+    return null
 }
 
 export default ReviewDetail
