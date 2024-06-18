@@ -11,6 +11,7 @@ Date        Author   Status    Description
 2024.06.16  김유림    Modified  park 받아와서 공원정보 리스트 나열 높이 고정
 2024.06.17  김유림    Modified  api 데이터 형식에 맞춘 리스트로 변경
 2024.06.18  김유림    Modified  스크롤바 활성화 경우 추가
+2024.06.19  임지영    Modified  더미데이터 삭제, API 연결 && facility 함수 수정 필요
 */
 import React from 'react'
 import styled from 'styled-components'
@@ -33,7 +34,7 @@ const Container = styled.div`
 const InfoListContainer = styled.div`
     width: 100%;
     max-width: 370px;
-    height: 340px; /* 높이 고정 */
+    height: 270px; /* 높이 고정 */
     border-radius: 16px;
     margin: 5px;
     background-color: #ffffff; /* 배경색 설정 */
@@ -73,17 +74,17 @@ const InfoList = ({park, facilities}) => {
                         <InfoItem
                             icon={LocationIcon}
                             primary="주소"
-                            secondary={park.address}
+                            secondary={park?.address}
                         />
                         <InfoItem
                             icon={DivisionIcon}
                             primary="공원구분"
-                            secondary={park.type}
+                            secondary={park?.type}
                         />
                         <InfoItem
                             icon={TelIcon}
                             primary="전화번호"
-                            secondary={park.phone}
+                            secondary={park?.phone_number}
                         />
                         {/* 운동 및 편익 시설을 리스트로 표시 */}
                         {facilities && (
