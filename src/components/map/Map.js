@@ -22,6 +22,7 @@ import { KakaoMap, MarkerClusterer, Marker } from 'react-kakao-maps';
 import $ from "jquery";
 import axios from 'axios';
 import { city, district, facilities} from "./Query"
+import Chicken from "./Chicken.json"
 
 const Content = styled.div``;
 
@@ -210,10 +211,9 @@ const Map = () => {
             return '치멘';
         }
         }
-
         // 데이터를 가져오기 위해 jQuery를 사용합니다
         // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-        $.get("./Chicken.json", function(data) {
+        $.get(Chicken, function(data) {
             // 데이터에서 좌표 값을 가지고 마커를 표시합니다
             // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
             var markers = $(data.positions).map(function(i, position) {

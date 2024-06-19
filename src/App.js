@@ -20,14 +20,14 @@ Date        Author   Status    Description
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Park from './components/map/Park'
-// import Community from './pages/CommunityPage'
+import Community from './pages/CommunityPage'
 
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/Park" element={<Park />} />
-                {/* <Route path="/Community" element={<Community />} /> */}
+                <Route path="/Community" element={<Community />} />
             </Routes>
         </BrowserRouter>
     )
