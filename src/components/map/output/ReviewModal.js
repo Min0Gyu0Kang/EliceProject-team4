@@ -8,10 +8,10 @@ Date        Author   Status    Description
 2024.06.15  임지영    Created 
 2024.06.17  임지영    Modified    API 연결
 2024.06.19  임지영    Modified    API 연결 수정 및  글자수 제한 css
+2024.06.20  임지영    Modified   fetch -> axios
 */
 
 import React, {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
 import styled, {css} from 'styled-components'
 import {StyledEngineProvider} from '@mui/styled-engine'
 import Box from '@mui/material/Box'
@@ -19,7 +19,7 @@ import Modal from '@mui/material/Modal'
 import '../../../assets/fonts/font.css'
 import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
-import API from '../../../config'
+import axios from 'axios'
 
 const style = {
     position: 'absolute',
@@ -151,23 +151,16 @@ export default function ReviewModal({
             return
         }
         try {
-            const response = await fetch(`park-review/${parkId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
+            const response = await axios.post(`park-review/${parkId}`, {
                     content: content,
                     grade: rating,
-                }),
-            })
-            if (!response.ok) {
-                throw new Error('네트워크 응답이 올바르지 않습니다.')
-            }
-            const data = await response.json()
-            console.log(data)
-            handleCancel()
-            onReviewDetailClick()
+                })
+             if (response.status !== 201) {
+            throw new Error('네트워크 응답이 올바르지 않습니다.');
+        }
+            console.log(response.data)
+            handleCancel() // 모달창 닫기
+            onReviewDetailClick() // 리뷰 상세보기로 이동
         } catch (error) {
             console.error('리뷰 전송 중 오류가 발생했습니다:', error)
         }

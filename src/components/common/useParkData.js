@@ -7,8 +7,10 @@ History
 Date        Author   Status    Description
 2024.06.14  임지영   Created
 2024.06.17  임지영   Modified   method 명시
+2024.06.20  임지영    Modified   fetch -> axios
 */
 
+import axios from 'axios'
 import {useState, useEffect} from 'react'
 
 export const useParkData = url => {
@@ -20,16 +22,8 @@ export const useParkData = url => {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(url, {
-                    method: 'GET',
-                    mode: 'cors',
-                })
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`)
-                }
-
-                const data = await response.json()
-                setParkData(data)
+                const response = await axios.get(url)
+                setParkData(response.data);
             } catch (err) {
                 setError(err)
             }

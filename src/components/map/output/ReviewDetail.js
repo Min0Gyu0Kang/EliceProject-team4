@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.18  김유림    Created   
 2024.06.19  임지영    Modified   api 연결   
 2024.06.19  임지영    Modified   데이터 로딩 시 안내 문구 추가  
+2024.06.20  임지영    Modified   fetch -> axios
 */
 
 import React, {useState, useEffect} from 'react'
@@ -24,6 +25,7 @@ import BackIcon from '../../../assets/images/back.svg'
 import Rating from '@mui/material/Rating'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import axios from 'axios'
 
 const Container = styled.div`
     width: 100%;
@@ -65,9 +67,8 @@ const ReviewDetail = ({parkId, onBackClick}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`/park-review/details/${parkId}`)
-                const result = await response.json()
-                setData(result)
+                const response = await axios.get(`/park-review/details/${parkId}`)
+                setData(response.data)
             } catch (error) {
                 console.error('Error fetching the data', error)
             }
