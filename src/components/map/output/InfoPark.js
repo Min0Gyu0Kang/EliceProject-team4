@@ -84,13 +84,16 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
     }
 
     if (!data) {
-        return null // 데이터를 아직 가져오지 않았을 때 아무 것도 렌더링하지 않음
+        return (
+            <ContentWrapper>
+                <Keyword text="공원 정보" />
+            </ContentWrapper>
+        ) // 데이터를 아직 가져오지 않았을 때 아무 것도 렌더링하지 않음
     }
 
     const park = data.park.find(p => p.id === parkId)
-    let facilities = data.facilities.filter(
-        facility => facility.park_id === parkId,
-    )
+
+    let facilities = data.facilities
 
     return (
         <RightSection>
@@ -107,9 +110,11 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
                 </ParkNameContainer>{' '}
                 <InfoList park={park} facilities={facilities} />
                 <ButtonWrapper>
-                    <Button onReviewDetailClick={onReviewDetailClick}>
-                        리뷰 상세 보기
-                    </Button>
+                    <Button
+                        park={park}
+                        parkId={parkId}
+                        onReviewDetailClick={onReviewDetailClick}
+                    />
                 </ButtonWrapper>
             </ContentWrapper>
         </RightSection>

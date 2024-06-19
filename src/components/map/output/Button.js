@@ -17,10 +17,10 @@ import Stack from '@mui/material/Stack'
 import LoginModal from './LoginModal'
 import ReviewModal from './ReviewModal'
 
-const Button = ({onReviewDetailClick}) => {
+const Button = ({park, parkId, onReviewDetailClick}) => {
     const [openModal, setOpenModal] = useState(false)
 
-    const handleClick = () => {
+    const handleClick = async () => {
         setOpenModal(true)
     }
 
@@ -54,7 +54,13 @@ const Button = ({onReviewDetailClick}) => {
                 size="large"
             />
             {/* <LoginModal open={openModal} handleClose={handleClose} /> */}
-            <ReviewModal open={openModal} handleClose={handleClose} />
+            <ReviewModal
+                park={park}
+                parkId={parkId}
+                open={openModal}
+                handleClose={handleClose}
+                onReviewDetailClick={onReviewDetailClick}
+            />
         </Stack>
     )
 }

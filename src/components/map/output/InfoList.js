@@ -36,7 +36,7 @@ const InfoListContainer = styled.div`
     max-width: 370px;
     height: 270px; /* 높이 고정 */
     border-radius: 16px;
-    margin: 5px;
+    // margin: 5px;
     background-color: #ffffff; /* 배경색 설정 */
     border: 1px solid #e0e0e0; /* 테두리 설정 */
     overflow-y: scroll; /* 스크롤 항상 활성화 */
