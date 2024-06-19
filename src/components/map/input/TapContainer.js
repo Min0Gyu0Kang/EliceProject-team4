@@ -118,25 +118,30 @@ export default function TapContainer({onSearchComplete, openParkList}) {
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-                <LocationSearch
-                    selectedValues={selectedValues}
-                    setSelectedValues={setSelectedValues}
-                    onClearSelection={handleClearSelection}
-                    value={value}
+                <LocationSearch  // 지역 검색 화면 컴포넌트
+                    selectedValues={selectedValues} // 시/군, 시/군/구 및 추천태그 선택값
+                    setSelectedValues={setSelectedValues}  // selectedValues 변경 함수
+                    onClearSelection={handleClearSelection} // 초기화하려고 만들어놓은 함수
                 />
                 <LocationInputButton
-                    selectedValues={selectedValues}
+                 // 시/군, 시/군/구 및 추천태그 선택값
+                 // 버튼 클릭시 쿼리파라미터로 보내기 위해
+                    selectedValues={selectedValues} 
+                    // MapPage를 거져서 내주변공원으로 입력 데이터 보내려고
                     onSearchComplete={onSearchComplete}
+                    // 검색 버튼 클릭시 내주변공원 컴포넌트(NearPark > ParkList) 보여주기 위해
                     openParkList={openParkList}
+                    // 초기화하려고 만들어놓은 함수
                     onClearSelection={handleClearSelection}
                 />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                <DirectSearch name={name} setName={setName} />
+                {/* 직접 검색한 값을 name으로 받아 오려고 */}
+                <DirectSearch name={name} setName={setName} /> 
                 <DirectInputButton
-                    onSearchComplete={onSearchComplete}
-                    openParkList={openParkList}
-                    name={name}
+                    onSearchComplete={onSearchComplete} // LocationInputButton과 같은 용도
+                    openParkList={openParkList} // 얘도
+                    name={name} // 검색 버튼 클릭시 파라미터
                 />
             </CustomTabPanel>
         </Box>

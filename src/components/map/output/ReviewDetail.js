@@ -76,6 +76,7 @@ const ReviewDetail = ({parkId, onBackClick}) => {
     }, [parkId])
 
     const handleBackClick = () => {
+        // 뒤로가기 버튼 클릭
         onBackClick()
     }
 

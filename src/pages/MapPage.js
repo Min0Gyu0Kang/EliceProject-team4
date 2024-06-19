@@ -106,8 +106,9 @@ const MapPage = () => {
             <ContentWrapper>
                 <LeftSection>
                     <TapContainer
-                        onSearchComplete={handleSearchComplete}
-                        openParkList={openParkList}
+                        onSearchComplete={handleSearchComplete} //검색 결과 받아오기
+                        // NearPark 내부의 ParkList 컴포넌트를 보여줄지 말지 결정
+                        openParkList={openParkList} 
                     />
                 </LeftSection>
                 <MiddleSection>
@@ -118,11 +119,10 @@ const MapPage = () => {
                         <>
                             <RightTop>
                                 <NearPark
-                                    onParkClick={handleParkClick}
+                                    onParkClick={handleParkClick} // 내주변공원의 공원 클릭시 정보 보이도록
                                     showParkList={showParkList} //true ? 내주변공원 컴포넌트 : empty
-                                    parkData={searchResults}
+                                    parkData={searchResults} // 받아온 검색 결과 전달
                                 />
-                                {/* 공원 클릭 핸들러 전달 */}
                             </RightTop>
                             <RightBottom>
                                 <InfoPark
@@ -136,8 +136,8 @@ const MapPage = () => {
                     )}
                     {view === 'reviewDetail' && selectedParkId && (
                         <ReviewDetail
-                            parkId={selectedParkId}
-                            onBackClick={handleBackClick}
+                            parkId={selectedParkId} 
+                            onBackClick={handleBackClick} // 뒤로가기 버튼
                         />
                     )}
                 </RightSection>

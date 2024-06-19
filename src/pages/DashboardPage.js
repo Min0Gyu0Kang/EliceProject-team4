@@ -13,7 +13,7 @@ Date        Author   Status    Description
 */
 
 import React from 'react'
-import DashBoard from '../components/dashboard/DashBoard'
+import DashBoard from '../components/dashBoard/DashBoard'
 import Navigation from '../components/common/Navigation'
 import goalIcon from '../assets/images/goal.svg'
 import Footer from '../components/common/Footer'
