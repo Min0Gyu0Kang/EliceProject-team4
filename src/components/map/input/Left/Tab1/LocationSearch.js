@@ -11,6 +11,7 @@ Date        Author   Status    Description
 2024.06.17  강민규   Modified  script 추가, 그러나 Result 창이 오른쪽이 아닌 이곳에 뜸!
 2024.06.17  강민규   Modified  handleClear 작동 확인
 2024.06.17  강민규   Modified  CSS 정리
+2024.06.19  강민규   Modified  selectedChip as facilities
 
 */
 
@@ -144,10 +145,11 @@ function LocationSearch() {
     setSelectedChip(null);
   };
   const handleInputChange = () => {
+    var facilities = selectedChip; //selectedChip to facilities
     setResultValue(`Park Entered:
   시/도: ${city},
   시/군/구: ${district},
-  시설: ${selectedChip}
+  시설: ${facilities} 
   `);
   };
   return (

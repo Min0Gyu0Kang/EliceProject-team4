@@ -11,8 +11,9 @@ Date        Author   Status    Description
 2024.06.13  강민규   Modified  지도 줌인아웃  
 2024.06.13  강민규   Modified  지도 임시위치 마커  
 2024.06.17  강민규   Modified  지도 마커 연동된 정보창  
-2024.06.17  강민규   Modified  지도 클러스터 없음
-2024.06.17  강민규   Modified  지도 백엔드 /map 성공    
+2024.06.17  강민규   Modified  지도 클러스터 없음 
+2024.06.19  강민규   Modified  지도 백엔드 /park/recommend 성공
+2024.06.19  강민규   Modified  지도 Query 불러서 마커 반영 성공    
 */
 
 import {React,useEffect,useState} from "react";
@@ -20,6 +21,7 @@ import styled from "styled-components";
 import { KakaoMap, MarkerClusterer, Marker } from 'react-kakao-maps';
 import $ from "jquery";
 import axios from 'axios';
+import { city, district, facilities} from "./Query"
 
 const Content = styled.div``;
 
@@ -31,8 +33,8 @@ const Map = () => {
         const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
 
         const options = { // 지도를 생성할 때 필요한 기본 옵션
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표.
-            level: 3 // 지도의 레벨(확대, 축소 정도)
+            center: new kakao.maps.LatLng(37.566851234596804, 126.97866357016943), // 지도의 중심좌표는 서울 시청.
+            level: 14 // 지도의 레벨(확대, 축소 정도)
         };
 
         const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
@@ -72,26 +74,36 @@ const Map = () => {
         //     },
 
         // ];
+
         const fetchData = async () => {
             try {
-              const response = await fetch('http://localhost:3000/map');
+                // get values of city district facilities from Query.js parameters 
+                const queryString = `city=${city}` +
+            (district ? `&district=${district}` : '') +
+            (facilities ? `&facilities=${facilities}` : '');
+                // console.log(queryString);
+              const response = await fetch(`http://localhost:3000/park/recommend/?${queryString}`);
               if (!response.ok) {
                 throw new Error('Network response was not ok');
               }
-              const data = await response.json();
-              // Assuming data is an array of park objects with 'name', 'latitude', and 'longitude' fields
-              const newPositions = data.map(map => ({
-                title: map.name,
-                latlng: new kakao.maps.LatLng(map.latitude, map.longitude)
-              }));
-              setPositions(newPositions);
-              console.log(positions);
+              console.log("response is OK");
+              const responseData  = await response.json();
+              // Assuming data is a JSON with objects  'name', 'latitude', and 'longitude' fields
+              const newPositions = responseData.data.map(item => ({
+                title: item.name,
+                id: item.id,
+                address:item.address,
+                latlng: new kakao.maps.LatLng(item.latitude, item.longitude)
+            }));
+              // Assuming setPositions is a function to update state in React
+                setPositions(newPositions); 
+                // console.log(newPositions);
             } catch (error) {
-              console.error('Error fetching data:', error);
+                console.error('Error fetching data:', error);
             }
-          };
-      
-          fetchData();
+        }
+
+            fetchData();
 
         // 마커 이미지의 이미지 주소입니다
         var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -111,17 +123,18 @@ const Map = () => {
             map: map, // 마커를 표시할 지도
             position: positions[i].latlng, // 마커를 표시할 위치
             title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+            id:positions[i].id,
             image: markerImage, // 마커 이미지 
             clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
         });
 
         // 마커에 클릭 이벤트를 등록합니다 (각 마커마다 다른 인포윈도우를 열도록 수정)
-        (function(marker, title) {
+        (function(marker, title,address) {
             kakao.maps.event.addListener(marker, 'click', function() {
                 if (openInfowindow) {
                     openInfowindow.close();
                 }
-                var iwContent = '<div style="padding:5px;">' + title + '</div>'; // 인포윈도우 내용 설정
+                var iwContent = '<div style="padding:5px;">' + title + '</div>' + address + '</div>'; // 인포윈도우 내용 설정
                 var infowindow = new kakao.maps.InfoWindow({
                     content: iwContent,
                     removable: true // removeable 속성을 true로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
@@ -134,7 +147,7 @@ const Map = () => {
 
                 
             });
-        })(marker, positions[i].title);
+        })(marker, positions[i].title,positions[i].address);
     }
         //**클러스터 생성
        // 마커 클러스터러를 생성합니다 
