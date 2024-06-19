@@ -14,8 +14,7 @@ Date        Author   Status    Description
 import React, {useState} from 'react'
 import styled, {css} from 'styled-components'
 import '../assets/fonts/font.css'
-import {BrowserRouter as Router, Link, useLocation} from 'react-router-dom'
-import Header from '../components/common/Header'
+import {Link, useNavigate} from 'react-router-dom'
 import Footer from '../components/common/Footer'
 import NickName from '../assets/images/nickname.svg'
 import Email from '../assets/images/email.svg'
@@ -23,6 +22,7 @@ import Password from '../assets/images/password.svg'
 import EyeIcon from '../assets/images/eye.svg' // 눈 아이콘 추가
 import EyeOffIcon from '../assets/images/eye-off.svg' // 눈 감김 아이콘 추가
 import * as InputStyles from '../components/inputs/InputStyles'
+import signUp from '../api/SignUp' // signUp 함수 import
 
 const LoginContent = styled(InputStyles.LoginContent)`
     height: 640px;
@@ -31,6 +31,11 @@ const LoginContent = styled(InputStyles.LoginContent)`
 const InputField = styled(InputStyles.InputField)`
     gap: 12px;
     margin: 20px;
+`
+
+const NameInput = styled.input`
+    ${InputStyles.inputStyles}
+    background-image: url(${NickName});
 `
 
 const NickNameInput = styled.input`
@@ -63,12 +68,21 @@ const ErrorMsg = styled.p`
 `
 
 const SignUp = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        nickname: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    })
+
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
 
+    const navigate = useNavigate()
     const handlePasswordChange = e => {
         setPassword(e.target.value)
     }
@@ -85,45 +99,76 @@ const SignUp = () => {
         setShowPasswordConfirm(!showPasswordConfirm)
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault() // 기본 폼 제출을 막음
-        if (password !== passwordConfirm) {
-            setErrorMessage('비밀번호가 일치하지 않습니다. 다시 입력해주세요.')
-        } else {
-            setErrorMessage('')
-            // 여기에서 폼을 서버로 제출
-            e.target.submit() // 폼 제출을 수동으로 호출
+        const {name, nickname, email, password, confirmPassword} = formData
+
+        try {
+            const userData = {
+                name,
+                nickname,
+                email,
+                password,
+                confirmPassword,
+            }
+
+            signUp(userData)
+            navigate('/login') // 로그인 페이지로 이동
+        } catch (error) {
+            console.error('Sign-up failed:', error)
+            setErrorMessage('회원가입에 실패했습니다. 다시 시도해주세요.')
         }
+    }
+
+    const handleChange = e => {
+        const {name, value} = e.target
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
     }
 
     return (
         <div>
-            <Header />
             <InputStyles.LoginContainer>
                 <LoginContent>
                     <InputStyles.Logo>회원가입</InputStyles.Logo>
                     <InputStyles.DividingLine />
-                    <InputField
-                        method="POST"
-                        action="API주소"
-                        onSubmit={handleSubmit}
-                    >
+                    <InputField onSubmit={handleSubmit}>
+                        <NameInput
+                            type="text"
+                            name="name"
+                            placeholder="이름을 입력하세요"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
                         <NickNameInput
                             type="text"
+                            name="nickname"
                             placeholder="닉네임을 입력하세요"
+                            value={formData.nickname}
+                            onChange={handleChange}
                             required
                         />
                         <InputStyles.EmailInput
                             type="email"
+                            name="email"
                             placeholder="가입할 이메일을 입력하세요"
+                            value={formData.email}
+                            onChange={handleChange}
                             required
                         />
                         <PasswordContainer>
                             <PasswordInput
                                 type={showPassword ? 'text' : 'password'}
+                                name="password"
                                 placeholder="비밀번호를 입력하세요 (특수문자 포함 8자리 이상)"
-                                value={password}
-                                onChange={handlePasswordChange}
+                                value={formData.password}
+                                onChange={e => {
+                                    handleChange(e)
+                                    handlePasswordChange(e)
+                                }}
                                 required
                             />
                             <InputStyles.ToggleButton
@@ -138,9 +183,13 @@ const SignUp = () => {
                         <PasswordContainer>
                             <PasswordConfirmInput
                                 type={showPasswordConfirm ? 'text' : 'password'}
+                                name="confirmPassword"
                                 placeholder="입력한 비밀번호를 확인합니다"
                                 value={passwordConfirm}
-                                onChange={handlePasswordConfirmChange}
+                                onChange={e => {
+                                    handleChange(e)
+                                    handlePasswordConfirmChange(e)
+                                }}
                                 required
                             />
                             <InputStyles.ToggleButton
