@@ -12,6 +12,7 @@ Date        Author   Status    Description
 2024.06.17  김유림    Modified  api 데이터 형식에 맞춘 리스트로 변경
 2024.06.18  김유림    Modified  스크롤바 활성화 경우 추가
 2024.06.19  임지영    Modified  더미데이터 삭제, API 연결 && facility 함수 수정 필요
+2024.06.19  임지영    Modified  InfoListContainer padding 10px 변경
 */
 import React from 'react'
 import styled from 'styled-components'
@@ -34,13 +35,13 @@ const Container = styled.div`
 const InfoListContainer = styled.div`
     width: 100%;
     max-width: 370px;
-    height: 270px; /* 높이 고정 */
+    height: 340px; /* 높이 고정 */
     border-radius: 16px;
     // margin: 5px;
     background-color: #ffffff; /* 배경색 설정 */
     border: 1px solid #e0e0e0; /* 테두리 설정 */
     overflow-y: scroll; /* 스크롤 항상 활성화 */
-    padding: 5px;
+    padding: 10px;
 
     /* 스크롤바 스타일링 */
     &::-webkit-scrollbar {
