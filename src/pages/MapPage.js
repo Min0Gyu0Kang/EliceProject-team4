@@ -15,6 +15,7 @@ Date        Author   Status    Description
 2024.06.18  김유림   Modified   리뷰 상세보기 갔다가 검색 다시 누를경우 main 뷰로 전환
 2024.06.18  김유림   Modified   리뷰 상세보기 연결
 2024.06.18  임지영   Modified   Middle 및 LeftSection 가로폭 수정
+2024.06.19  임지영   Modified   추천공원검색 버튼 중복클릭시 검색결과 안 뜨는 오류 해결
 */
 
 import React, {useState, useRef} from 'react'
@@ -87,16 +88,11 @@ const MapPage = () => {
     }
 
     const [showParkList, setShowParkList] = useState(false)
-    const openParkList = () => {
-        setShowParkList(!showParkList)
+    const openParkList = isSearched => {
+        isSearched ? setShowParkList(true) : setShowParkList(false) // 추천공원 클릭되었을 땐 true => 내주변공원 보여줌
         setSelectedParkId(null) // 공원 선택 다시 누르면 selectedParkId 초기화 => 공원정보 빔
         setView('main') // 리뷰 상세보기 보다가 공원 검색 버튼을 누르면 view를 다시 'main'으로 설정
     }
-
-    // const [showParkInfo, setShowParkInfo] = useState(false)
-    // const openParkInfo = () => {
-    //     setShowParkInfo(!showParkInfo)
-    // }
 
     const [searchResults, setSearchResults] = useState(null)
 
@@ -113,7 +109,6 @@ const MapPage = () => {
                     <TapContainer
                         onSearchComplete={handleSearchComplete}
                         openParkList={openParkList}
-                        // openParkInfo={openParkInfo}
                     />
                 </LeftSection>
                 <MiddleSection>
@@ -125,7 +120,7 @@ const MapPage = () => {
                             <RightTop>
                                 <NearPark
                                     onParkClick={handleParkClick}
-                                    showParkList={showParkList}
+                                    showParkList={showParkList} //true ? 내주변공원 컴포넌트 : empty
                                     parkData={searchResults}
                                 />
                                 {/* 공원 클릭 핸들러 전달 */}
