@@ -6,6 +6,8 @@ Author : 김유림
 History
 Date        Author   Status    Description
 2024.06.18  김유림    Created   
+2024.06.19  임지영    Modified   api 연결   
+2024.06.19  임지영    Modified   데이터 로딩 시 안내 문구 추가  
 */
 
 import React, {useState, useEffect} from 'react'
@@ -58,41 +60,9 @@ const RatingWrapper = styled(Box)`
 `
 
 const ReviewDetail = ({parkId, onBackClick}) => {
-    const [data, setData] = useState({
-        // park: [
-        //     {
-        //         id: 1,
-        //         name: '늘벗공원',
-        //         average_review: 1,
-        //     },
-        //     {
-        //         id: 2,
-        //         name: '늘푸른공원',
-        //         average_review: 2,
-        //     },
-        //     {
-        //         id: 3,
-        //         name: '신사근린공원',
-        //         average_review: 3,
-        //     },
-        //     {
-        //         id: 4,
-        //         name: '포이근린공원',
-        //         average_review: 4,
-        //     },
-        //     {
-        //         id: 5,
-        //         name: '청수근린공원',
-        //         average_review: 4.5,
-        //     },
-        // ],
-        // review: [],
-    })
+    const [data, setData] = useState(null) // 초기값을 null로 설정
 
     useEffect(() => {
-        // 실제 API 호출 대신 더미 데이터를 사용하여 초기 데이터 설정
-        // API 호출 시 주석 해제 후 사용 가능
-
         const fetchData = async () => {
             try {
                 const response = await fetch(`/park-review/details/${parkId}`)
@@ -109,8 +79,13 @@ const ReviewDetail = ({parkId, onBackClick}) => {
         onBackClick()
     }
 
+    // 데이터가 로드되지 않았을 때 로딩 상태를 표시
+    if (!data) {
+        return <div>리뷰 정보를 가져오는 중입니다</div>
+    }
+
     // parkId가 유효하고 data.park에 해당하는 공원 정보가 있는 경우
-    if (parkId && data.park.some(park => park.id === parkId)) {
+    if (parkId && data.park.find(park => park.id === parkId)) {
         const parkInformation = data.park.find(park => park.id === parkId)
 
         return (

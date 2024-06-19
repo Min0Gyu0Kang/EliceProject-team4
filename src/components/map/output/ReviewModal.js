@@ -7,8 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.15  임지영    Created 
 2024.06.17  임지영    Modified    API 연결
-⭐️⭐️ 완료 클릭시 리뷰 상세보기로 이동 (Navigate 수정 필요)
-⭐️⭐️ 공원 이름 및 별점 가져오기
+2024.06.19  임지영    Modified    API 연결 수정 및  글자수 제한 css
 */
 
 import React, {useState} from 'react'
@@ -33,6 +32,7 @@ const style = {
     boxShadow: 24,
     p: 4,
 }
+
 const ModalContainer = styled.div`
     text-align: center;
 `
@@ -61,14 +61,28 @@ const Content = styled.textarea`
     width: 90%;
     height: 130px;
     border-radius: 7px;
-    border: #cacaca 1px solid;
+    border: ${({isOverLimit}) =>
+        isOverLimit ? '2px solid red' : '1px solid #cacaca'};
     font-size: 13pt;
     padding: 15px;
+
     &::placeholder {
         color: grey;
         font-size: 13pt;
     }
+
+    &:focus {
+        outline: none;
+        border: ${({isOverLimit}) =>
+            isOverLimit ? '2px solid red' : '2px solid #30cb6e'};
+    }
 `
+
+const OverLimit = styled.div`
+    color: red;
+    margin-top: 5px;
+`
+
 const ButtonContainer = styled.div`
     font-family: 'gmarket Medium';
     display: flex;
@@ -104,17 +118,27 @@ const Confirm = styled.button`
     }
 `
 
-export default function ReviewModal({open, handleClose, park_id}) {
-    const navigate = useNavigate()
+export default function ReviewModal({
+    open,
+    handleClose,
+    parkId,
+    park,
+    onReviewDetailClick,
+}) {
     const [content, setContent] = useState('')
     const [rating, setRating] = useState(0)
+    const [isOverLimit, setIsOverLimit] = useState(false)
 
     const handleContentChange = e => {
-        setContent(e.target.value)
+        const newContent = e.target.value
+        setContent(newContent)
+        setIsOverLimit(newContent.length > 400)
     }
+
     const handleRatingChange = (e, newRating) => {
         setRating(newRating)
     }
+
     const handleCancel = () => {
         setContent('')
         setRating(0)
@@ -127,7 +151,7 @@ export default function ReviewModal({open, handleClose, park_id}) {
             return
         }
         try {
-            const response = await fetch(`${API.park_review}/${park_id}`, {
+            const response = await fetch(`park-review/${parkId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -142,7 +166,8 @@ export default function ReviewModal({open, handleClose, park_id}) {
             }
             const data = await response.json()
             console.log(data)
-            navigate('/review')
+            handleCancel()
+            onReviewDetailClick()
         } catch (error) {
             console.error('리뷰 전송 중 오류가 발생했습니다:', error)
         }
@@ -163,7 +188,7 @@ export default function ReviewModal({open, handleClose, park_id}) {
                         </ReviewTitle>
                         <Hr />
                         <WritingReview>
-                            <div style={{fontSize: '18pt'}}>늘벗공원</div>
+                            <div style={{fontSize: '18pt'}}>{park?.name}</div>
                             <Stack direction="row" spacing={1.5}>
                                 <Rating
                                     name="half-rating"
@@ -174,11 +199,15 @@ export default function ReviewModal({open, handleClose, park_id}) {
                                 />
                             </Stack>
                             <Content
-                                placeholder="내용을 입력해주세요"
+                                placeholder="내용을 입력해주세요 (400자 이내)"
                                 value={content}
                                 onChange={handleContentChange}
+                                isOverLimit={isOverLimit}
                             ></Content>
                         </WritingReview>
+                        {isOverLimit ? (
+                            <OverLimit>400자 이내로 작성해주세요</OverLimit>
+                        ) : null}
                         <ButtonContainer>
                             <Cancel onClick={handleCancel}>취소</Cancel>
                             <Confirm onClick={postReview}>완료</Confirm>
