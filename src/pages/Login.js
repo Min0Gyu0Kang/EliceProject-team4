@@ -13,14 +13,15 @@ Date        Author   Status    Description
 import React, {useState} from 'react'
 import styled, {css} from 'styled-components'
 import '../assets/fonts/font.css'
-import {BrowserRouter as Router, Link, useLocation} from 'react-router-dom'
-import Header from '../components/common/Header'
+import {Link, useNavigate} from 'react-router-dom'
+import {BrowserRouter as Router, useLocation} from 'react-router-dom'
 import Footer from '../components/common/Footer'
 import Email from '../assets/images/email.svg'
 import Password from '../assets/images/password.svg'
 import EyeIcon from '../assets/images/eye.svg' // 눈 아이콘 추가
 import EyeOffIcon from '../assets/images/eye-off.svg' // 눈 감김 아이콘 추가
 import * as InputStyles from '../components/inputs/InputStyles'
+import loginUser from '../api/Login' // 로그인 API 함수
 
 const LoginContent = styled(InputStyles.LoginContent)`
     height: 550px;
@@ -40,32 +41,48 @@ const PasswordInput = styled(InputStyles.PasswordInput)`
     left: -1.1%; // 오른쪽으로 치우침 해결
 `
 
-const Login = () => {
-    // 비밀번호 보일지 말지
-    // 아이콘 클릭시
+const Login = ({onLogin}) => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
+    const navigate = useNavigate()
 
     const passwordVisibility = () => {
         setShowPassword(prevShowPassword => !prevShowPassword)
     }
 
+    const handleLogin = async e => {
+        e.preventDefault()
+        try {
+            const {accessToken, refreshToken} = await loginUser(email, password)
+            onLogin({accessToken, refreshToken})
+            navigate('/map') // 로그인 후 페이지 이동
+        } catch (error) {
+            console.error('로그인 실패:', error)
+            // 로그인 실패 처리 (예: 오류 메시지 표시)
+        }
+    }
+
     return (
         <div>
-            <Header />
             <InputStyles.LoginContainer>
                 <LoginContent>
                     <InputStyles.Logo>도시의 오아시스</InputStyles.Logo>
                     <InputStyles.DividingLine />
-                    <InputField method="POST" action="API주소">
+                    <InputField onSubmit={handleLogin}>
                         <InputStyles.EmailInput
                             type="email"
                             placeholder="이메일을 입력하세요"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             required
                         />
                         <PasswordContainer>
                             <PasswordInput
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder="비밀번호를 입력하세요"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
                                 required
                             />
                             <InputStyles.ToggleButton
