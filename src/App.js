@@ -16,6 +16,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import Dashboard from './pages/DashboardPage'
 import Community from './pages/CommunityPage'
+import Map from './pages/MapPage'
 
 const App = () => {
     return (
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/dataStory" element={<Dashboard />} />
                 <Route path="/community" element={<Community />} />
+                <Route path="/map" element={<Map />} />
             </Routes>
         </BrowserRouter>
     )

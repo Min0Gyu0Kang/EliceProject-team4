@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "arrowParens": "avoid",
     "bracketSpacing": false,
     "endOfLine": "auto",
@@ -16,4 +17,23 @@
     "vueIndentScriptAndStyle": true,
     "requirePragma": false,
     "insertPragma": false
+=======
+  "arrowParens": "avoid",
+  "bracketSpacing": false,
+  "endOfLine": "auto",
+  "htmlWhitespaceSensitivity": "css",
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "printWidth": 80,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 4,
+  "trailingComma": "all",
+  "useTabs": false,
+  "vueIndentScriptAndStyle": true,
+  "requirePragma": false,
+  "insertPragma": false
+>>>>>>> 2e6311a767e57e9761ce5dae3ab022ce2c7be756
 }
