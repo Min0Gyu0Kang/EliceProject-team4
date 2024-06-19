@@ -103,7 +103,6 @@ const MapPage = () => {
 
     return (
         <MainLayout>
-            <Header />
             <ContentWrapper>
                 <LeftSection>
                     <TapContainer
