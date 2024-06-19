@@ -48,7 +48,7 @@ const Button = ({park, parkId, onReviewDetailClick}) => {
                 sx={{
                     backgroundColor: '#30cb6e',
                     color: 'white',
-                    padding: '19px 15px',
+                    padding: '19px 19px',
                     fontSize: '1rem',
                 }}
                 size="large"
