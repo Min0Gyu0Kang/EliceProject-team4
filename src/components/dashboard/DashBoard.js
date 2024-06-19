@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.10  김유림   Created
 2024.06.12  김유림   Modified  컨테이너별 4페이지 초안 생성 
 2024.06.13  김유림   Modified  데이터 출처 추가
+2024.06.19  임지영   Modified  데이터 출처 및 폰트 스타일 변경
 */
 import React from 'react'
 import styled from 'styled-components'
@@ -50,11 +51,11 @@ const LeftSection = styled.div`
 const RightSection = styled.div`
     flex: 1;
     padding: 100px 0px; /* 패딩 조정 */
-    font-size: 16px;
+    font-size: 18px;
     text-align: center; /* 텍스트를 가운데 정렬 */
     font-family: 'Pretendard';
     width: 450px;
-    font-weight: 500;
+    font-weight: 400;
     display: flex; /* 중앙 정렬을 위해 flex로 설정 */
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
@@ -62,20 +63,29 @@ const RightSection = styled.div`
 
 const Highlight = styled.span`
     color: #30cb6e;
-    font-weight: 700;
+    font-weight: 600;
 `
 
 const BackgroundColor = styled.div`
     background-color: #f5f5f5;
 `
-const LinkText = styled.a`
+const LinkText = styled.div`
     color: #888; /* 연한 색상 */
+
+`
+const Link = styled.a`
     text-decoration: none;
+    color: #95B7B8; /* 연한 색상 */
 
     &:hover {
         text-decoration: underline;
     }
 `
+const Source = styled.div`
+    text-align: center;
+    padding: 2px 0;
+`
+
 const Dashboard = () => {
     return (
         <DashboardWrapper>
@@ -167,37 +177,36 @@ const Dashboard = () => {
                 <Container>
                     <RightSection>
                         <LinkText>
-                            <p>
-                                데이터출처
-                                <br />
-                                <br />
-                                공공데이터 포털 :
-                                <a
+                            <p style={{fontSize: '15pt'}}>📌 데이터 출처</p>
+                                <Source>공공데이터 포털 :
+                                <Link
                                     href="https://www.data.go.kr/index.do"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     https://www.data.go.kr/index.do
-                                </a>
-                                <br />
-                                통계청 KOSIS
-                                <a
+                                </Link>
+                                </Source>
+                                <Source>
+                                통계청 KOSIS : 
+                                <Link 
                                     href="https://kosis.kr/o"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     https://kosis.kr/
-                                </a>
-                                <br />
-                                지표누리
-                                <a
+                                </Link>
+                                </Source>
+                                <Source>
+                                지표누리 : 
+                                <Link
                                     href="https://www.index.go.kr/unity/potal/main.do"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     https://www.index.go.kr/unity/potal/main.do
-                                </a>
-                            </p>
+                                </Link>
+                            </Source>
                         </LinkText>
                     </RightSection>
                 </Container>

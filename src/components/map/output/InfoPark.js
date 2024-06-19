@@ -52,7 +52,7 @@ const Name = styled.div`
 const ButtonWrapper = styled.div`
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
-    margin-top: 7px; /* 위쪽 여백 추가 */
+    margin-top: 10px; /* 위쪽 여백 추가 */
 `
 
 const InfoPark = ({parkId, onReviewDetailClick}) => {

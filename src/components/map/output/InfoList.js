@@ -12,6 +12,7 @@ Date        Author   Status    Description
 2024.06.17  김유림    Modified  api 데이터 형식에 맞춘 리스트로 변경
 2024.06.18  김유림    Modified  스크롤바 활성화 경우 추가
 2024.06.19  임지영    Modified  더미데이터 삭제, API 연결 && facility 함수 수정 필요
+2024.06.19  임지영    Modified  facilities 함수 수정 완료, 버튼 위치 조정
 */
 import React from 'react'
 import styled from 'styled-components'
@@ -29,6 +30,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 `
 
 const InfoListContainer = styled.div`
