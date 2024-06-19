@@ -8,7 +8,7 @@ Date        Author   Status    Description
 2024.06.17  임지영    Created
 */
 
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -47,11 +47,7 @@ function a11yProps(index) {
     }
 }
 
-export default function TapContainer({
-    onSearchComplete,
-    openParkList,
-    openParkInfo,
-}) {
+export default function TapContainer({onSearchComplete, openParkList}) {
     const [selectedValues, setSelectedValues] = useState({
         city: '',
         district: '',
@@ -66,8 +62,12 @@ export default function TapContainer({
         setValue(newValue)
     }
 
-    const handleClearSelection = () => {
-        setSelectedValues({city: '', district: '', chips: []})
+    const handleClearSelection = value => {
+        setSelectedValues({
+            city: '',
+            district: '',
+            selectedChips: [],
+        })
     }
 
     return (
@@ -122,6 +122,7 @@ export default function TapContainer({
                     selectedValues={selectedValues}
                     setSelectedValues={setSelectedValues}
                     onClearSelection={handleClearSelection}
+                    value={value}
                 />
                 <LocationInputButton
                     selectedValues={selectedValues}
@@ -134,7 +135,7 @@ export default function TapContainer({
                 <DirectSearch name={name} setName={setName} />
                 <DirectInputButton
                     onSearchComplete={onSearchComplete}
-                    openParkInfo={openParkInfo}
+                    openParkList={openParkList}
                     name={name}
                 />
             </CustomTabPanel>

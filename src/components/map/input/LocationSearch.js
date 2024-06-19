@@ -121,7 +121,7 @@ const LocationSearch = ({
         {label: '운동시설'},
         {label: '유희시설'},
         {label: '기타시설'},
-        {label: '편의시설'},
+        {label: '편익시설'},
     ]
 
     // 칩 스크립트
@@ -198,14 +198,6 @@ const LocationSearch = ({
                             >
                                 <MenuItem value="">
                                     <Text>선택</Text>
-                                </MenuItem>
-                                <MenuItem
-                                    key="all"
-                                    value={districtOptions.map(
-                                        option => option.label,
-                                    )}
-                                >
-                                    전체
                                 </MenuItem>
                                 {districtOptions.map(
                                     (districtOption, index) => (

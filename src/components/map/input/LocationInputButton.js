@@ -21,14 +21,16 @@ const LocationInputButton = ({
     openParkList,
     onClearSelection,
 }) => {
+    const [isSearched, setIsSearched] = useState(true)
     const handleSearchClick = async () => {
-        const {city, district, chips} = selectedValues
+        const {city, district, selectedChips} = selectedValues
+        const isSearched = true
 
         const queryParams = new URLSearchParams()
         if (city) queryParams.append('city', city)
         if (district) queryParams.append('district', district)
-        if (chips && chips.length > 0) {
-            queryParams.append('facilities', chips.join(','))
+        if (selectedChips && selectedChips.length > 0) {
+            queryParams.append('facilities', selectedChips.join(','))
         }
 
         const url = `/park/recommend?${queryParams.toString()}`
@@ -42,7 +44,8 @@ const LocationInputButton = ({
             const data = await response.json() // 응답을 JSON으로 변환
             if (typeof onSearchComplete === 'function') {
                 onSearchComplete(data) // 상위 컴포넌트로 데이터 전달
-                openParkList() // 검색이 완료되면 openParkList 함수 호출
+                setIsSearched(true)
+                openParkList(isSearched) // 검색이 완료되면 openParkList 함수 호출
             } else {
                 console.error('onSearchComplete is not a function')
             }
@@ -52,11 +55,9 @@ const LocationInputButton = ({
     }
 
     const handleClearClick = () => {
-        if (typeof onClearSelection === 'function') {
-            onClearSelection() // 상위 컴포넌트로 초기화 요청
-        } else {
-            console.error('onClearSelection is not a function')
-        }
+        onClearSelection() // 상위 컴포넌트로 초기화 요청
+        setIsSearched(false)
+        openParkList(isSearched)
     }
 
     return (
