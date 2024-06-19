@@ -6,6 +6,7 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.18  임지영    Created
+http://localhost:4000/park/search/%EB%8A%98%EB%B2%97
 */
 
 import React, {useState} from 'react'
@@ -14,9 +15,9 @@ import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 
 // 추천공원 검색 시
-function DirectInputButton({onSearchComplete, openParkInfo, name}) {
+function DirectInputButton({onSearchComplete, openParkList, name}) {
     const handleClick = async () => {
-        const url = `/park/search/${name})}`
+        const url = `/park/search/${name}`
 
         try {
             const response = await fetch(url)
@@ -27,7 +28,7 @@ function DirectInputButton({onSearchComplete, openParkInfo, name}) {
             const data = await response.json() // 응답을 JSON으로 변환
             if (typeof onSearchComplete === 'function') {
                 onSearchComplete(data) // 상위 컴포넌트로 데이터 전달
-                openParkInfo() // 검색이 완료되면 openParkList 함수 호출
+                openParkList() // 검색이 완료되면 openParkList 함수 호출
             } else {
                 console.error('onSearchComplete is not a function')
             }
