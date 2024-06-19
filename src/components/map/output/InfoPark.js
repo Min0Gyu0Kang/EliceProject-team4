@@ -57,7 +57,7 @@ const ButtonWrapper = styled.div`
     margin-top: 10px; /* 위쪽 여백 추가 */
 `
 
-const InfoPark = ({parkId, onReviewDetailClick, showParkList}) => {
+const InfoPark = ({parkId, onReviewDetailClick}) => {
     const [data, setData] = useState(null)
 
     useEffect(() => {
@@ -96,7 +96,7 @@ const InfoPark = ({parkId, onReviewDetailClick, showParkList}) => {
 
     let facilities = data.facilities
 
-    if(showParkList){
+
     return (
         <RightSection>
             <ContentWrapper>
@@ -122,5 +122,5 @@ const InfoPark = ({parkId, onReviewDetailClick, showParkList}) => {
         </RightSection>
     )
 }
-}
+
 export default InfoPark

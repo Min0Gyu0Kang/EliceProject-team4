@@ -18,8 +18,7 @@ Date        Author   Status    Description
 2024.06.19  임지영   Modified   추천공원검색 버튼 중복클릭시 검색결과 안 뜨는 오류 해결
 */
 
-import React, {useState, useRef} from 'react'
-import Header from '../components/common/Header'
+import React, {useState} from 'react'
 import NearPark from '../components/map/output/NearPark'
 import InfoPark from '../components/map/output/InfoPark'
 import styled from 'styled-components'
@@ -130,7 +129,6 @@ const MapPage = () => {
                                     onReviewDetailClick={
                                         handleReviewDetailClick
                                     }
-                                    showParkList={showParkList}
                                 />
                             </RightBottom>
                         </>

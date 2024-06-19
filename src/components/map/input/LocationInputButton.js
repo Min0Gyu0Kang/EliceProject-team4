@@ -42,7 +42,6 @@ const LocationInputButton = ({
 
             if (typeof onSearchComplete === 'function') {
                 onSearchComplete(response.data) // 상위 컴포넌트로 데이터 전달
-                setIsSearched(true) 
                 openParkList(isSearched) // 검색이 완료되면 openParkList 함수 호출
             } else {
                 console.error('onSearchComplete is not a function')
