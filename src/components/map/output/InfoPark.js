@@ -12,6 +12,7 @@ Date        Author   Status    Description
 2024.06.17  김유림    Modified  더미데이터 추가
 2024.06.17  김유림    Modified  버튼 margin 수정
 2024.06.19  임지영    Modified  더미데이터 삭제, API 연결
+2024.06.19  임지영    Modified  Name margin 변경
 */
 
 import React, {useState, useEffect} from 'react'
@@ -46,7 +47,7 @@ const ParkNameContainer = styled.div`
 
 const Name = styled.div`
     font-size: 15pt;
-    margin: 10px 0 10px 8%;
+    margin: 10px 23px;
     align-items: flex-start; /* 수직 상단 정렬 */
 `
 const ButtonWrapper = styled.div`
