@@ -142,6 +142,7 @@ export default function TapContainer({onSearchComplete, openParkList}) {
                     onSearchComplete={onSearchComplete} // LocationInputButton과 같은 용도
                     openParkList={openParkList} // 얘도
                     name={name} // 검색 버튼 클릭시 파라미터
+                    onClearSelection={handleClearSelection}
                 />
             </CustomTabPanel>
         </Box>

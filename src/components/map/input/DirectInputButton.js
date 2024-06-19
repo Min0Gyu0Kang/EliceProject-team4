@@ -6,35 +6,46 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.18  임지영    Created
-http://localhost:4000/park/search/%EB%8A%98%EB%B2%97
+2024.06.20  임지영    Modified   fetch -> axios
 */
 
 import React, {useState} from 'react'
+import axios from 'axios'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 
 // 추천공원 검색 시
-function DirectInputButton({onSearchComplete, openParkList, name}) {
+function DirectInputButton({onSearchComplete, openParkList, name, onClearSelection}) {
+     const [isSearched, setIsSearched] = useState(true)
+
     const handleClick = async () => {
+        const isSearched = true
+
         const url = `/park/search/${name}`
 
         try {
-            const response = await fetch(url)
-            if (!response.ok) {
-                throw new Error('Network response was not ok')
-            }
+            const response = await axios.get(url)
 
-            const data = await response.json() // 응답을 JSON으로 변환
+            if (response.status !== 200 && response.status !== 201) {
+            throw new Error('네트워크 응답이 올바르지 않습니다.');
+        }
+
             if (typeof onSearchComplete === 'function') {
-                onSearchComplete(data) // 상위 컴포넌트로 데이터 전달
-                openParkList() // 검색이 완료되면 openParkList 함수 호출
+                onSearchComplete(response.data) // 상위 컴포넌트로 데이터 전달
+                openParkList(isSearched) // 검색이 완료되면 openParkList 함수 호출
             } else {
                 console.error('onSearchComplete is not a function')
             }
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
         }
+    }
+
+      const handleClearClick = () => {
+        onClearSelection() 
+        setIsSearched(false)
+        openParkList(isSearched) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
     }
 
     return (
@@ -50,7 +61,7 @@ function DirectInputButton({onSearchComplete, openParkList, name}) {
                     }}
                     variant="outlined"
                     size="large"
-                    // onClick={handleClear}
+                   onClick={handleClearClick}
                 />
                 <Chip
                     label="추천 공원 검색"

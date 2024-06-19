@@ -130,6 +130,7 @@ const MapPage = () => {
                                     onReviewDetailClick={
                                         handleReviewDetailClick
                                     }
+                                    showParkList={showParkList}
                                 />
                             </RightBottom>
                         </>

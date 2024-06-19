@@ -7,9 +7,11 @@ History
 Date        Author   Status    Description
 2024.06.17  임지영    Created   유림님이 만들어주신 Button 적용
 2024.06.18  임지영      Done    스타일 완성
+2024.06.20  임지영    Modified   fetch -> axios
 */
 
 import React, {useState} from 'react'
+import axios from 'axios'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
@@ -36,15 +38,11 @@ const LocationInputButton = ({
         const url = `/park/recommend?${queryParams.toString()}`
 
         try {
-            const response = await fetch(url)
-            if (!response.ok) {
-                throw new Error('Network response was not ok')
-            }
+            const response = await axios.get(url)
 
-            const data = await response.json() // 응답을 JSON으로 변환
             if (typeof onSearchComplete === 'function') {
-                onSearchComplete(data) // 상위 컴포넌트로 데이터 전달
-                setIsSearched(true)
+                onSearchComplete(response.data) // 상위 컴포넌트로 데이터 전달
+                setIsSearched(true) 
                 openParkList(isSearched) // 검색이 완료되면 openParkList 함수 호출
             } else {
                 console.error('onSearchComplete is not a function')
@@ -55,9 +53,9 @@ const LocationInputButton = ({
     }
 
     const handleClearClick = () => {
-        onClearSelection() // 상위 컴포넌트로 초기화 요청
+        onClearSelection() 
         setIsSearched(false)
-        openParkList(isSearched)
+        openParkList(isSearched) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
     }
 
     return (

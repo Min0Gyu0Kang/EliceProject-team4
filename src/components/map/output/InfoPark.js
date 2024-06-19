@@ -13,6 +13,7 @@ Date        Author   Status    Description
 2024.06.17  김유림    Modified  버튼 margin 수정
 2024.06.19  임지영    Modified  더미데이터 삭제, API 연결
 2024.06.19  임지영    Modified  Name margin 변경
+2024.06.20  임지영    Modified  fetch -> axios
 */
 
 import React, {useState, useEffect} from 'react'
@@ -23,7 +24,7 @@ import Rating from '@mui/material/Rating'
 import InfoList from './InfoList'
 import '../../../assets/fonts/font.css'
 import Button from './Button'
-import {useParkData} from '../../common/useParkData'
+import axios from 'axios'
 
 const RightSection = styled.div`
     background-color: #ffffff; /* 예제용 배경색 */
@@ -56,16 +57,15 @@ const ButtonWrapper = styled.div`
     margin-top: 10px; /* 위쪽 여백 추가 */
 `
 
-const InfoPark = ({parkId, onReviewDetailClick}) => {
+const InfoPark = ({parkId, onReviewDetailClick, showParkList}) => {
     const [data, setData] = useState(null)
 
     useEffect(() => {
         if (parkId) {
             const fetchData = async () => {
                 try {
-                    const response = await fetch(`/park/information/${parkId}`)
-                    const result = await response.json()
-                    setData(result)
+                    const response = await axios.get(`/park/information/${parkId}`)
+                    setData(response.data)
                 } catch (err) {
                     console.log(err)
                 }
@@ -96,6 +96,7 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
 
     let facilities = data.facilities
 
+    if(showParkList){
     return (
         <RightSection>
             <ContentWrapper>
@@ -120,5 +121,6 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
             </ContentWrapper>
         </RightSection>
     )
+}
 }
 export default InfoPark
