@@ -12,6 +12,11 @@
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
         "axios": "^1.7.2",
+<<<<<<< HEAD
+=======
+        "d3-scale-chromatic": "^3.1.0",
+        "react": "^18.3.1",
+>>>>>>> 4d084631fc6f3bd2267f6ad0a445cef1838693ae
         "chart.js": "^4.4.3",
         "d3-scale-chromatic": "^3.1.0",
         "ellipse": "^0.5.5",
