@@ -9,6 +9,7 @@ Date        Author   Status    Description
 2024.06.16  김유림    Modified   각 리스트 클릭시 onParkClick함수 실행 
 2024.06.17  임지영    Modified   API 연결
 2024.06.17  김유림    Modified   api 와 맞게 더미데이터 수정 
+2024.06.19  임지영    Modified   공원이 적어도 ParkList 높이 일정하게
 */
 
 import React from 'react'
@@ -23,7 +24,7 @@ const ParkListContainer = styled.div`
     font-family: 'Pretendard';
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 270px;
     margin-top: 16px;
 `
 
