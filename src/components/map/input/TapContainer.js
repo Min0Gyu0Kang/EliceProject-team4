@@ -9,7 +9,7 @@ Date        Author   Status    Description
 2024.06.20  임지영    Modified  Redux 적용
 */
 
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -20,11 +20,9 @@ import LocationInputButton from './LocationInputButton'
 import DirectInputButton from './DirectInputButton'
 import {useDispatch, useSelector} from 'react-redux'
 import {
-    setCity,
-    setDistrict,
-    setSelectedChips,
-    clearSelection,
     setShowParkList,
+    resetSelection,
+    clearSelection,
 } from '../../redux/parkSlice'
 
 function CustomTabPanel(props) {
@@ -60,14 +58,15 @@ export default function TapContainer() {
     const dispatch = useDispatch()
 
     // // Redux state를 가져옴
-    const {city, district, selectedChips, name} = useSelector(
-        state => state.park,
-    )
+    const {name} = useSelector(state => state.park)
 
     const [value, setValue] = useState(0)
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
+        dispatch(resetSelection())
+        dispatch(clearSelection())
+        dispatch(setShowParkList(false))
     }
 
     const handleClearSelection = () => {
