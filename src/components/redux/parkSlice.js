@@ -21,6 +21,11 @@ const parkSlice = createSlice({
     name: 'park',
     initialState,
     reducers: {
+        setSelection: (state, action) => {
+            state.city = action.payload.city
+            state.district = action.payload.district
+            state.selectedChips = action.payload.selectedChips
+        },
         // park 관련 액션
         setView: (state, action) => {
             state.view = action.payload
@@ -70,6 +75,7 @@ const parkSlice = createSlice({
 })
 
 export const {
+    setSelection,
     setWhatSearch,
     setView,
     setShowParkList,

@@ -27,8 +27,7 @@ import {useSelector} from 'react-redux'
 // 추천공원 검색 시
 const LocationInputButton = () => {
     const dispatch = useDispatch()
-    const searchResults = useSelector(state => state.park.searchResults)
-    const {city, district, selectedChips} = searchResults
+    const {city, district, selectedChips} = useSelector(state => state.park)
 
     const handleSearchClick = async () => {
         const queryParams = new URLSearchParams()
@@ -42,8 +41,11 @@ const LocationInputButton = () => {
 
         try {
             const response = await axios.get(url)
-            dispatch(setSearchResults(response.data))
-            dispatch(setShowParkList(true))
+            console.log('response', response)
+            if (response.data.data.length != 0) {
+                dispatch(setSearchResults(response.data))
+                dispatch(setShowParkList(true))
+            }
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
         }

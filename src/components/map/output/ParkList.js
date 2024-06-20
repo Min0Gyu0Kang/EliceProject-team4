@@ -12,7 +12,7 @@ Date        Author   Status    Description
 2024.06.19  임지영    Modified   공원이 적어도 ParkList 높이 일정하게
 */
 
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import '../../../assets/fonts/font.css'
 import Rating from '@mui/material/Rating'
