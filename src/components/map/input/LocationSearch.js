@@ -12,7 +12,8 @@ Date        Author   Status    Description
 2024.06.17  강민규   Modified  handleClear 작동 확인
 2024.06.17  강민규   Modified  CSS 정리
 2024.06.17  임지영   Modified  버튼 및 전체 스타일 수정
-2024.06.18  임지영     Done    지역 검색 완료
+2024.06.18  임지영   Modified  지역 검색 완료
+2024.06.19  임지영   Modified  Redux 상태관리
 */
 
 import React, {useState, useEffect} from 'react'
@@ -21,6 +22,13 @@ import '../../../assets/fonts/font.css'
 import Keyword from '../../common/Keyword'
 import {Box, MenuItem, FormControl, Select, Chip, Stack} from '@mui/material'
 import {useParkData} from '../../common/useParkData'
+import {useDispatch, useSelector} from 'react-redux'
+import {
+    setCity,
+    setDistrict,
+    setSelectedChips,
+    setSearchResults,
+} from '../../redux/parkSlice'
 
 const Container = styled.div`
     font-family: 'Pretendard';
@@ -63,21 +71,16 @@ const StyledChip = styled(Chip)`
     }
 `
 
-const LocationSearch = ({
-    selectedValues,
-    setSelectedValues,
-    onClearSelection,
-}) => {
+const LocationSearch = () => {
+    const dispatch = useDispatch()
+    const {city, district, selectedChips} = useSelector(state => state.park)
+
     // 시/도 데이터 불러오기
-    const {parkData: cityData, error: cityError} = useParkData(
-        '/park/recommend/city',
-    )
-    const [city, setCity] = useState('')
-    const [district, setDistrict] = useState('')
+    const {parkData: cityData} = useParkData('/park/recommend/city')
     const [districtOptions, setDistrictOptions] = useState([])
 
     // 시/군/구 데이터 불러오기
-    const {parkData: districtData, error: districtError} = useParkData(
+    const {parkData: districtData} = useParkData(
         city ? `/park/recommend/city/${city}` : null,
     )
 
@@ -124,26 +127,28 @@ const LocationSearch = ({
         {label: '편익시설'},
     ]
 
-    // 칩 스크립트
-    const [selectedChips, setSelectedChips] = useState([])
-
     const handleChipClick = chipLabel => {
         if (selectedChips.includes(chipLabel)) {
-            setSelectedChips(selectedChips.filter(chip => chip !== chipLabel))
+            dispatch(
+                setSelectedChips(
+                    selectedChips.filter(chip => chip !== chipLabel),
+                ),
+            )
         } else if (selectedChips.length < 4) {
-            setSelectedChips([...selectedChips, chipLabel])
+            dispatch(setSelectedChips([...selectedChips, chipLabel]))
         }
     }
 
     // 선택된 city, district, selectedChips 값을 selectedValues에 저장
     useEffect(() => {
-        setSelectedValues(prev => ({
-            ...prev,
-            city,
-            district,
-            selectedChips,
-        }))
-    }, [city, district, selectedChips, setSelectedValues])
+        dispatch(
+            setSearchResults({
+                city,
+                district,
+                selectedChips,
+            }),
+        )
+    }, [city, district, selectedChips, dispatch])
 
     return (
         <Container>
@@ -160,7 +165,9 @@ const LocationSearch = ({
                                 }}
                                 labelId="selectCity"
                                 id="selectCity"
-                                onChange={e => setCity(e.target.value)}
+                                onChange={e =>
+                                    dispatch(setCity(e.target.value))
+                                }
                                 value={city}
                                 displayEmpty
                                 MenuProps={menuProps}
@@ -192,7 +199,9 @@ const LocationSearch = ({
                                 labelId="selectDistrict"
                                 id="selectDistrict"
                                 value={district}
-                                onChange={e => setDistrict(e.target.value)}
+                                onChange={e =>
+                                    dispatch(setDistrict(e.target.value))
+                                }
                                 displayEmpty
                                 MenuProps={menuProps}
                             >

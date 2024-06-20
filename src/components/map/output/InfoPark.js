@@ -14,6 +14,7 @@ Date        Author   Status    Description
 2024.06.19  임지영    Modified  더미데이터 삭제, API 연결
 2024.06.19  임지영    Modified  Name margin 변경
 2024.06.20  임지영    Modified  fetch -> axios
+2024.06.20  임지영    Modified  Redux
 */
 
 import React, {useState, useEffect} from 'react'
@@ -25,6 +26,8 @@ import InfoList from './InfoList'
 import '../../../assets/fonts/font.css'
 import Button from './Button'
 import axios from 'axios'
+import {useDispatch, useSelector} from 'react-redux'
+import {setData, setParkName, setRating} from '../../redux/parkSlice'
 
 const RightSection = styled.div`
     background-color: #ffffff; /* 예제용 배경색 */
@@ -57,25 +60,31 @@ const ButtonWrapper = styled.div`
     margin-top: 10px; /* 위쪽 여백 추가 */
 `
 
-const InfoPark = ({parkId, onReviewDetailClick}) => {
-    const [data, setData] = useState(null)
+const InfoPark = ({onReviewDetailClick}) => {
+    const dispatch = useDispatch()
+
+    const selectedParkId = useSelector(state => state.park.selectedParkId)
+    const data = useSelector(state => state.park.data)
 
     useEffect(() => {
-        if (parkId) {
+        if (selectedParkId) {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get(`/park/information/${parkId}`)
-                    setData(response.data)
+                    const response = await axios.get(
+                        `/park/information/${selectedParkId}`,
+                    )
+                    console.log('API 응답:', response.data)
+                    dispatch(setData(response.data))
                 } catch (err) {
-                    console.log(err)
+                    console.log('err:', err)
                 }
             }
 
             fetchData()
         }
-    }, [parkId])
+    }, [selectedParkId, dispatch])
 
-    if (!parkId) {
+    if (!selectedParkId) {
         return (
             <ContentWrapper>
                 <Keyword text="공원 정보" />
@@ -92,10 +101,8 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
         ) // 데이터를 아직 가져오지 않았을 때 아무 것도 렌더링하지 않음
     }
 
-    const park = data.park.find(p => p.id === parkId)
-
+    const park = data?.park.find(p => p.id === selectedParkId)
     let facilities = data.facilities
-
 
     return (
         <RightSection>
@@ -114,7 +121,6 @@ const InfoPark = ({parkId, onReviewDetailClick}) => {
                 <ButtonWrapper>
                     <Button
                         park={park}
-                        parkId={parkId}
                         onReviewDetailClick={onReviewDetailClick}
                     />
                 </ButtonWrapper>

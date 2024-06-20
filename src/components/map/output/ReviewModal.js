@@ -20,6 +20,8 @@ import '../../../assets/fonts/font.css'
 import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import axios from 'axios'
+// import {setRating} from '../../redux/parkSlice'
+import {useDispatch, useSelector} from 'react-redux'
 
 const style = {
     position: 'absolute',
@@ -121,10 +123,12 @@ const Confirm = styled.button`
 export default function ReviewModal({
     open,
     handleClose,
-    parkId,
     park,
     onReviewDetailClick,
 }) {
+    const dispatch = useDispatch()
+    const selectedParkId = useSelector(state => state.park.selectedParkId)
+
     const [content, setContent] = useState('')
     const [rating, setRating] = useState(0)
     const [isOverLimit, setIsOverLimit] = useState(false)
@@ -151,13 +155,16 @@ export default function ReviewModal({
             return
         }
         try {
-            const response = await axios.post(`park-review/${parkId}`, {
-                    content: content,
-                    grade: rating,
-                })
-             if (response.status !== 201) {
-            throw new Error('네트워크 응답이 올바르지 않습니다.');
-        }
+            const response = await axios.post(`park-review/${selectedParkId}`, {
+                // headers: {
+                //     Authorization: `Bearer ${token}`,
+                // },
+                content: content,
+                grade: rating,
+            })
+            if (response.status !== 201) {
+                throw new Error('네트워크 응답이 올바르지 않습니다.')
+            }
             console.log(response.data)
             handleCancel() // 모달창 닫기
             onReviewDetailClick() // 리뷰 상세보기로 이동

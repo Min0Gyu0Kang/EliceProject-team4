@@ -16,9 +16,18 @@ Date        Author   Status    Description
 2024.06.18  김유림   Modified   리뷰 상세보기 연결
 2024.06.18  임지영   Modified   Middle 및 LeftSection 가로폭 수정
 2024.06.19  임지영   Modified   추천공원검색 버튼 중복클릭시 검색결과 안 뜨는 오류 해결
+2024.06.20  임지영    Modified  Redux 적용
 */
 
 import React, {useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {
+    setView,
+    setShowParkList,
+    setSelectedParkId,
+    setSearchResults,
+    resetSelection,
+} from '../components/redux/parkSlice'
 import NearPark from '../components/map/output/NearPark'
 import InfoPark from '../components/map/output/InfoPark'
 import styled from 'styled-components'
@@ -70,33 +79,35 @@ const RightBottom = styled.div`
 `
 
 const MapPage = () => {
-    const [view, setView] = useState('main')
-    const [selectedParkId, setSelectedParkId] = useState(null)
+    const dispatch = useDispatch()
+    const view = useSelector(state => state.park.view)
+    const showParkList = useSelector(state => state.park.showParkList)
+    const selectedParkId = useSelector(state => state.park.selectedParkId)
 
     const handleParkClick = parkId => {
         console.log('Selected Park ID:', parkId)
-        setSelectedParkId(prevId => (prevId === parkId ? null : parkId)) // 동일한 공원 클릭 시 null로 설정
+        dispatch(setSelectedParkId(selectedParkId === parkId ? null : parkId)) // 동일한 공원 클릭 시 null로 설정
     }
 
     const handleReviewDetailClick = () => {
-        setView('reviewDetail') /* 리뷰 상세 보기 뷰 상태 업데이트 */
+        dispatch(setView('reviewDetail')) /* 리뷰 상세 보기 뷰 상태 업데이트 */
     }
 
     const handleBackClick = () => {
-        setView('main') /*메인 뷰로 돌아가기 뷰 상태 업데이트 */
+        dispatch(setView('main')) /*메인 뷰로 돌아가기 뷰 상태 업데이트 */
     }
 
-    const [showParkList, setShowParkList] = useState(false)
     const openParkList = isSearched => {
-        isSearched ? setShowParkList(true) : setShowParkList(false) // 추천공원 클릭되었을 땐 true => 내주변공원 보여줌
-        setSelectedParkId(null) // 공원 선택 다시 누르면 selectedParkId 초기화 => 공원정보 빔
-        setView('main') // 리뷰 상세보기 보다가 공원 검색 버튼을 누르면 view를 다시 'main'으로 설정
+        dispatch(setShowParkList(isSearched))
+        dispatch(setSelectedParkId(null))
+        dispatch(setView('main'))
+        // isSearched ? setShowParkList(true) : setShowParkList(false) // 추천공원 클릭되었을 땐 true => 내주변공원 보여줌
+        // setSelectedParkId(null) // 공원 선택 다시 누르면 selectedParkId 초기화 => 공원정보 빔
+        // setView('main') // 리뷰 상세보기 보다가 공원 검색 버튼을 누르면 view를 다시 'main'으로 설정
     }
-
-    const [searchResults, setSearchResults] = useState(null)
 
     const handleSearchComplete = data => {
-        setSearchResults(data)
+        dispatch(setSearchResults(data))
         console.log('검색 결과:', data)
     }
 
@@ -107,7 +118,7 @@ const MapPage = () => {
                     <TapContainer
                         onSearchComplete={handleSearchComplete} //검색 결과 받아오기
                         // NearPark 내부의 ParkList 컴포넌트를 보여줄지 말지 결정
-                        openParkList={openParkList} 
+                        openParkList={openParkList}
                     />
                 </LeftSection>
                 <MiddleSection>
@@ -120,12 +131,10 @@ const MapPage = () => {
                                 <NearPark
                                     onParkClick={handleParkClick} // 내주변공원의 공원 클릭시 정보 보이도록
                                     showParkList={showParkList} //true ? 내주변공원 컴포넌트 : empty
-                                    parkData={searchResults} // 받아온 검색 결과 전달
                                 />
                             </RightTop>
                             <RightBottom>
                                 <InfoPark
-                                    parkId={selectedParkId}
                                     onReviewDetailClick={
                                         handleReviewDetailClick
                                     }
@@ -135,7 +144,7 @@ const MapPage = () => {
                     )}
                     {view === 'reviewDetail' && selectedParkId && (
                         <ReviewDetail
-                            parkId={selectedParkId} 
+                            parkId={selectedParkId}
                             onBackClick={handleBackClick} // 뒤로가기 버튼
                         />
                     )}
