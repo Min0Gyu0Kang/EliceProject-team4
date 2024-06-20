@@ -26,7 +26,6 @@ import {
     setShowParkList,
     setSelectedParkId,
     setSearchResults,
-    resetSelection,
 } from '../components/redux/parkSlice'
 import NearPark from '../components/map/output/NearPark'
 import InfoPark from '../components/map/output/InfoPark'
@@ -34,7 +33,7 @@ import styled from 'styled-components'
 import ReviewDetail from '../components/map/output/ReviewDetail'
 import '../assets/fonts/font.css'
 import TapContainer from '../components/map/input/TapContainer'
-// import Map from '../components/map/main/Map'
+import Map from '../components/map/main/Map'
 
 const MainLayout = styled.div`
     display: flex;
@@ -80,9 +79,9 @@ const RightBottom = styled.div`
 
 const MapPage = () => {
     const dispatch = useDispatch()
-    const view = useSelector(state => state.park.view)
-    const showParkList = useSelector(state => state.park.showParkList)
-    const selectedParkId = useSelector(state => state.park.selectedParkId)
+    const {view, showParkList, selectedParkId} = useSelector(
+        state => state.park,
+    )
 
     const handleParkClick = parkId => {
         console.log('Selected Park ID:', parkId)
@@ -101,9 +100,6 @@ const MapPage = () => {
         dispatch(setShowParkList(isSearched))
         dispatch(setSelectedParkId(null))
         dispatch(setView('main'))
-        // isSearched ? setShowParkList(true) : setShowParkList(false) // 추천공원 클릭되었을 땐 true => 내주변공원 보여줌
-        // setSelectedParkId(null) // 공원 선택 다시 누르면 selectedParkId 초기화 => 공원정보 빔
-        // setView('main') // 리뷰 상세보기 보다가 공원 검색 버튼을 누르면 view를 다시 'main'으로 설정
     }
 
     const handleSearchComplete = data => {
@@ -122,7 +118,7 @@ const MapPage = () => {
                     />
                 </LeftSection>
                 <MiddleSection>
-                    <div></div>
+                    <Map></Map>
                 </MiddleSection>
                 <RightSection>
                     {view === 'main' && (

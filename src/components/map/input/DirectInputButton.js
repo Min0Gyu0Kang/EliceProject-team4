@@ -9,15 +9,17 @@ Date        Author   Status    Description
 2024.06.20  임지영    Modified   fetch -> axios
 */
 
-import React, {useState} from 'react'
+import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios'
 import {
     setSearchResults,
     setShowParkList,
     resetSelection,
+    setGetName,
+    setIsLocation,
+    clearSelection,
     setName,
-    setSelectedParkId,
 } from '../../redux/parkSlice'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
@@ -29,6 +31,7 @@ function DirectInputButton() {
     const name = useSelector(state => state.park.name)
 
     const handleClick = async () => {
+        dispatch(setGetName(name))
         const url = `/park/search/${name}`
 
         try {
@@ -39,6 +42,7 @@ function DirectInputButton() {
             }
             dispatch(setSearchResults(response.data)) // 상위 컴포넌트로 데이터 전달
             dispatch(setShowParkList(true)) // 검색이 완료되면 openParkList 함수 호출
+            dispatch(setIsLocation(false))
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
         }
@@ -46,14 +50,9 @@ function DirectInputButton() {
 
     const handleClearClick = () => {
         dispatch(resetSelection())
-        dispatch(setName(''))
         dispatch(setShowParkList(false)) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
-    }
-
-    const activeEnter = e => {
-        if (e.key === 'Enter') {
-            handleClick()
-        }
+        dispatch(clearSelection())
+        dispatch(setName(''))
     }
 
     return (
@@ -81,7 +80,6 @@ function DirectInputButton() {
                     }}
                     size="large"
                     onClick={handleClick}
-                    onKeyDown={e => activeEnter(e)}
                 />
             </Stack>
         </StyledEngineProvider>

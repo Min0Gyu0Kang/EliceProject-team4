@@ -15,12 +15,21 @@ const initialState = {
     data: null,
     parkName: '',
     ratings: 0,
+    getData: {},
+    getName: '',
+    isLocation: true,
 }
 
 const parkSlice = createSlice({
     name: 'park',
     initialState,
     reducers: {
+        setSelection: (state, action) => {
+            state.city = action.payload.city
+            state.district = action.payload.district
+            state.selectedChips = action.payload.selectedChips
+            state.name = action.payload.name
+        },
         // park 관련 액션
         setView: (state, action) => {
             state.view = action.payload
@@ -61,16 +70,27 @@ const parkSlice = createSlice({
             state.data = action.payload
         },
         setParkName: (state, action) => {
-            state.data = action.payload
+            state.parkName = action.payload
         },
         setRatings: (state, action) => {
-            state.data = action.payload
+            state.ratings = action.payload
+        },
+        // 버튼 클릭했을 때 정보 넘어가도록
+        setGetData: (state, action) => {
+            state.getData = action.payload
+        },
+        setGetName: (state, action) => {
+            state.getName = action.payload
+        },
+        // 지역인지 직접인지
+        setIsLocation: (state, action) => {
+            state.isLocation = action.payload
         },
     },
 })
 
 export const {
-    setWhatSearch,
+    setSelection,
     setView,
     setShowParkList,
     setSelectedParkId,
@@ -84,6 +104,9 @@ export const {
     setData,
     setParkName,
     setRatings,
+    setGetData,
+    setGetName,
+    setIsLocation,
 } = parkSlice.actions
 
 export default parkSlice.reducer

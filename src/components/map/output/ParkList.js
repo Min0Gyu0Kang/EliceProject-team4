@@ -19,8 +19,7 @@ import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 import ParkName from '../../common/ParkName'
-import {useDispatch, useSelector} from 'react-redux'
-import {setRatings} from '../../redux/parkSlice'
+import {useSelector} from 'react-redux'
 
 const ParkListContainer = styled.div`
     font-family: 'Pretendard';

@@ -27,8 +27,7 @@ import {
     setCity,
     setDistrict,
     setSelectedChips,
-    setSearchResults,
-    setShowParkList,
+    setSelection,
 } from '../../redux/parkSlice'
 
 const Container = styled.div`
@@ -143,7 +142,7 @@ const LocationSearch = () => {
     // 선택된 city, district, selectedChips 값을 selectedValues에 저장
     useEffect(() => {
         dispatch(
-            setSearchResults({
+            setSelection({
                 city,
                 district,
                 selectedChips,
@@ -166,10 +165,9 @@ const LocationSearch = () => {
                                 }}
                                 labelId="selectCity"
                                 id="selectCity"
-                                onChange={e => {
+                                onChange={e =>
                                     dispatch(setCity(e.target.value))
-                                    dispatch(setShowParkList(false))
-                                }}
+                                }
                                 value={city}
                                 displayEmpty
                                 MenuProps={menuProps}
@@ -201,10 +199,9 @@ const LocationSearch = () => {
                                 labelId="selectDistrict"
                                 id="selectDistrict"
                                 value={district}
-                                onChange={e => {
+                                onChange={e =>
                                     dispatch(setDistrict(e.target.value))
-                                    dispatch(setShowParkList(false))
-                                }}
+                                }
                                 displayEmpty
                                 MenuProps={menuProps}
                             >
