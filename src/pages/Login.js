@@ -106,6 +106,9 @@ const Login = ({onLogin}) => {
                         <InputStyles.SignUpButton to="/signUp">
                             회원가입
                         </InputStyles.SignUpButton>
+                        <InputStyles.SignUpButton to="/findPassword">
+                            비밀번호 찾기
+                        </InputStyles.SignUpButton>
                     </InputStyles.SignUpConatiner>
                 </LoginContent>
             </InputStyles.LoginContainer>
