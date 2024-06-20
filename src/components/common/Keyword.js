@@ -19,7 +19,7 @@ const ContentWrapper = styled.div`
 
 const KeywordText = styled.div`
     font-size: 27px; /* 폰트 크기 */
-    font-family: 'Pretendart';
+    font-family: 'Pretendard';
     font-weight: 600;
     color: #333; /* 글자색 */
 `
