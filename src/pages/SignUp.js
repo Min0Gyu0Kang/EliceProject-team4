@@ -117,13 +117,15 @@ const SignUp = () => {
 
             const nameRegex = /^([가-힣]{2,20}|[a-zA-Z]{2,20})$/
             if (!nameRegex.test(name)) {
-                throw new Error('2-20자 이내 한글 또는 영문으로 입력해주세요.')
+                throw new Error(
+                    '이름을 2-20자 이내 한글 또는 영문으로 입력해주세요.',
+                )
             }
 
             const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,10}$/
             if (!nicknameRegex.test(nickname)) {
                 throw new Error(
-                    '2-10자 이내의 한글, 영문자, 숫자로 입력해주세요.',
+                    '닉네임을 2-10자 이내의 한글, 영문자, 숫자로 입력해주세요.',
                 )
             }
 
