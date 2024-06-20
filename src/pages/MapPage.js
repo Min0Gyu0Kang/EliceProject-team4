@@ -34,7 +34,7 @@ import styled from 'styled-components'
 import ReviewDetail from '../components/map/output/ReviewDetail'
 import '../assets/fonts/font.css'
 import TapContainer from '../components/map/input/TapContainer'
-// import Map from '../components/map/main/Map'
+import KakaoMap from '../components/map/main/Map'
 
 const MainLayout = styled.div`
     display: flex;
@@ -122,7 +122,7 @@ const MapPage = () => {
                     />
                 </LeftSection>
                 <MiddleSection>
-                    <div></div>
+                    <KakaoMap />
                 </MiddleSection>
                 <RightSection>
                     {view === 'main' && (

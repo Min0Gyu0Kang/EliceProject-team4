@@ -37,7 +37,7 @@ const ContentWrapper = styled.div`
 `
 
 
-const DashboardPage = () => {
+const CommunityPage = () => {
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
@@ -82,4 +82,4 @@ const DashboardPage = () => {
     )
 }
 
-export default DashboardPage
+export default CommunityPage

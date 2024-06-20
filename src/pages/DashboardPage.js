@@ -13,7 +13,7 @@ Date        Author   Status    Description
 */
 
 import React from 'react'
-import DashBoard from '../components/dashboard/DashBoard'
+import Dashboard from '../components/dashBoard/DashBoard'
 import Navigation from '../components/common/Navigation'
 import goalIcon from '../assets/images/goal.svg'
 import Footer from '../components/common/Footer'
@@ -43,7 +43,7 @@ const DashboardPage = () => {
                     icon={goalIcon}
                 />
                 <ContentWrapper>
-                    <DashBoard />
+                    <Dashboard />
                 </ContentWrapper>
                 <Footer />
             </PageContainer>
