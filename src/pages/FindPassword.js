@@ -32,6 +32,12 @@ const NameInput = styled.input`
     background-image: url(${NickName});
 `
 
+const SuccessMsg = styled.p`
+    color: green;
+    padding-top: 10px;
+    margin: 0;
+`
+
 const ErrorMsg = styled.p`
     color: red;
     padding-top: 10px;
@@ -43,15 +49,13 @@ const FindPasswordForm = () => {
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
     const [error, setError] = useState('')
-    const navigate = useNavigate()
 
     const handleFindPassword = async e => {
         e.preventDefault()
 
         try {
-            const data = await findPassword(name, email)
-            setMessage(`${data} 임시 비밀번호가 이메일로 발송되었습니다.`)
-            navigate('/login') // 로그인 후 페이지 이동
+            await findPassword(name, email)
+            setMessage(`임시 비밀번호가 이메일로 발송되었습니다.`)
         } catch (error) {
             console.error('비밀번호 찾기 오류:', error)
             setError('서버 오류가 발생했습니다.')
@@ -86,20 +90,22 @@ const FindPasswordForm = () => {
                             value="임시 비밀번호 발송"
                             to="/login"
                         />
-                        <InputStyles.DividingLine />
-                        <InputStyles.SignUpConatiner>
-                            <InputStyles.SignUpText>
-                                이메일을 통해 임시 비밀번호를 확인해주세요.
-                            </InputStyles.SignUpText>
-                            <InputStyles.SignUpButton to="/login">
-                                임시 비밀번호 발급
-                            </InputStyles.SignUpButton>
-                        </InputStyles.SignUpConatiner>
-                        <Footer />
                     </InputField>
+                    <InputStyles.DividingLine />
+                    <InputStyles.SignUpConatiner>
+                        <InputStyles.SignUpText>
+                            {message && <SuccessMsg>{message}</SuccessMsg>}
+                            {error && <ErrorMsg>{error}</ErrorMsg>}
+                        </InputStyles.SignUpText>
+                        <InputStyles.SignUpButton to="/login">
+                            로그인 하러가기
+                        </InputStyles.SignUpButton>
+                    </InputStyles.SignUpConatiner>
                 </LoginContent>
             </InputStyles.LoginContainer>
+            <Footer />
         </div>
     )
 }
+
 export default FindPasswordForm
