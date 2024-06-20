@@ -144,7 +144,7 @@ const SignUp = () => {
             }
 
             await signUp(formData)
-
+            setErrorMessage('') // 에러 메시지 초기화
             setSuccessMessage('회원가입이 완료되었습니다!')
 
             setTimeout(() => {
