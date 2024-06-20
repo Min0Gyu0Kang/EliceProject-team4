@@ -15,6 +15,7 @@ Date        Author   Status    Description
 2024.06.19  강민규   Modified  지도 백엔드 /park/recommend 성공
 2024.06.19  강민규   Modified  지도 Query 불러서 마커 반영 성공    
 2024.06.20  이유민   Modified  지도 수정   
+2024.06.21  임지영   Modified  지도 마커클릭 이미지 변경 및 gridSize 조정
 */
 
 import React, {useEffect, useState} from 'react'
