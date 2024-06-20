@@ -9,23 +9,24 @@ Date        Author   Status    Description
 2024.06.13  임지영    Modified   비밀번호 입력칸 오른쪽 치우침 해결
 2024.06.13  임지영    Modified   폰트 적용
 2024.06.17  임지영    Modified   Login과 겹치는 스타일 InputStyles.js로 분리
+2024.06.19  김유림    Modified   회원가입 api연결
+2024.06.20  김유림    Modified   에러코드 작성
 */
 
 import React, {useState} from 'react'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import '../assets/fonts/font.css'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import Footer from '../components/common/Footer'
 import NickName from '../assets/images/nickname.svg'
-import Email from '../assets/images/email.svg'
 import Password from '../assets/images/password.svg'
-import EyeIcon from '../assets/images/eye.svg' // 눈 아이콘 추가
-import EyeOffIcon from '../assets/images/eye-off.svg' // 눈 감김 아이콘 추가
+import EyeIcon from '../assets/images/eye.svg'
+import EyeOffIcon from '../assets/images/eye-off.svg'
 import * as InputStyles from '../components/inputs/InputStyles'
-import signUp from '../api/SignUp' // signUp 함수 import
+import signUp from '../api/SignUp'
 
 const LoginContent = styled(InputStyles.LoginContent)`
-    height: 640px;
+    height: 680px;
 `
 
 const InputField = styled(InputStyles.InputField)`
@@ -49,20 +50,25 @@ const PasswordContainer = styled.div`
 `
 
 const PasswordInput = styled(InputStyles.PasswordInput)`
-    left: -1%; // 오른쪽으로 치우침 해결
+    left: -1%;
 `
 
 const PasswordConfirmInput = styled.input`
     ${InputStyles.inputStyles}
     background-image: url(${Password});
-    padding-right: 30px; // 아이콘 공간 확보
+    padding-right: 30px;
     position: relative;
-    left: -1%; // 오른쪽으로 치우침 해결
-    z-index: 1;
+    left: -1%;
 `
 
 const ErrorMsg = styled.p`
     color: red;
+    padding-top: 10px;
+    margin: 0;
+`
+
+const SuccessMsg = styled.p`
+    color: green;
     padding-top: 10px;
     margin: 0;
 `
@@ -76,19 +82,19 @@ const SignUp = () => {
         confirmPassword: '',
     })
 
-    const [password, setPassword] = useState('')
-    const [passwordConfirm, setPasswordConfirm] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+    const [successMessage, setSuccessMessage] = useState('')
 
     const navigate = useNavigate()
-    const handlePasswordChange = e => {
-        setPassword(e.target.value)
-    }
 
-    const handlePasswordConfirmChange = e => {
-        setPasswordConfirm(e.target.value)
+    const handleChange = e => {
+        const {name, value} = e.target
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
     }
 
     const passwordVisibility = () => {
@@ -100,32 +106,53 @@ const SignUp = () => {
     }
 
     const handleSubmit = async e => {
-        e.preventDefault() // 기본 폼 제출을 막음
+        e.preventDefault()
+
         const {name, nickname, email, password, confirmPassword} = formData
 
         try {
-            const userData = {
-                name,
-                nickname,
-                email,
-                password,
-                confirmPassword,
+            if (!name || !nickname || !email || !password || !confirmPassword) {
+                throw new Error('입력하지 않은 데이터가 있습니다.')
             }
 
-            signUp(userData)
-            navigate('/login') // 로그인 페이지로 이동
-        } catch (error) {
-            console.error('Sign-up failed:', error)
-            setErrorMessage('회원가입에 실패했습니다. 다시 시도해주세요.')
-        }
-    }
+            const nameRegex = /^([가-힣]{2,20}|[a-zA-Z]{2,20})$/
+            if (!nameRegex.test(name)) {
+                throw new Error('2-20자 이내 한글 또는 영문으로 입력해주세요.')
+            }
 
-    const handleChange = e => {
-        const {name, value} = e.target
-        setFormData({
-            ...formData,
-            [name]: value,
-        })
+            const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,10}$/
+            if (!nicknameRegex.test(nickname)) {
+                throw new Error(
+                    '2-10자 이내의 한글, 영문자, 숫자로 입력해주세요.',
+                )
+            }
+
+            const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
+            if (
+                !passwordRegex.test(password) ||
+                !passwordRegex.test(confirmPassword)
+            ) {
+                throw new Error(
+                    '비밀번호를 숫자 포함 8자 이상으로 입력해주세요.',
+                )
+            }
+
+            if (password !== confirmPassword) {
+                throw new Error('비밀번호가 일치하지 않습니다.')
+            }
+
+            await signUp(formData)
+
+            setSuccessMessage('회원가입이 완료되었습니다!')
+
+            setTimeout(() => {
+                setSuccessMessage('')
+                navigate('/login')
+            }, 1000)
+        } catch (error) {
+            console.error('Sign-up failed:', error.message)
+            setErrorMessage(error.message)
+        }
     }
 
     return (
@@ -165,10 +192,7 @@ const SignUp = () => {
                                 name="password"
                                 placeholder="비밀번호를 입력하세요 (특수문자 포함 8자리 이상)"
                                 value={formData.password}
-                                onChange={e => {
-                                    handleChange(e)
-                                    handlePasswordChange(e)
-                                }}
+                                onChange={handleChange}
                                 required
                             />
                             <InputStyles.ToggleButton
@@ -185,11 +209,8 @@ const SignUp = () => {
                                 type={showPasswordConfirm ? 'text' : 'password'}
                                 name="confirmPassword"
                                 placeholder="입력한 비밀번호를 확인합니다"
-                                value={passwordConfirm}
-                                onChange={e => {
-                                    handleChange(e)
-                                    handlePasswordConfirmChange(e)
-                                }}
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
                                 required
                             />
                             <InputStyles.ToggleButton
@@ -206,6 +227,9 @@ const SignUp = () => {
                             </InputStyles.ToggleButton>
                         </PasswordContainer>
                         {errorMessage && <ErrorMsg>{errorMessage}</ErrorMsg>}
+                        {successMessage && (
+                            <SuccessMsg>{successMessage}</SuccessMsg>
+                        )}
                         <InputStyles.LoginButton
                             type="submit"
                             value="회원가입"
