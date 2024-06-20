@@ -42,7 +42,6 @@ const Number = styled.p`
 `
 
 const ParkList = ({onParkClick}) => {
-    const dispatch = useDispatch()
     const searchResults = useSelector(state => state.park.searchResults)
 
     return (

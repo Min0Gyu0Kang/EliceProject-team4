@@ -23,8 +23,8 @@ import {
     setCity,
     setDistrict,
     setSelectedChips,
-    setName,
     clearSelection,
+    setShowParkList,
 } from '../../redux/parkSlice'
 
 function CustomTabPanel(props) {
@@ -56,10 +56,10 @@ function a11yProps(index) {
     }
 }
 
-export default function TapContainer({onSearchComplete, openParkList}) {
+export default function TapContainer() {
     const dispatch = useDispatch()
 
-    // Redux state를 가져옴
+    // // Redux state를 가져옴
     const {city, district, selectedChips, name} = useSelector(
         state => state.park,
     )
@@ -122,30 +122,12 @@ export default function TapContainer({onSearchComplete, openParkList}) {
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-                <LocationSearch
-                    // selectedValues={{city, district, selectedChips}}
-                    // setSelectedValues={({city, district, selectedChips}) => {
-                    //     dispatch(setCity(city))
-                    //     dispatch(setDistrict(district))
-                    //     dispatch(setSelectedChips(selectedChips))
-                    // }}
-                    onClearSelection={handleClearSelection}
-                />
-                <LocationInputButton
-                    selectedValues={{city, district, selectedChips}}
-                    onSearchComplete={onSearchComplete}
-                    openParkList={openParkList}
-                    onClearSelection={handleClearSelection}
-                />
+                <LocationSearch />
+                <LocationInputButton />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                <DirectSearch
-                    name={name}
-                    setName={name => dispatch(setName(name))}
-                />
+                <DirectSearch name={name} />
                 <DirectInputButton
-                    onSearchComplete={onSearchComplete}
-                    openParkList={openParkList}
                     name={name}
                     onClearSelection={handleClearSelection}
                 />

@@ -22,14 +22,15 @@ import {
 import {StyledEngineProvider} from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
 import Chip from '@mui/material/Chip'
+import {useSelector} from 'react-redux'
 
 // 추천공원 검색 시
-const LocationInputButton = ({selectedValues}) => {
+const LocationInputButton = () => {
     const dispatch = useDispatch()
+    const searchResults = useSelector(state => state.park.searchResults)
+    const {city, district, selectedChips} = searchResults
 
     const handleSearchClick = async () => {
-        const {city, district, selectedChips} = selectedValues
-
         const queryParams = new URLSearchParams()
         if (city) queryParams.append('city', city)
         if (district) queryParams.append('district', district)
