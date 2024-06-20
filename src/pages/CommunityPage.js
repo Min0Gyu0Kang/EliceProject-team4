@@ -15,6 +15,9 @@ import communityIcon from '../assets/images/community.svg'
 import Footer from '../components/common/Footer'
 import styled from 'styled-components'
 
+//커뮤니티 탭들
+import CommunityHeader from "./CommunityHeader"
+
 const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -36,7 +39,9 @@ const DashboardPage = () => {
                 subtitle="공원에 대해 다양한 소통을 해보세요"
                 icon={communityIcon}
             />
-            <ContentWrapper></ContentWrapper>
+            <ContentWrapper>
+                <CommunityHeader />
+            </ContentWrapper>
             <Footer />
         </PageContainer>
     )
