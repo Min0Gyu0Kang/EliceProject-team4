@@ -11,11 +11,11 @@ Date        Author   Status    Description
 
 import {React,useState} from 'react'
 import styled from 'styled-components'
-import '../assets/fonts/font.css'
+import '../../assets/fonts/font.css'
 
-import IconMegaphone from '../assets/images/megaphone.svg'
-import IconLinkto from '../assets/images/linkto.svg'
-import IconSearch1 from "../assets/images/IconSearch1.svg"
+import IconMegaphone from '../../assets/images/megaphone.svg'
+import IconLinkto from '../../assets/images/linkto.svg'
+import IconSearch1 from "../../assets/images/IconSearch1.svg"
 import {Stack,TextField, Autocomplete} from '@mui/material';
 
 const PageContainer = styled.div`
@@ -23,12 +23,13 @@ const PageContainer = styled.div`
     flex-direction: column;
     min-height: 100vh;
     position: relative; /* 추가 */
+    padding: 10px 240px; /* 수정된 패딩 */
+    margin-top: 10px; /* 수정된 상단 여백 */
 `
 
 const ContentWrapper = styled.div`
     flex: 1;
     display: flex;
-    padding: 10px 240px; /* 수정된 패딩 */
     flex-direction: column;
     justify:center;
 `
