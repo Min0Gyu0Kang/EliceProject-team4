@@ -19,7 +19,7 @@ import SignUp from './pages/SignUp'
 import Dashboard from './pages/DashboardPage'
 import Community from './pages/CommunityPage'
 import Map from './pages/MapPage'
-import FindPassword from './pages/FindPassword'
+// import FindPassword from './pages/FindPassword'
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -43,7 +43,7 @@ const App = () => {
                     element={<Login onLogin={handleLogin} />}
                 />
                 <Route path="/signUp" element={<SignUp />} />
-                <Route path="/findPassword" element={<FindPassword />} />
+                {/* <Route path="/findPassword" element={<FindPassword />} /> */}
                 <Route path="/dataStory" element={<Dashboard />} />
                 <Route path="/community" element={<Community />} />
                 <Route path="/map" element={<Map />} />
