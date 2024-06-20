@@ -91,7 +91,7 @@ const Map = () => {
 
                 const options = {
                     center: new window.kakao.maps.LatLng(avgLat, avgLng),
-                    level: 8,
+                    level: 7, // 화면에 보여지는 정도
                 }
 
                 const map = new window.kakao.maps.Map(container, options)
@@ -115,7 +115,7 @@ const Map = () => {
                     map: map, // 마커들을 클러스터러에 추가합니다
                     averageCenter: true, // 클러스터들의 평균 중심을 사용합니다
                     minLevel: 3, // 클러스터 할 최소 지도 레벨
-                    gridSize: 50, // 범위 더 넓게
+                    gridSize: 70, // 범위 더 넓게
                 })
 
                 // 마커들을 저장할 배열 생성
