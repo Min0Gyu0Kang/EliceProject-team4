@@ -62,30 +62,23 @@ const RightSection = styled.div`
     align-items: center; /* 세로 중앙 정렬 */
 `
 
-const Green = styled.span`
+const Highlight = styled.span`
     color: #30cb6e;
     font-weight: 600;
 `
 
 const BackgroundColor = styled.div`
-    background-color: #ffffff;
+    background-color: #f5f5f5;
 `
-const LinkTextContainer = styled.div`
-    text-align: center; /* 데이터출처 텍스트 가운데 정렬 */
-    width: 100%; /* 전체 너비 사용 */
+const LinkText = styled.div`
     color: #888; /* 연한 색상 */
 `
 const Link = styled.a`
     text-decoration: none;
     color: #95b7b8; /* 연한 색상 */
 
-const LinkText = styled.div`
-    color: #888; /* 연한 색상 */
-    width: 100%; /* 전체 너비 사용 */
-
-    a {
-        color: #888; /* 링크 색상을 부모 요소의 색상으로 설정 */
-        text-decoration: none;
+    &:hover {
+        text-decoration: underline;
     }
 `
 const Source = styled.div`
@@ -104,8 +97,8 @@ const Dashboard = () => {
                     <RightSection>
                         <p>
                             도시 환경에서 공원과 녹지는 환경적인 측면과
-                            <br /> <Green>삶의 질 향상</Green>에 중요한 역할을
-                            해요
+                            <br /> <Highlight>삶의 질 향상</Highlight>에 중요한
+                            역할을 해요
                             <br />
                             <br /> 이에 따라 1인당 도시 공원 조성 면적은 매년
                             증가하고 있으며 <br />
@@ -124,15 +117,15 @@ const Dashboard = () => {
                             <br />
                             지역별 도시공원 조성 면적과 녹지 환경 만족도 간
                             데이터는 <br />
-                            <Green>
+                            <Highlight>
                                 타원형태의 군집화 결과로 연관성이 떨어진다
-                            </Green>
+                            </Highlight>
                             할 수 있어요 <br />
                             <br />
                             따라서 단순히 공원 면적을 늘리는 것보다는
                             <br />
-                            <Green>공원의 질적 수준을 향상</Green>시키는 것에
-                            집중해야해요
+                            <Highlight>공원의 질적 수준을 향상</Highlight>시키는
+                            것에 집중해야해요
                         </p>
                     </RightSection>
                     <LeftSection>
@@ -148,8 +141,8 @@ const Dashboard = () => {
                         <p>
                             공원의 질적 수준을 높이기 위해 노후화율 데이터에
                             주목하였고 <br />
-                            <Green>노후화 된 공원을 개선</Green> 하는 것이
-                            중요하다고 판단했어요 <br /> <br />
+                            <Highlight>노후화 된 공원을 개선</Highlight> 하는
+                            것이 중요하다고 판단했어요 <br /> <br />
                             이를 위해 <br />
                             공원 유지 관리, 공원 정보 제공, 시민의 관심과
                             지자체의 노력이 필요해요
@@ -165,9 +158,11 @@ const Dashboard = () => {
                             제공하여
                             <br />
                             최종적으로{' '}
-                            <Green>미래 도시공원의 발전 방향을 모색</Green>
-                            하고 <Green>거주 환경을 개선</Green>하고자 해요{' '}
-                            <br />
+                            <Highlight>
+                                미래 도시공원의 발전 방향을 모색
+                            </Highlight>
+                            하고 <Highlight>거주 환경을 개선</Highlight>하고자
+                            해요 <br />
                             <br />
                             <br />
                             <br />
@@ -180,8 +175,7 @@ const Dashboard = () => {
                 </Container>
                 <Divider />
                 <Container>
-                    <LinkTextContainer>
-                        데이터출처
+                    <RightSection>
                         <LinkText>
                             <p style={{fontSize: '15pt'}}>📌 데이터 출처</p>
                             <Source>
@@ -215,7 +209,7 @@ const Dashboard = () => {
                                 </Link>
                             </Source>
                         </LinkText>
-                    </LinkTextContainer>
+                    </RightSection>
                 </Container>
             </BackgroundColor>
         </DashboardWrapper>
