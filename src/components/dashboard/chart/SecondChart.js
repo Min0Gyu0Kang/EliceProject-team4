@@ -8,8 +8,9 @@ Date        Author   Status    Description
 2024.06.12  김유림   Created
 2024.06.12  김유림   Modified  필요없는 값 제거 및 원 위치 변경
 2024.06.13  김유림   Modified  컬러 변경, ellipse 좌표 변경
+2024.06.16  김유림   Modified  api 연동 완료
 */
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     ScatterChart,
     Scatter,
@@ -19,26 +20,6 @@ import {
     Tooltip,
     Label,
 } from 'recharts'
-
-const data = [
-    {city: '서울', satisfaction: 55.9, park_area_per_thousand: 4.7},
-    {city: '부산', satisfaction: 59.0, park_area_per_thousand: 17.3},
-    {city: '대구', satisfaction: 53.3, park_area_per_thousand: 7.2},
-    // {city: '인천', satisfaction: 46.7, park_area_per_thousand: 13.6},
-    {city: '광주', satisfaction: 54.8, park_area_per_thousand: 12.4},
-    {city: '대전', satisfaction: 60.1, park_area_per_thousand: 12.4},
-    {city: '울산', satisfaction: 58.8, park_area_per_thousand: 10.3},
-    // {city: '세종', satisfaction: 69.0, park_area_per_thousand: 63.3},
-    {city: '경기', satisfaction: 59.4, park_area_per_thousand: 11.2},
-    // {city: '강원', satisfaction: 74.2, park_area_per_thousand: 15.8},
-    {city: '충북', satisfaction: 59.2, park_area_per_thousand: 13.7},
-    {city: '충남', satisfaction: 60.4, park_area_per_thousand: 11.5},
-    {city: '전북', satisfaction: 59.6, park_area_per_thousand: 24.6},
-    // {city: '전남', satisfaction: 71.0, park_area_per_thousand: 26.4},
-    {city: '경북', satisfaction: 60.3, park_area_per_thousand: 16.4},
-    // {city: '경남', satisfaction: 68.0, park_area_per_thousand: 15.8},
-    {city: '제주', satisfaction: 60.0, park_area_per_thousand: 16.6},
-]
 
 const CustomTooltip = ({active, payload}) => {
     if (active && payload && payload.length) {
@@ -76,6 +57,29 @@ const CustomTooltip = ({active, payload}) => {
 }
 
 const SecondChart = () => {
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/dashboard')
+                const result = await response.json()
+                const filteredData = result.scatter.filter(
+                    item =>
+                        item.city !== '인천광역시' &&
+                        item.city !== '세종특별자치시' &&
+                        item.city !== '전라남도' &&
+                        item.city !== '강원특별자치도' &&
+                        item.city !== '경상남도',
+                )
+                setData(filteredData)
+            } catch (error) {
+                console.error('Error fetching the data', error)
+            }
+        }
+
+        fetchData()
+    }, [])
     return (
         <ScatterChart
             width={550}

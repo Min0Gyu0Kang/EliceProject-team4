@@ -19,7 +19,7 @@ const logoutUser = async () => {
             throw new Error('Refresh Token이 없습니다.')
         }
 
-        await axios.post(API_BASE_URL, {refreshToken})
+        await axios.post(`${API_BASE_URL}`, {refreshToken})
 
         // 로그아웃 성공 후, 로컬 스토리지에서 토큰 제거
         localStorage.removeItem('accessToken')

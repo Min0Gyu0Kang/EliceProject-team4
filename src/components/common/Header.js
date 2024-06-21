@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.10  임지영    Created
 2024.06.15  임지영    Modified   웹폰트 적용
 2024.06.19  김유림    Modified   로그인 로그아웃 시 함수 생성
+2024.06.21  박수정   Modified    회원 Index 페이지 기능 추가
 */
 
 import React from 'react'
@@ -90,9 +91,17 @@ const Header = ({isLoggedIn, onLogout}) => {
                     커뮤니티
                 </Nav>
                 {isLoggedIn ? (
-                    <Nav to="/login" onClick={handleLogout}>
-                        로그아웃
-                    </Nav>
+                    <>
+                        <Nav
+                            to="/users/index"
+                            isActive={location.pathname === '/index'}
+                        >
+                            회원 페이지
+                        </Nav>
+                        <Nav to="/login" onClick={handleLogout}>
+                            로그아웃
+                        </Nav>
+                    </>
                 ) : (
                     <Nav to="/login" isActive={location.pathname === '/login'}>
                         로그인
