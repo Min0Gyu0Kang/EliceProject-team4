@@ -9,7 +9,7 @@ Date        Author   Status    Description
 2024.06.19  강민규   Modified
 2024.06.20  강민규   Modified  민원으로 구청 불러오기(초기값에 공원이 없다고 뜸, 아이콘 버튼으로 연동 안 됨)
 2024.06.21  강민규   Modified  초기값에 공원이 없다고 안 뜸, 아이콘 버튼으로 연동 안 됨, 결과 CSS 수정, 새탭으로 구청 열림
-2024.06.21  김유림   Modified  위치 center 이동
+2024.06.21  김유림   Modified  위치 center 이동, 디자인 수정
 */
 
 import {React, useState, useEffect} from 'react'
@@ -182,7 +182,7 @@ const CommunityReports = () => {
                         <Autocomplete
                             sx={{
                                 width: '610px',
-                                borderRadius: '30px',
+                                borderRadius: '50px',
                                 borderColor: '#555',
                             }}
                             value={textFieldValue}
@@ -201,7 +201,11 @@ const CommunityReports = () => {
                             alt="Search"
                             height="40px"
                             // onClick={handleSearchClick}
-                            style={{marginRight: '30px'}}
+                            style={{
+                                marginRight: '30px',
+                                marginTop: '10px',
+                                cursor: 'pointer',
+                            }}
                         />
                     </Stack>
                 </SearchBar>

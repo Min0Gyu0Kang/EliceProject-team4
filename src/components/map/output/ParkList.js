@@ -10,6 +10,7 @@ Date        Author   Status    Description
 2024.06.17  임지영    Modified   API 연결
 2024.06.17  김유림    Modified   api 와 맞게 더미데이터 수정 
 2024.06.19  임지영    Modified   공원이 적어도 ParkList 높이 일정하게
+2024.06.22  김유림    Modified   ParkListContainer margin-top 수정
 */
 
 import React from 'react'
@@ -28,7 +29,7 @@ const ParkListContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: 270px;
-    margin-top: 16px;
+    margin-top: 10px;
 `
 
 const List = styled.div`
