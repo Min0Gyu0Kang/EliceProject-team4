@@ -34,6 +34,7 @@ const LocationInputButton = () => {
     const dispatch = useDispatch()
 
     const {city, district, selectedChips} = useSelector(state => state.park)
+    const isCityValid = city !== ''
 
     const handleSearchClick = async () => {
         dispatch(setIsSearchResults(false))
@@ -92,9 +93,11 @@ const LocationInputButton = () => {
                         color: 'white',
                         padding: '5.3% 5.3%',
                         fontSize: '1rem',
+                        cursor: isCityValid ? 'pointer' : 'not-allowed', // city 선택 안 하면 선택 못함
                     }}
                     size="large"
                     onClick={handleSearchClick}
+                    disabled={!isCityValid} // city 선택 안 하면 비활성화
                 />
             </Stack>
         </StyledEngineProvider>

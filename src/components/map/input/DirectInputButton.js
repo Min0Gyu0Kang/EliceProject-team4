@@ -32,6 +32,7 @@ import {StyledEngineProvider} from '@mui/styled-engine'
 function DirectInputButton() {
     const dispatch = useDispatch()
     const {name} = useSelector(state => state.park)
+    const isNameValid = name !== ''
 
     const handleClick = async () => {
         dispatch(setIsSearchResults(false))
@@ -83,9 +84,11 @@ function DirectInputButton() {
                         color: 'white',
                         padding: '5.3% 5.3%',
                         fontSize: '1rem',
+                        cursor: isNameValid ? 'pointer' : 'not-allowed', // name 입력 안 하면 선택 못함
                     }}
                     size="large"
                     onClick={handleClick}
+                    disabled={!isNameValid} // name 입력 안 하면 비활성화
                 />
             </Stack>
         </StyledEngineProvider>
