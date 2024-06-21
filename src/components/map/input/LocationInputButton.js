@@ -35,6 +35,7 @@ const LocationInputButton = () => {
     const dispatch = useDispatch()
 
     const {city, district, selectedChips} = useSelector(state => state.park)
+    const isCityValid = city !== ''
 
     const handleSearchClick = async () => {
         dispatch(setIsSearchResults(false))
