@@ -26,6 +26,7 @@ import IndexPage from './pages/UserIndexPage'
 import Mypage from './pages/Mypage'
 import UpdateUser from './pages/UpdateUser'
 import Withdraw from './pages/Withdraw'
+import NotFound from './pages/NotFound'
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -63,6 +64,8 @@ const App = () => {
                     path="/users/withdraw"
                     element={<Withdraw onWithdraw={handleLogout} />}
                 />
+                {/* 구현해둔 페이지 접속 */}
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     )
