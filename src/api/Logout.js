@@ -1,12 +1,12 @@
 /*
 File Name : logoutUser
- Description : 사용자 로그아웃 함수
- Author : 김유림
- 
- History
- Date        Author   Status    Description
- 2024.06.19  김유림    Created   초기 버전
- */
+Description : 사용자 로그아웃 함수
+Author : 김유림
+
+History
+Date        Author   Status    Description
+2024.06.19  김유림    Created   초기 버전
+*/
 
 import axios from 'axios'
 
@@ -19,20 +19,13 @@ const logoutUser = async () => {
             throw new Error('Refresh Token이 없습니다.')
         }
 
-        const response = await axios.post(API_BASE_URL, {refreshToken})
-
-        if (!response.data.success) {
-            throw new Error('로그아웃 요청 실패')
-        }
+        await axios.post(`${API_BASE_URL}`, {refreshToken})
 
         // 로그아웃 성공 후, 로컬 스토리지에서 토큰 제거
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
-
-        // 로그아웃 성공 후 추가적인 클라이언트 측 처리 가능
     } catch (error) {
-        console.error('로그아웃 실패:', error)
-        // 오류 처리 (예: 사용자에게 오류 메시지 표시)
+        throw error
     }
 }
 

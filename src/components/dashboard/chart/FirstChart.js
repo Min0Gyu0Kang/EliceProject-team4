@@ -8,9 +8,10 @@ Date        Author   Status    Description
 2024.06.10  김유림   Created    
 2024.06.12  김유림   Modified   Y축 라벨 추가
 2024.06.13  김유림   Modified   디자인 수정
+2024.06.16  김유림   Modified   api 연동 완료
 */
 
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     ComposedChart,
     Bar,
@@ -23,71 +24,22 @@ import {
     Scatter,
 } from 'recharts'
 
-const data = [
-    {
-        year: 2010,
-        satisfaction: 42.0,
-        capita: 8.4,
-        line: 8.4,
-    },
-    {
-        year: 2011,
-        capita: 8.3,
-    },
-    {
-        year: 2012,
-        satisfaction: 43.8,
-        capita: 8.9,
-    },
-    {
-        year: 2013,
-        capita: 8.6,
-    },
-    {
-        year: 2014,
-        satisfaction: 41.2,
-        capita: 8.6,
-    },
-    {
-        year: 2015,
-        capita: 8.8,
-    },
-    {
-        year: 2016,
-        satisfaction: 41.3,
-        capita: 9.2,
-    },
-    {
-        year: 2017,
-        capita: 9.6,
-    },
-    {
-        year: 2018,
-        satisfaction: 50.2,
-        capita: 10.1,
-    },
-    {
-        year: 2019,
-        capita: 10.5,
-    },
-    {
-        year: 2020,
-        satisfaction: 58.7,
-        capita: 11.0,
-    },
-    {
-        year: 2021,
-        capita: 11.6,
-    },
-    {
-        year: 2022,
-        satisfaction: 59.1,
-        capita: 12.3,
-        line: 12.3,
-    },
-]
-
 const FirstChart = () => {
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/dashboard')
+                const result = await response.json()
+                setData(result.linebar)
+            } catch (error) {
+                console.error('Error fetching the data', error)
+            }
+        }
+
+        fetchData()
+    }, [])
     return (
         <ResponsiveContainer width={600} height={500}>
             <ComposedChart

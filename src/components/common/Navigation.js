@@ -36,8 +36,7 @@ const Title = styled.h1`
     margin-left: 10px; /* 이미지와 제목 사이의 간격 조정 */
     margin-bottom: 22px;
     font-family: 'Pretendard';
-    font-weight: 700;
-    font-size: 2rem; /* 수정된 제목의 글꼴 크기 */
+    font-weight: 800;
     color: #262627; /* 검은색으로 변경 */
 `
 
@@ -45,8 +44,7 @@ const Subtitle = styled.p`
     margin-top: -15px; /* 부제목과 제목 사이의 간격 조정 */
     margin-left: 5px; /* 제목과 부제목 사이의 간격 조정 */
     font-family: 'Pretendard';
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 600;
     color: #555;
 `
 

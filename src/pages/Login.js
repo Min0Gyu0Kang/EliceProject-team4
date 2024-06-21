@@ -42,11 +42,17 @@ const PasswordContainer = styled.div`
 const PasswordInput = styled(InputStyles.PasswordInput)`
     left: -1.1%; // 오른쪽으로 치우침 해결
 `
+const ErrorMsg = styled.p`
+    color: red;
+    padding-top: 10px;
+    margin: 0;
+`
 
 const Login = ({onLogin}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
+    const [errorMessage, setErrorMessage] = useState(null) // 에러 메시지 상태
     const navigate = useNavigate()
 
     const passwordVisibility = () => {
@@ -61,7 +67,15 @@ const Login = ({onLogin}) => {
             navigate('/map') // 로그인 후 페이지 이동
         } catch (error) {
             console.error('로그인 실패:', error)
-            // 로그인 실패 처리 (예: 오류 메시지 표시)
+            if (error.response && error.response.status === 404) {
+                setErrorMessage('가입되지 않은 이메일입니다.')
+            } else if (error.response && error.response.status === 401) {
+                setErrorMessage('비밀번호가 일치하지 않습니다.')
+            } else {
+                setErrorMessage(
+                    '로그인에 실패했습니다. 잠시 후 다시 시도해주세요.',
+                )
+            }
         }
     }
 
@@ -100,6 +114,8 @@ const Login = ({onLogin}) => {
                     </InputField>
                     <InputStyles.DividingLine />
                     <InputStyles.SignUpConatiner>
+                        {errorMessage && <ErrorMsg>{errorMessage}</ErrorMsg>}
+
                         <InputStyles.SignUpText>
                             아직 계정이 없으신가요?
                             <br />

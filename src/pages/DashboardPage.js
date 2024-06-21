@@ -9,11 +9,11 @@ Date        Author   Status    Description
 2024.06.13  김유림     Modified  네비게이션 컴포넌트 재사용하도록 수정 
 2024.06.14  김유림     Modified  웹폰트 적용
 2024.06.18  이유민     Modified  DashBoard 경로 수정
-2024.06.19  김유림     Modified  헤더 삭제 app.js에서 관리
 */
 
 import React from 'react'
-import Dashboard from '../components/dashboard/DashBoard'
+import Header from '../components/common/Header'
+import DashBoard from '../components/dashboard/DashBoard'
 import Navigation from '../components/common/Navigation'
 import goalIcon from '../assets/images/goal.svg'
 import Footer from '../components/common/Footer'
@@ -43,7 +43,7 @@ const DashboardPage = () => {
                     icon={goalIcon}
                 />
                 <ContentWrapper>
-                    <Dashboard />
+                    <DashBoard />
                 </ContentWrapper>
                 <Footer />
             </PageContainer>
