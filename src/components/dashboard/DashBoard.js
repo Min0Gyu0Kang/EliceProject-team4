@@ -29,14 +29,13 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 30px;
-    margin-top: 120px;
+    margin-top: 100px;
 `
 
 const Divider = styled.div`
     width: 100%;
     height: 1px;
     background-color: #e0e0e0;
-    margin: 30px 0;
 `
 
 const LeftSection = styled.div`
@@ -47,6 +46,8 @@ const LeftSection = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* 컨테이너들을 세로로 배치 */
+    margin-bottom: 50px;
 `
 
 const RightSection = styled.div`
@@ -60,6 +61,7 @@ const RightSection = styled.div`
     display: flex; /* 중앙 정렬을 위해 flex로 설정 */
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
+    flex-direction: column; /* 컨테이너들을 세로로 배치 */
 `
 
 const Highlight = styled.span`
@@ -72,6 +74,7 @@ const BackgroundColor = styled.div`
 `
 const LinkText = styled.div`
     color: #888; /* 연한 색상 */
+    margin-bottom: 100px;
 `
 const Link = styled.a`
     text-decoration: none;
@@ -83,7 +86,20 @@ const Link = styled.a`
 `
 const Source = styled.div`
     text-align: center;
-    padding: 2px 0;
+    color: #888; /* 연한 색상 */
+    padding: 15px;
+`
+const TextField = styled.div`
+    text-align: center;
+    color: #888; /* 연한 색상 */
+`
+
+const Yellow = styled.span`
+    font-weight: bold;
+    font-size: 24px;
+    background-color: yellow; /* 형광펜 효과 */
+    padding: 2px 4px; /* 형광펜 스타일의 패딩 조정 */
+    margin-bottom: 70px;
 `
 
 const Dashboard = () => {
@@ -92,7 +108,22 @@ const Dashboard = () => {
             <BackgroundColor>
                 <Container>
                     <LeftSection>
+                        <Yellow>
+                            1인당 도시 공원 조성 면적 대비 녹지 환경 만족도
+                        </Yellow>
                         <FirstChart />
+                        <Source>
+                            출처: kosis, 국토교통부, 「도시계획현황」 <br />
+                            통계청, 「사회조사」 녹지환경 만족도
+                            <br></br>
+                            {/* <Link
+                                href="https://www.data.go.kr/index.do"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                https://www.data.go.kr/index.do
+                            </Link> */}
+                        </Source>
                     </LeftSection>
                     <RightSection>
                         <p>
@@ -129,13 +160,30 @@ const Dashboard = () => {
                         </p>
                     </RightSection>
                     <LeftSection>
-                        <SecondChart />
+                        <Yellow>
+                            지역별 도시공원 조성 면적과 녹지 환경 만족도 간
+                            상관관계
+                        </Yellow>
+                        <div style={{marginRight: '40px'}}>
+                            {' '}
+                            <SecondChart />
+                        </div>
+
+                        <Source>
+                            출처: 통계청, 「인구 천 명당 도시공원조성면적」{' '}
+                            <br />
+                            통계청, 「사회조사」 녹지환경 만족도
+                        </Source>
                     </LeftSection>
                 </Container>
                 <Divider />
                 <Container>
                     <LeftSection>
+                        <Yellow>현재와 10년 뒤 전국 공원 노후화율</Yellow>
                         <ThirdChart />
+                        <Source>
+                            출처: 공공데이터 포털, 「전국도시공원표준데이터」
+                        </Source>
                     </LeftSection>
                     <RightSection>
                         <p>
@@ -143,9 +191,9 @@ const Dashboard = () => {
                             주목하였고 <br />
                             <Highlight>노후화 된 공원을 개선</Highlight> 하는
                             것이 중요하다고 판단했어요 <br /> <br />
-                            이를 위해 <br />
-                            공원 유지 관리, 공원 정보 제공, 시민의 관심과
-                            지자체의 노력이 필요해요
+                            이를 위해 공원 유지 관리, <br />
+                            공원 정보 제공, 시민의 관심과 지자체의 노력이
+                            필요해요
                         </p>
                     </RightSection>
                 </Container>
@@ -154,7 +202,7 @@ const Dashboard = () => {
                     <RightSection>
                         <p>
                             이에 도시의 오아시스는 '내 주변 공원 추천', '공원
-                            정보 제공', '우리 공원 정보 알림' 등의 서비스를
+                            정보 제공', '우리 공원 리뷰 작성' 등의 서비스를
                             제공하여
                             <br />
                             최종적으로{' '}
@@ -170,6 +218,8 @@ const Dashboard = () => {
                             가져가길 바라요
                             <br /> 저희와 더 나은 도시공원과 거주 환경을 위해
                             함께해요!
+                            <br />
+                            <br />
                         </p>
                     </RightSection>
                 </Container>
@@ -177,8 +227,10 @@ const Dashboard = () => {
                 <Container>
                     <RightSection>
                         <LinkText>
-                            <p style={{fontSize: '15pt'}}>📌 데이터 출처</p>
-                            <Source>
+                            <p style={{fontSize: '15pt'}}>
+                                📌 데이터 출처 링크
+                            </p>
+                            <TextField>
                                 공공데이터 포털 :
                                 <Link
                                     href="https://www.data.go.kr/index.do"
@@ -187,8 +239,8 @@ const Dashboard = () => {
                                 >
                                     https://www.data.go.kr/index.do
                                 </Link>
-                            </Source>
-                            <Source>
+                            </TextField>
+                            <TextField>
                                 통계청 KOSIS :
                                 <Link
                                     href="https://kosis.kr/o"
@@ -197,8 +249,8 @@ const Dashboard = () => {
                                 >
                                     https://kosis.kr/
                                 </Link>
-                            </Source>
-                            <Source>
+                            </TextField>
+                            <TextField>
                                 지표누리 :
                                 <Link
                                     href="https://www.index.go.kr/unity/potal/main.do"
@@ -207,7 +259,7 @@ const Dashboard = () => {
                                 >
                                     https://www.index.go.kr/unity/potal/main.do
                                 </Link>
-                            </Source>
+                            </TextField>
                         </LinkText>
                     </RightSection>
                 </Container>
