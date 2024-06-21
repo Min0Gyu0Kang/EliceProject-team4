@@ -6,14 +6,8 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.10  임지영    Created
-<<<<<<< HEAD
 2024.06.15  임지영    Modified   웹폰트 적용
-<<<<<<< HEAD
-=======
->>>>>>> 2e6311a767e57e9761ce5dae3ab022ce2c7be756
-=======
 2024.06.19  김유림    Modified   로그인 로그아웃 시 함수 생성
->>>>>>> 4d084631fc6f3bd2267f6ad0a445cef1838693ae
 */
 
 import React from 'react'
