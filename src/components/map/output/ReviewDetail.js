@@ -28,6 +28,7 @@ import Typography from '@mui/material/Typography'
 import axios from 'axios'
 import Button from './Button'
 import {useSelector} from 'react-redux'
+import EditButton from './EditButton'
 
 const Container = styled.div`
     width: 100%;
@@ -71,9 +72,11 @@ const Loading = styled.div`
     justify-content: center;
 `
 
-const ReviewDetail = ({onBackClick}) => {
+const ReviewDetail = ({onBackClick, onReviewDetailClick}) => {
+    const reReview = useSelector(state => state.park.reReview)
     const selectedParkId = useSelector(state => state.park.selectedParkId)
     const [data, setData] = useState(null) // 초기값을 null로 설정
+    const [reviews, setReviews] = useState(null)
 
     console.log('Selected Park ID:', selectedParkId)
 
@@ -96,7 +99,7 @@ const ReviewDetail = ({onBackClick}) => {
         }
 
         fetchData()
-    }, [selectedParkId])
+    }, [selectedParkId, reReview])
     const handleBackClick = () => {
         // 뒤로가기 버튼 클릭
         onBackClick()
@@ -110,7 +113,26 @@ const ReviewDetail = ({onBackClick}) => {
             </Loading>
         )
     }
-    console.log('리뷰:', data)
+
+    const myData = data.review
+        .filter(review => review.verification === 'T')
+        .map(review => ({
+            review_id: review.review_id,
+            verification: review.verification,
+            nickname: review.nickname,
+            grade: review.grade,
+            content: review.content,
+        }))
+
+    const othersData = data.review
+        .filter(review => review.verification === 'F')
+        .map(review => ({
+            review_id: review.review_id,
+            verification: review.verification,
+            nickname: review.nickname,
+            grade: review.grade,
+            content: review.content,
+        }))
 
     // parkId가 유효하고 data.park에 해당하는 공원 정보가 있는 경우
     if (selectedParkId && data.park.find(park => park.id === selectedParkId)) {
@@ -173,47 +195,104 @@ const ReviewDetail = ({onBackClick}) => {
                             bgcolor: 'background.paper',
                         }}
                     >
-                        {data.review.map((review, index) => (
-                            <div key={data.review.review_id}>
-                                <StyledListItem1>
-                                    <ListItemAvatar>
-                                        <Avatar />
-                                    </ListItemAvatar>
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            flex: 1,
-                                        }}
-                                    >
-                                        <ListItemText
-                                            primary={review.nickname}
-                                            style={{flex: 1}}
-                                        />
-                                        <Rating
-                                            name={`rating-${index}`}
-                                            value={review.grade}
-                                            precision={0.5}
-                                            readOnly
+                        {myData &&
+                            myData.map((review, index) => (
+                                <div key={review.review_id}>
+                                    <StyledListItem1>
+                                        <ListItemAvatar>
+                                            <Avatar />
+                                        </ListItemAvatar>
+                                        <div
                                             style={{
-                                                marginLeft: '8px',
-                                                marginRight: '8px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                flex: 1,
+                                            }}
+                                        >
+                                            <ListItemText
+                                                primary={review.nickname}
+                                                style={{flex: 1}}
+                                            />
+                                            <Rating
+                                                name={`rating-${index}`}
+                                                value={review.grade}
+                                                precision={0.5}
+                                                readOnly
+                                                style={{
+                                                    marginLeft: '8px',
+                                                    marginRight: '8px',
+                                                }}
+                                            />
+                                            <Typography variant="body2">
+                                                ({review.grade.toFixed(1)})
+                                            </Typography>
+                                        </div>
+                                    </StyledListItem1>
+                                    <StyledListItem2>
+                                        <ListItemText
+                                            secondary={review.content}
+                                            style={{
+                                                flex: 1,
+                                                marginLeft: '58px',
                                             }}
                                         />
-                                        <Typography variant="body2">
-                                            ({review.grade.toFixed(1)})
-                                        </Typography>
-                                    </div>
-                                </StyledListItem1>
-                                <StyledListItem2>
-                                    <ListItemText
-                                        secondary={review.content}
-                                        style={{flex: 1, marginLeft: '58px'}}
+                                    </StyledListItem2>
+                                    <EditButton
+                                        parkData={data}
+                                        myData={myData}
+                                        reviewId={review.review_id}
+                                        onReviewDetailClick={
+                                            onReviewDetailClick
+                                        }
                                     />
-                                </StyledListItem2>
-                                <Divider sx={{margin: '10px'}} />
-                            </div>
-                        ))}
+                                    <Divider sx={{margin: '10px'}} />
+                                </div>
+                            ))}
+                        {othersData &&
+                            othersData.map((review, index) => (
+                                <div key={review.review_id}>
+                                    <StyledListItem1>
+                                        <ListItemAvatar>
+                                            <Avatar />
+                                        </ListItemAvatar>
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                flex: 1,
+                                            }}
+                                        >
+                                            <ListItemText
+                                                primary={review.nickname}
+                                                style={{flex: 1}}
+                                            />
+                                            <Rating
+                                                name={`rating-${index}`}
+                                                value={review.grade}
+                                                precision={0.5}
+                                                readOnly
+                                                style={{
+                                                    marginLeft: '8px',
+                                                    marginRight: '8px',
+                                                }}
+                                            />
+                                            <Typography variant="body2">
+                                                ({review.grade.toFixed(1)})
+                                            </Typography>
+                                        </div>
+                                    </StyledListItem1>
+                                    <StyledListItem2>
+                                        <ListItemText
+                                            secondary={review.content}
+                                            style={{
+                                                flex: 1,
+                                                marginLeft: '58px',
+                                            }}
+                                        />
+                                    </StyledListItem2>
+                                    <Divider sx={{margin: '10px'}} />
+                                </div>
+                            ))}
                     </List>
                 </Container>
             </ContentWrapper>

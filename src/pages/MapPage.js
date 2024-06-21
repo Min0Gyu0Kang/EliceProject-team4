@@ -142,6 +142,7 @@ const MapPage = () => {
                         <ReviewDetail
                             parkId={selectedParkId}
                             onBackClick={handleBackClick} // 뒤로가기 버튼
+                            onReviewDetailClick={handleReviewDetailClick}
                         />
                     )}
                 </RightSection>

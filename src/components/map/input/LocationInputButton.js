@@ -10,7 +10,7 @@ Date        Author   Status    Description
 2024.06.20  임지영    Modified   fetch -> axios
 */
 
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import axios from 'axios'
 import {
@@ -23,17 +23,21 @@ import {
     setSelectedChips,
     setIsSearchResults,
     setUrl,
+    setStar,
 } from '../../redux/parkSlice'
 import {StyledEngineProvider} from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
 import Chip from '@mui/material/Chip'
 import {useSelector} from 'react-redux'
+import {assignNestedKeys} from '@mui/system/cssVars/cssVarsParser'
 
 // 추천공원 검색 시
 const LocationInputButton = () => {
     const dispatch = useDispatch()
 
-    const {city, district, selectedChips} = useSelector(state => state.park)
+    const {city, district, selectedChips, star} = useSelector(
+        state => state.park,
+    )
 
     const handleSearchClick = async () => {
         dispatch(setIsSearchResults(false))
@@ -58,6 +62,7 @@ const LocationInputButton = () => {
             if (response.data.data.length === 0) {
                 dispatch(setIsSearchResults(true))
             }
+            dispatch(setStar(!star))
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
         }

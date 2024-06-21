@@ -19,9 +19,12 @@ const initialState = {
     getName: '',
     isLocation: null,
     //리뷰 아이디
-    reviewId: null,
     url: '/park/recommend?city=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C&district=%EC%9A%A9%EC%82%B0%EA%B5%AC',
     isSearchResults: false,
+    // 리뷰 수정
+    reviewId: null,
+    reReview: true,
+    star: true,
 }
 
 const parkSlice = createSlice({
@@ -96,9 +99,16 @@ const parkSlice = createSlice({
         setIsLocation: (state, action) => {
             state.isLocation = action.payload
         },
-        // 리뷰 아이디
+        // 리뷰 수정&삭제
         setReviewId: (state, action) => {
             state.reviewId = action.payload
+        },
+        setReReview: (state, action) => {
+            state.reReview = action.payload
+        },
+        // 별점 렌더링
+        setStar: (state, action) => {
+            state.star = action.payload
         },
     },
 })
@@ -124,6 +134,8 @@ export const {
     setGetName,
     setIsLocation,
     setReviewId,
+    setReReview,
+    setStar,
 } = parkSlice.actions
 
 export default parkSlice.reducer
