@@ -9,6 +9,7 @@ Date        Author   Status    Description
 2024.06.19  김유림     Modified  헤더 삭제 app.js에서 관리
 2024.06.20  강민규     Modified  커뮤니티용 탭 추가
 2024.06.20  강민규     Modified  게시판, 갤러리 헤더 지움
+2024.06.22  김유림     Modified  레이아웃 수정
 
 */
 
@@ -52,15 +53,16 @@ const CommunityPage = () => {
     }
 
     return (
-        <PageContainer>
-            <Navigation
-                title="민원넣기"
-                subtitle="공원에 불편함이 있으셨나요? 해당 구청으로 건의해보세요 공원 발전에 큰 도움이 됩니다"
-                icon={communityIcon}
-            />
-            <ContentWrapper>
-                <CommunityReports />
-                {/* 
+        <div>
+            <PageContainer>
+                <Navigation
+                    title="민원넣기"
+                    subtitle="공원에 불편함이 있으셨나요? 해당 구청으로 건의해보세요 공원 발전에 큰 도움이 됩니다"
+                    icon={communityIcon}
+                />
+                <ContentWrapper>
+                    <CommunityReports />
+                    {/* 
                 <Tabs
                     value={value}
                     onChange={handleChange}
@@ -83,9 +85,10 @@ const CommunityPage = () => {
                 </Tabs>
                 {renderTabComponent(value)} 
                 */}
-            </ContentWrapper>
-            <Footer />
-        </PageContainer>
+                </ContentWrapper>
+                <Footer />
+            </PageContainer>
+        </div>
     )
 }
 

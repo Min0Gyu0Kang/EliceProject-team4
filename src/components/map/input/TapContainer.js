@@ -7,6 +7,7 @@ History
 Date        Author   Status    Description
 2024.06.17  임지영    Created
 2024.06.20  임지영    Modified  Redux 적용
+2024.06.20  김유림    Modified  탭 폰트, 크기 변경
 */
 
 import React, {useState} from 'react'
@@ -102,12 +103,19 @@ export default function TapContainer() {
                         label="지역 검색"
                         {...a11yProps(0)}
                         sx={{
+                            fontSize: '1rem', // 폰트 사이즈 설정
                             borderRadius: '8px 0 0 8px',
                             width: '50%',
                             height: '20px',
                             backgroundColor:
                                 value === 0 ? '#30CB6E' : '#C7D1CB',
                             color: value === 0 ? 'white' : 'grey',
+                            '&:hover': {
+                                color: 'white', // 호버 시 색깔을 흰색으로 유지
+                            },
+                            '&.Mui-selected': {
+                                color: 'white', // 선택된 탭의 색깔을 흰색으로 설정
+                            },
                             minHeight: '40px',
                         }}
                     />
@@ -115,12 +123,19 @@ export default function TapContainer() {
                         label="직접 검색"
                         {...a11yProps(1)}
                         sx={{
+                            fontSize: '1rem', // 폰트 사이즈 설정
                             borderRadius: '0 8px 8px 0',
                             width: '50%',
                             height: '20px',
                             backgroundColor:
                                 value === 1 ? '#30CB6E' : '#C7D1CB',
                             color: value === 1 ? 'white' : 'grey',
+                            '&:hover': {
+                                color: 'white', // 호버 시 색깔을 흰색으로 유지
+                            },
+                            '&.Mui-selected': {
+                                color: 'white', // 선택된 탭의 색깔을 흰색으로 설정
+                            },
                             minHeight: '40px',
                         }}
                     />

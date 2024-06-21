@@ -10,6 +10,7 @@ Date        Author   Status      Description
 2024.06.19  김유림   Modified    헤더 로그인/로그아웃 시 변경
 2024.06.20  박수정   Modified    회원 Index 페이지, 마이페이지, 회원정보 수정, 회원탈퇴 기능 추가
 2024.06.21  박수정   Modified    회원 Index 페이지, 회원탈퇴 기능 수정
+2024.06.22  김유림   Modified    div스타일 적용
 */
 
 import React, {useState, useEffect} from 'react'
@@ -26,7 +27,6 @@ import IndexPage from './pages/UserIndexPage'
 import Mypage from './pages/Mypage'
 import UpdateUser from './pages/UpdateUser'
 import Withdraw from './pages/Withdraw'
-import NotFound from './pages/NotFound'
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -42,32 +42,30 @@ const App = () => {
     }
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />} />
-            </Routes>
-            <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-            <Routes>
-                <Route
-                    path="/login"
-                    element={<Login onLogin={handleLogin} />}
-                />
-                <Route path="/signUp" element={<SignUp />} />
-                <Route path="/findPassword" element={<FindPassword />} />
-                <Route path="/dataStory" element={<Dashboard />} />
-                <Route path="/community" element={<Community />} />
-                <Route path="/map" element={<Map />} />
-                <Route path="/users/index" element={<IndexPage />} />
-                <Route path="/users/mypage" element={<Mypage />} />
-                <Route path="/users/update" element={<UpdateUser />} />
-                <Route
-                    path="/users/withdraw"
-                    element={<Withdraw onWithdraw={handleLogout} />}
-                />
-                {/* 구현해둔 페이지 접속 */}
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </BrowserRouter>
+        <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
+            <BrowserRouter>
+                <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route
+                        path="/login"
+                        element={<Login onLogin={handleLogin} />}
+                    />
+                    <Route path="/signUp" element={<SignUp />} />
+                    <Route path="/findPassword" element={<FindPassword />} />
+                    <Route path="/dataStory" element={<Dashboard />} />
+                    <Route path="/community" element={<Community />} />
+                    <Route path="/map" element={<Map />} />
+                    <Route path="/users/index" element={<IndexPage />} />
+                    <Route path="/users/mypage" element={<Mypage />} />
+                    <Route path="/users/update" element={<UpdateUser />} />
+                    <Route
+                        path="/users/withdraw"
+                        element={<Withdraw onWithdraw={handleLogout} />}
+                    />
+                </Routes>
+            </BrowserRouter>
+        </div>
     )
 }
 
