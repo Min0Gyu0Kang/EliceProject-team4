@@ -88,7 +88,7 @@ const Header = ({isLoggedIn, onLogout}) => {
                     to="/community"
                     isActive={location.pathname === '/community'}
                 >
-                    커뮤니티
+                    민원넣기
                 </Nav>
                 {isLoggedIn ? (
                     <>
