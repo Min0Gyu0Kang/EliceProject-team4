@@ -15,12 +15,14 @@ const reissueAccessToken = async () => {
     try {
         // localStorage에 저장된 RefreshToken 가져옴
         const refreshToken = localStorage.getItem('refreshToken')
-        
+
         // 서버에 post('/reissue-token) 요청
-        const response = await axios.post('/users/reissue-token', { refreshToken })
-        
+        const response = await axios.post('/users/reissue-token', {
+            refreshToken,
+        })
+
         // 서버로부터 newAccessToken 재발급
-        const { newAccessToken } = response.data.token
+        const {newAccessToken} = response.data.token
 
         // localStorage에 newAccessToken 저장
         localStorage.setItem('accessToken', newAccessToken)

@@ -1,22 +1,22 @@
-/**File Name : UserPage
-Description : 회원 페이지
+/**File Name : UserIndexPage
+Description : 회원 Index 페이지
 Author : 박수정
 
 History
 Date        Author   Status     Description
 2024.06.20  박수정   Created
-2024.06.20  박수정   Modified   회원 페이지 추가
+2024.06.20  박수정   Modified   회원 Index 페이지 추가
+2024.06.21  박수정   Modified   회원 Index 페이지 수정
 */
 
-import React from 'react';
-import { useNavigate  } from 'react-router-dom';
+import React from 'react'
+import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import '../assets/fonts/font.css'
 import * as InputStyles from '../components/inputs/InputStyles'
 import Footer from '../components/common/Footer'
 
-const UserPageContent = styled(InputStyles.LoginContent)`
-`
+const UserPageContent = styled(InputStyles.LoginContent)``
 
 const ButtonContainer = styled.div`
     display: flex;
@@ -41,15 +41,14 @@ const Button = styled.button`
     }
 `
 
-const Title = styled(InputStyles.Logo)`
-`
+const Title = styled(InputStyles.Logo)``
 
-const UserPage = () => {
-    const navigate = useNavigate();
+const IndexPage = () => {
+    const navigate = useNavigate()
 
     const moveMypage = () => {
-        navigate('/users/mypage');
-    };
+        navigate('/users/mypage')
+    }
 
     return (
         <div>
@@ -65,7 +64,7 @@ const UserPage = () => {
             </InputStyles.LoginContainer>
             <Footer />
         </div>
-    );
-};
+    )
+}
 
-export default UserPage;
+export default IndexPage

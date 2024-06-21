@@ -13,12 +13,12 @@ import reissueAccessToken from './ReissueAccessToken'
 
 // authAxios 인스턴스 생성
 const authAxios = axios.create({
-    baseURL: ''
+    baseURL: '',
 })
 
 // authAxios 인스턴스에 대해 요청 인터셉터 설정
 authAxios.interceptors.request.use(
-    (config) => {
+    config => {
         // AccessToken 가져옴
         const accessToken = localStorage.getItem('accessToken')
 
@@ -29,13 +29,13 @@ authAxios.interceptors.request.use(
 
         return config
     },
-    (error) => Promise.reject(error)
+    error => Promise.reject(error),
 )
 
 // authAxios 인스턴스에 대해 응답 인터셉터 설정
 authAxios.interceptors.response.use(
-    (response) => response,
-    async (error) => {
+    response => response,
+    async error => {
         // AccessToken 만료 시, RefreshToken으로 새로운 AccessToken 발급
         const originalRequest = error.config
 
@@ -46,10 +46,11 @@ authAxios.interceptors.response.use(
             try {
                 // RefreshToken으로 AccessToken을 재발급 받음
                 const newAccessToken = await reissueAccessToken()
-                
+
                 // Authorization 헤더에 새로운 AccessToken 설정
-                axios.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`
-                
+                axios.defaults.headers.common['Authorization'] =
+                    `Bearer ${newAccessToken}`
+
                 // 기존 요청을 authAxios 인스턴스로 재전송
                 return authAxios(originalRequest)
             } catch (err) {
@@ -57,7 +58,7 @@ authAxios.interceptors.response.use(
             }
         }
         return Promise.reject(error)
-    }
+    },
 )
 
 export default authAxios
