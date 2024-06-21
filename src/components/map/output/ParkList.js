@@ -19,6 +19,7 @@ import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 import ParkName from '../../common/ParkName'
+import {useSelector} from 'react-redux'
 
 const ParkListContainer = styled.div`
     font-family: 'Pretendard';
@@ -39,14 +40,14 @@ const Number = styled.p`
     text-align: center;
 `
 
-const ParkList = ({onParkClick, parkData, error}) => {
-    console.log('ParkList parkData:', parkData) // 데이터 확인용 로그
+const ParkList = ({onParkClick}) => {
+    const searchResults = useSelector(state => state.park.searchResults)
+
     return (
         <StyledEngineProvider injectFirst>
             <ParkListContainer>
-                {parkData &&
-                    parkData.data &&
-                    parkData.data.slice(0, 5).map((park, index) => (
+                {searchResults &&
+                    searchResults.data.slice(0, 5).map((park, index) => (
                         <List key={index} onClick={() => onParkClick(park.id)}>
                             <Stack direction="row" spacing={1.5}>
                                 <Number>{index + 1}</Number>
@@ -63,7 +64,6 @@ const ParkList = ({onParkClick, parkData, error}) => {
                             </Stack>
                         </List>
                     ))}
-                {error && <p>Error: {error.message}</p>}
             </ParkListContainer>
         </StyledEngineProvider>
     )

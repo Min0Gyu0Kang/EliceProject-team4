@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.11  임지영    Created
 2024.06.13  임지영    Modified   폰트 적용
 2024.06.17  임지영    Modified   SignUp과 겹치는 스타일 InputStyles.js로 분리
+2024.06.20  김유림    Modified   비밀번호 찾기 및 스타일 추가
 */
 
 import React, {useState} from 'react'
@@ -25,6 +26,7 @@ import loginUser from '../api/Login' // 로그인 API 함수
 
 const LoginContent = styled(InputStyles.LoginContent)`
     height: 550px;
+    margin: 100px;
 `
 
 const InputField = styled(InputStyles.InputField)`
@@ -105,6 +107,9 @@ const Login = ({onLogin}) => {
                         </InputStyles.SignUpText>
                         <InputStyles.SignUpButton to="/signUp">
                             회원가입
+                        </InputStyles.SignUpButton>
+                        <InputStyles.SignUpButton to="/findPassword">
+                            비밀번호 찾기
                         </InputStyles.SignUpButton>
                     </InputStyles.SignUpConatiner>
                 </LoginContent>

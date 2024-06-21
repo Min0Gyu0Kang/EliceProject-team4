@@ -21,6 +21,8 @@ import Keyword from '../../common/Keyword'
 import Box from '@mui/material/Box'
 import {TextField, Stack} from '@mui/material'
 import IconSearch1 from '../../../assets/images/IconSearch1.svg'
+import {useDispatch, useSelector} from 'react-redux'
+import {setName} from '../../redux/parkSlice'
 
 const Container = styled.div``
 
@@ -49,9 +51,12 @@ const StyledTextField = styled(TextField)`
     }
 `
 
-function DirectSearch({name, setName}) {
+function DirectSearch() {
+    const dispatch = useDispatch()
+    const name = useSelector(state => state.park.name)
+
     const handleChange = event => {
-        setName(event.target.value)
+        dispatch(setName(event.target.value))
     }
 
     return (

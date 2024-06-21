@@ -43,7 +43,7 @@ const DashboardPage = () => {
                     icon={goalIcon}
                 />
                 <ContentWrapper>
-                    <DashBoard />
+                    <Dashboard />
                 </ContentWrapper>
                 <Footer />
             </PageContainer>

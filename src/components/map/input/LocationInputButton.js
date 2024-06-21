@@ -10,24 +10,28 @@ Date        Author   Status    Description
 2024.06.20  임지영    Modified   fetch -> axios
 */
 
-import React, {useState} from 'react'
+import React from 'react'
+import {useDispatch} from 'react-redux'
 import axios from 'axios'
-import Chip from '@mui/material/Chip'
+import {
+    setSearchResults,
+    setShowParkList,
+    resetSelection,
+    clearSelection,
+    setIsLocation,
+} from '../../redux/parkSlice'
+import {StyledEngineProvider} from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
-import {StyledEngineProvider} from '@mui/styled-engine'
+import Chip from '@mui/material/Chip'
+import {useSelector} from 'react-redux'
 
 // 추천공원 검색 시
-const LocationInputButton = ({
-    selectedValues,
-    onSearchComplete,
-    openParkList,
-    onClearSelection,
-}) => {
-    const [isSearched, setIsSearched] = useState(true)
-    const handleSearchClick = async () => {
-        const {city, district, selectedChips} = selectedValues
-        const isSearched = true
+const LocationInputButton = () => {
+    const dispatch = useDispatch()
 
+    const {city, district, selectedChips} = useSelector(state => state.park)
+
+    const handleSearchClick = async () => {
         const queryParams = new URLSearchParams()
         if (city) queryParams.append('city', city)
         if (district) queryParams.append('district', district)
@@ -39,12 +43,11 @@ const LocationInputButton = ({
 
         try {
             const response = await axios.get(url)
-
-            if (typeof onSearchComplete === 'function') {
-                onSearchComplete(response.data) // 상위 컴포넌트로 데이터 전달
-                openParkList(isSearched) // 검색이 완료되면 openParkList 함수 호출
-            } else {
-                console.error('onSearchComplete is not a function')
+            console.log('response', response)
+            if (response.data.data.length !== 0) {
+                dispatch(setSearchResults(response.data))
+                dispatch(setShowParkList(true))
+                dispatch(setIsLocation(true))
             }
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
@@ -52,9 +55,9 @@ const LocationInputButton = ({
     }
 
     const handleClearClick = () => {
-        onClearSelection() 
-        setIsSearched(false)
-        openParkList(isSearched) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
+        dispatch(resetSelection())
+        dispatch(clearSelection())
+        dispatch(setShowParkList(false)) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
     }
 
     return (

@@ -9,43 +9,50 @@ Date        Author   Status    Description
 2024.06.20  임지영    Modified   fetch -> axios
 */
 
-import React, {useState} from 'react'
+import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios'
+import {
+    setSearchResults,
+    setShowParkList,
+    resetSelection,
+    setGetName,
+    setIsLocation,
+    clearSelection,
+    setName,
+} from '../../redux/parkSlice'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 
 // 추천공원 검색 시
-function DirectInputButton({onSearchComplete, openParkList, name, onClearSelection}) {
-     const [isSearched, setIsSearched] = useState(true)
+function DirectInputButton() {
+    const dispatch = useDispatch()
+    const name = useSelector(state => state.park.name)
 
     const handleClick = async () => {
-        const isSearched = true
-
+        dispatch(setGetName(name))
         const url = `/park/search/${name}`
 
         try {
             const response = await axios.get(url)
 
             if (response.status !== 200 && response.status !== 201) {
-            throw new Error('네트워크 응답이 올바르지 않습니다.');
-        }
-
-            if (typeof onSearchComplete === 'function') {
-                onSearchComplete(response.data) // 상위 컴포넌트로 데이터 전달
-                openParkList(isSearched) // 검색이 완료되면 openParkList 함수 호출
-            } else {
-                console.error('onSearchComplete is not a function')
+                throw new Error('네트워크 응답이 올바르지 않습니다.')
             }
+            dispatch(setSearchResults(response.data)) // 상위 컴포넌트로 데이터 전달
+            dispatch(setShowParkList(true)) // 검색이 완료되면 openParkList 함수 호출
+            dispatch(setIsLocation(false))
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
         }
     }
 
-      const handleClearClick = () => {
-        onClearSelection() 
-        setIsSearched(false)
-        openParkList(isSearched) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
+    const handleClearClick = () => {
+        dispatch(resetSelection())
+        dispatch(setShowParkList(false)) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
+        dispatch(clearSelection())
+        dispatch(setName(''))
     }
 
     return (
@@ -61,7 +68,7 @@ function DirectInputButton({onSearchComplete, openParkList, name, onClearSelecti
                     }}
                     variant="outlined"
                     size="large"
-                   onClick={handleClearClick}
+                    onClick={handleClearClick}
                 />
                 <Chip
                     label="추천 공원 검색"

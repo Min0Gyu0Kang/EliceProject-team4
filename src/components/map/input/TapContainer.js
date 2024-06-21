@@ -6,9 +6,10 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.17  임지영    Created
+2024.06.20  임지영    Modified  Redux 적용
 */
 
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -17,6 +18,14 @@ import LocationSearch from './LocationSearch'
 import DirectSearch from './DirectSearch'
 import LocationInputButton from './LocationInputButton'
 import DirectInputButton from './DirectInputButton'
+import {useDispatch, useSelector} from 'react-redux'
+import {
+    setShowParkList,
+    resetSelection,
+    clearSelection,
+    setName,
+    setIsLocation,
+} from '../../redux/parkSlice'
 
 function CustomTabPanel(props) {
     const {children, value, index, ...other} = props
@@ -47,27 +56,24 @@ function a11yProps(index) {
     }
 }
 
-export default function TapContainer({onSearchComplete, openParkList}) {
-    const [selectedValues, setSelectedValues] = useState({
-        city: '',
-        district: '',
-        selectedChips: [],
-    })
+export default function TapContainer() {
+    const dispatch = useDispatch()
 
-    const [name, setName] = useState('')
+    // // Redux state를 가져옴
+    const {name} = useSelector(state => state.park)
 
     const [value, setValue] = useState(0)
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
+        dispatch(resetSelection())
+        dispatch(clearSelection())
+        dispatch(setShowParkList(false))
+        dispatch(setName(''))
     }
 
-    const handleClearSelection = value => {
-        setSelectedValues({
-            city: '',
-            district: '',
-            selectedChips: [],
-        })
+    const handleClearSelection = () => {
+        dispatch(clearSelection())
     }
 
     return (
@@ -118,30 +124,13 @@ export default function TapContainer({onSearchComplete, openParkList}) {
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-                <LocationSearch  // 지역 검색 화면 컴포넌트
-                    selectedValues={selectedValues} // 시/군, 시/군/구 및 추천태그 선택값
-                    setSelectedValues={setSelectedValues}  // selectedValues 변경 함수
-                    onClearSelection={handleClearSelection} // 초기화하려고 만들어놓은 함수
-                />
-                <LocationInputButton
-                 // 시/군, 시/군/구 및 추천태그 선택값
-                 // 버튼 클릭시 쿼리파라미터로 보내기 위해
-                    selectedValues={selectedValues} 
-                    // MapPage를 거져서 내주변공원으로 입력 데이터 보내려고
-                    onSearchComplete={onSearchComplete}
-                    // 검색 버튼 클릭시 내주변공원 컴포넌트(NearPark > ParkList) 보여주기 위해
-                    openParkList={openParkList}
-                    // 초기화하려고 만들어놓은 함수
-                    onClearSelection={handleClearSelection}
-                />
+                <LocationSearch />
+                <LocationInputButton />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                {/* 직접 검색한 값을 name으로 받아 오려고 */}
-                <DirectSearch name={name} setName={setName} /> 
+                <DirectSearch name={name} />
                 <DirectInputButton
-                    onSearchComplete={onSearchComplete} // LocationInputButton과 같은 용도
-                    openParkList={openParkList} // 얘도
-                    name={name} // 검색 버튼 클릭시 파라미터
+                    name={name}
                     onClearSelection={handleClearSelection}
                 />
             </CustomTabPanel>
