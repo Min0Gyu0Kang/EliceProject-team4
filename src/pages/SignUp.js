@@ -1,3 +1,19 @@
+/**
+File Name : SignUp
+Description : 회원가입 페이지
+Author : 임지영
+
+History
+Date        Author   Status    Description
+2024.06.11  임지영    Created
+2024.06.13  임지영    Modified   비밀번호 입력칸 오른쪽 치우침 해결
+2024.06.13  임지영    Modified   폰트 적용
+2024.06.17  임지영    Modified   Login과 겹치는 스타일 InputStyles.js로 분리
+2024.06.19  김유림    Modified   회원가입 api연결
+2024.06.20  김유림    Modified   에러코드 작성
+2024.06.23  김유림    Modified   에러메세지 추가
+*/
+
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import '../assets/fonts/font.css'
