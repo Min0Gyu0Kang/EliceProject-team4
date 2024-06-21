@@ -9,6 +9,7 @@ Date        Author   Status    Description
 2024.06.13  임지영    Modified   폰트 적용
 2024.06.17  임지영    Modified   SignUp과 겹치는 스타일 InputStyles.js로 분리
 2024.06.20  김유림    Modified   비밀번호 찾기 및 스타일 추가
+2024.06.21  강민규    Modified   비밀번호 찾기 회원가입 가로 정렬
 */
 
 import React, {useState} from 'react'
@@ -23,6 +24,7 @@ import EyeIcon from '../assets/images/eye.svg' // 눈 아이콘 추가
 import EyeOffIcon from '../assets/images/eye-off.svg' // 눈 감김 아이콘 추가
 import * as InputStyles from '../components/inputs/InputStyles'
 import loginUser from '../api/Login' // 로그인 API 함수
+
 
 const LoginContent = styled(InputStyles.LoginContent)`
     height: 550px;
@@ -46,6 +48,13 @@ const ErrorMsg = styled.p`
     color: red;
     padding-top: 10px;
     margin: 0;
+`
+
+const NotLogin =styled.div`
+    flex-direction: row;
+    *{
+        margin: 10px 10px;
+    }
 `
 
 const Login = ({onLogin}) => {
@@ -121,12 +130,14 @@ const Login = ({onLogin}) => {
                             <br />
                             계정을 만들고 더 많은 기능을 사용해 보세요!
                         </InputStyles.SignUpText>
+                     <NotLogin> {/* 가로로 정렬 */}
                         <InputStyles.SignUpButton to="/signUp">
                             회원가입
                         </InputStyles.SignUpButton>
                         <InputStyles.SignUpButton to="/findPassword">
                             비밀번호 찾기
                         </InputStyles.SignUpButton>
+                    </NotLogin>
                     </InputStyles.SignUpConatiner>
                 </LoginContent>
             </InputStyles.LoginContainer>
