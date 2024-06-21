@@ -9,6 +9,7 @@ Date        Author   Status    Description
 2024.06.18  임지영      Done    스타일 완성
 2024.06.20  임지영    Modified   fetch -> axios
 2024.06.22  김유림    Modified   칩 위치 수정, 전체 레이아웃 수정 
+2024.06.22  이유민    Modified   비활성화 추가
 */
 
 import React from 'react'
@@ -93,9 +94,11 @@ const LocationInputButton = () => {
                     color: 'white',
                     padding: '19px 18px',
                     fontSize: '1rem',
+                    cursor: isCityValid ? 'pointer' : 'not-allowed', // city 선택 안 하면 선택 못함
                 }}
                 size="large"
                 onClick={handleSearchClick}
+                disabled={!isCityValid} // city 선택 안 하면 비활성화
             />
         </Stack>
     )

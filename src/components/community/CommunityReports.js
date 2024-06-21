@@ -204,7 +204,6 @@ const CommunityReports = () => {
                             style={{
                                 marginRight: '30px',
                                 marginTop: '10px',
-                                cursor: 'pointer',
                             }}
                         />
                     </Stack>

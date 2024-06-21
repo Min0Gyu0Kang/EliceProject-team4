@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.18  임지영    Created
 2024.06.20  임지영    Modified   fetch -> axios
 2024.06.22  김유림    Modified   칩 크기 레이아웃 수정
+2024.06.22  이유민    Modified   비활성화 추가
 */
 
 import React from 'react'
@@ -84,9 +85,11 @@ function DirectInputButton() {
                     color: 'white',
                     padding: '19px 18px',
                     fontSize: '1rem',
+                    cursor: isNameValid ? 'pointer' : 'not-allowed', // name 입력 안 하면 선택 못함
                 }}
                 size="large"
                 onClick={handleClick}
+                disabled={!isNameValid} // name 입력 안 하면 비활성화
             />
         </Stack>
     )

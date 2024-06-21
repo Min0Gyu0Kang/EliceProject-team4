@@ -18,12 +18,12 @@ import Dunes from '../assets/images/dunesNotFound.svg'
 import {useNavigate} from 'react-router-dom'
 
 const Center = styled.div`
-    padding-top: 50px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 80%;
     width: 100%;
     text-align: center;
 `
@@ -95,7 +95,7 @@ const NotFound = () => {
     return (
         <Center>
             <Title>404: 페이지를 찾을 수 없습니다.</Title>
-            <img src={Dunes} width="20%" height="20%" />
+            <img src={Dunes} width="20%" height="35%" />
             <Content>
                 때로는 여행자도 길을 잃고 방황할 때가 있는 법이죠.
                 <br />
