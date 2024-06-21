@@ -15,7 +15,7 @@ import styled, {css} from 'styled-components'
 import {StyledEngineProvider} from '@mui/styled-engine'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
-import Alert from '../../../assets/images/alert.svg'
+import Alert from '../../../assets/images/alert (1).svg'
 import LoginModalText from '../../common/LoginModalText'
 
 const style = {

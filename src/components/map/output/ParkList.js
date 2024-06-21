@@ -19,8 +19,9 @@ import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 import ParkName from '../../common/ParkName'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import Empty from '../../common/Empty'
+import {setSelectedParkId} from '../../redux/parkSlice'
 
 const ParkListContainer = styled.div`
     font-family: 'Pretendard';
@@ -42,6 +43,7 @@ const Number = styled.p`
 `
 
 const ParkList = ({onParkClick}) => {
+    const dispatch = useDispatch()
     const searchResults = useSelector(state => state.park.searchResults)
     console.log(searchResults)
     return (
@@ -53,7 +55,7 @@ const ParkList = ({onParkClick}) => {
                             <Empty text="공원이름으로 검색해주세요" />
                         ) : searchResults.data === 98 ? (
                             <Empty text="검색한 조건에 맞는 공원이 없어요" />
-                        ) : searchResults.data.length === 1 ? (
+                        ) : searchResults.data.length === 2 ? (
                             <Empty text="공원을 검색해보세요" />
                         ) : searchResults.data.length > 0 ? (
                             searchResults.data
@@ -61,7 +63,9 @@ const ParkList = ({onParkClick}) => {
                                 .map((park, index) => (
                                     <List
                                         key={index}
-                                        onClick={() => onParkClick(park.id)}
+                                        onClick={() =>
+                                            dispatch(setSelectedParkId(park.id))
+                                        }
                                     >
                                         <Stack direction="row" spacing={1.5}>
                                             <Number>{index + 1}</Number>
@@ -81,7 +85,7 @@ const ParkList = ({onParkClick}) => {
                                     </List>
                                 ))
                         ) : (
-                            <Empty text="검색한 조건에 맞는 공원이 없어요" />
+                            <Empty text="공원을 검색해보세요" />
                         )
                     ) : (
                         <Empty text="공원을 검색해보세요" />

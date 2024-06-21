@@ -26,6 +26,8 @@ import Rating from '@mui/material/Rating'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import axios from 'axios'
+import Button from './Button'
+import {useSelector} from 'react-redux'
 
 const Container = styled.div`
     width: 100%;
@@ -61,21 +63,40 @@ const RatingWrapper = styled(Box)`
     align-items: center;
 `
 
-const ReviewDetail = ({parkId, onBackClick}) => {
+const Loading = styled.div`
+    height: 100%;
+    text-align: center;
+    display: felx;
+    align-items: center;
+    justify-content: center;
+`
+
+const ReviewDetail = ({onBackClick}) => {
+    const selectedParkId = useSelector(state => state.park.selectedParkId)
     const [data, setData] = useState(null) // 초기값을 null로 설정
+
+    console.log('Selected Park ID:', selectedParkId)
 
     useEffect(() => {
         const fetchData = async () => {
+            if (!selectedParkId) {
+                console.error('Invalid selectedParkId:', selectedParkId)
+                return
+            }
+
+            const url = `/park-review/details/${selectedParkId}`
+            console.log('Fetching URL:', url)
+
             try {
-                const response = await axios.get(`/park-review/details/${parkId}`)
+                const response = await axios.get(url)
                 setData(response.data)
             } catch (error) {
                 console.error('Error fetching the data', error)
             }
         }
-        fetchData()
-    }, [parkId])
 
+        fetchData()
+    }, [selectedParkId])
     const handleBackClick = () => {
         // 뒤로가기 버튼 클릭
         onBackClick()
@@ -83,12 +104,19 @@ const ReviewDetail = ({parkId, onBackClick}) => {
 
     // 데이터가 로드되지 않았을 때 로딩 상태를 표시
     if (!data) {
-        return <div>리뷰 정보를 가져오는 중입니다</div>
+        return (
+            <Loading>
+                <p>리뷰 정보를 가져오는 중입니다</p>
+            </Loading>
+        )
     }
+    console.log('리뷰:', data)
 
     // parkId가 유효하고 data.park에 해당하는 공원 정보가 있는 경우
-    if (parkId && data.park.find(park => park.id === parkId)) {
-        const parkInformation = data.park.find(park => park.id === parkId)
+    if (selectedParkId && data.park.find(park => park.id === selectedParkId)) {
+        const parkInformation = data.park.find(
+            park => park.id === selectedParkId,
+        )
 
         return (
             <ContentWrapper>
@@ -128,7 +156,7 @@ const ReviewDetail = ({parkId, onBackClick}) => {
                             />
                         </RatingWrapper>
                     </ParkNameWrapper>
-                    <Divider sx={{margin: '10px'}} />
+                    <Divider sx={{margin: '20px'}} />
 
                     {data.review.length === 0 && (
                         <Typography
@@ -146,7 +174,7 @@ const ReviewDetail = ({parkId, onBackClick}) => {
                         }}
                     >
                         {data.review.map((review, index) => (
-                            <div key={index}>
+                            <div key={data.review.review_id}>
                                 <StyledListItem1>
                                     <ListItemAvatar>
                                         <Avatar />

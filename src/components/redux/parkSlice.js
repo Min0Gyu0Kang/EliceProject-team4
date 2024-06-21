@@ -18,6 +18,8 @@ const initialState = {
     getData: {},
     getName: '',
     isLocation: null,
+    //리뷰 아이디
+    reviewId: null,
 }
 
 const parkSlice = createSlice({
@@ -86,6 +88,10 @@ const parkSlice = createSlice({
         setIsLocation: (state, action) => {
             state.isLocation = action.payload
         },
+        // 리뷰 아이디
+        setReviewId: (state, action) => {
+            state.reviewId = action.payload
+        },
     },
 })
 
@@ -107,6 +113,7 @@ export const {
     setGetData,
     setGetName,
     setIsLocation,
+    setReviewId,
 } = parkSlice.actions
 
 export default parkSlice.reducer

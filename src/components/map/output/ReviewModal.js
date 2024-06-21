@@ -126,7 +126,6 @@ export default function ReviewModal({
     park,
     onReviewDetailClick,
 }) {
-    const dispatch = useDispatch()
     const selectedParkId = useSelector(state => state.park.selectedParkId)
 
     const [content, setContent] = useState('')
@@ -154,14 +153,20 @@ export default function ReviewModal({
             alert('별점과 내용을 모두 입력해주세요.')
             return
         }
+
+        const token = localStorage.getItem('accessToken')
+        console.log('토큰', token)
         try {
-            const response = await axios.post(`park-review/${selectedParkId}`, {
-                // headers: {
-                //     Authorization: `Bearer ${token}`,
-                // },
-                content: content,
-                grade: rating,
-            })
+            const response = await axios.post(
+                `park-review/${selectedParkId}`,
+                {
+                    content: content,
+                    grade: rating,
+                },
+                {
+                    headers: {Authorization: `Bearer ${token}`},
+                },
+            )
             if (response.status !== 201) {
                 throw new Error('네트워크 응답이 올바르지 않습니다.')
             }

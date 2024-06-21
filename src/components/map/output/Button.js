@@ -18,14 +18,25 @@ import LoginModal from './LoginModal'
 import ReviewModal from './ReviewModal'
 
 const Button = ({park, parkId, onReviewDetailClick}) => {
-    const [openModal, setOpenModal] = useState(false)
+    const [openLoginModal, setOpenLoginModal] = useState(false)
+    const [openReviewModal, setOpenReviewModal] = useState(false)
 
     const handleClick = async () => {
-        setOpenModal(true)
+        const token = localStorage.getItem('accessToken') // 로컬 스토리지에서 토큰 가져오기
+        console.log('토큰', token)
+        if (!token) {
+            setOpenLoginModal(true) // 토큰이 없으면 로그인 모달 열기
+        } else {
+            setOpenReviewModal(true) // 토큰이 있으면 리뷰 모달 열기
+        }
     }
 
-    const handleClose = () => {
-        setOpenModal(false)
+    const handleCloseLoginModal = () => {
+        setOpenLoginModal(false)
+    }
+
+    const handleCloseReviewModal = () => {
+        setOpenReviewModal(false)
     }
 
     return (
@@ -53,12 +64,15 @@ const Button = ({park, parkId, onReviewDetailClick}) => {
                 }}
                 size="large"
             />
-            {/* <LoginModal open={openModal} handleClose={handleClose} /> */}
+            <LoginModal
+                open={openLoginModal}
+                handleClose={handleCloseLoginModal}
+            />
             <ReviewModal
                 park={park}
                 parkId={parkId}
-                open={openModal}
-                handleClose={handleClose}
+                open={openReviewModal}
+                handleClose={handleCloseReviewModal}
                 onReviewDetailClick={onReviewDetailClick}
             />
         </Stack>

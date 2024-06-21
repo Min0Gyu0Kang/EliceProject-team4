@@ -114,7 +114,7 @@ const LocationSearch = () => {
     const handleCityClick = () => {
         dispatch(setDistrict(''))
         dispatch(setSelectedChips([]))
-        dispatch(setSearchResults({data: [99]}))
+        dispatch(setSearchResults({data: []}))
     }
 
     // MenuProps 설정
