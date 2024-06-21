@@ -54,8 +54,9 @@ const FindPasswordForm = () => {
         e.preventDefault()
 
         try {
-            await findPassword(name, email)
+            const response = await findPassword(name, email)
             setMessage(`임시 비밀번호가 이메일로 발송되었습니다.`)
+            localStorage.setItem('refreshToken', response.refreshToken) // 새로운 refresh 토큰을 저장하거나 세션 등에 관리할 수 있음
         } catch (error) {
             console.error('비밀번호 찾기 오류:', error)
             setError('서버 오류가 발생했습니다.')
