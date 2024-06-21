@@ -159,7 +159,7 @@ const CommunityReports = () => {
                     <div
                         style={{
                             textAlign: 'center',
-                            marginRight: '30%',
+                            marginRight: '45%',
                             marginTop: '10%',
                         }}
                     >
