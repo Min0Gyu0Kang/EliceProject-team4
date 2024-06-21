@@ -21,6 +21,8 @@ import {
     clearSelection,
     setName,
     setSelectedParkId,
+    setIsSearchResults,
+    setUrl,
 } from '../../redux/parkSlice'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
@@ -32,26 +34,23 @@ function DirectInputButton() {
     const {name} = useSelector(state => state.park)
 
     const handleClick = async () => {
+        dispatch(setIsSearchResults(false))
         dispatch(setSelectedParkId(null))
-        dispatch(setGetName(name))
-        dispatch(setName(null))
         dispatch(setIsLocation(false))
 
         const url = `/park/search/${name}`
-
+        dispatch(setUrl(url))
         try {
             const response = await axios.get(url)
             dispatch(setSearchResults(response.data)) // 상위 컴포넌트로 데이터 전달
             dispatch(setShowParkList(true)) // 검색이 완료되면 openParkList 함수 호출
             dispatch(setIsLocation(false))
 
-            if (response.status !== 200 && response.status !== 201) {
-                throw new Error('네트워크 응답이 올바르지 않습니다.')
+            if (response.data.data.length === 0) {
+                dispatch(setIsSearchResults(true))
             }
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
-            dispatch(setIsLocation(null))
-            dispatch(setSearchResults({data: [99]})) // 지도 null값 url 위치로 고정
         }
     }
 

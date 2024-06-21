@@ -21,6 +21,8 @@ import {
     setIsLocation,
     setSelectedParkId,
     setSelectedChips,
+    setIsSearchResults,
+    setUrl,
 } from '../../redux/parkSlice'
 import {StyledEngineProvider} from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
@@ -34,8 +36,8 @@ const LocationInputButton = () => {
     const {city, district, selectedChips} = useSelector(state => state.park)
 
     const handleSearchClick = async () => {
+        dispatch(setIsSearchResults(false))
         dispatch(setSelectedParkId(null))
-        // dispatch(setSelectedChips([]))
         dispatch(setIsLocation(true))
 
         const queryParams = new URLSearchParams()
@@ -46,14 +48,15 @@ const LocationInputButton = () => {
         }
 
         const url = `/park/recommend?${queryParams.toString()}`
-
+        dispatch(setUrl(url))
         try {
             const response = await axios.get(url)
             console.log('response', response)
             dispatch(setSearchResults(response.data))
             dispatch(setShowParkList(true))
             dispatch(setIsLocation(true))
-            if (response.data.data.length !== 0) {
+            if (response.data.data.length === 0) {
+                dispatch(setIsSearchResults(true))
             }
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
@@ -64,6 +67,7 @@ const LocationInputButton = () => {
         dispatch(resetSelection())
         dispatch(clearSelection())
         dispatch(setShowParkList(false)) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
+        dispatch(setIsLocation(null))
     }
 
     return (

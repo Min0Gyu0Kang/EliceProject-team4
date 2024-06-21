@@ -25,6 +25,7 @@ import {
     clearSelection,
     setName,
     setIsLocation,
+    setIsSearchResults,
 } from '../../redux/parkSlice'
 
 function CustomTabPanel(props) {
@@ -71,6 +72,7 @@ export default function TapContainer() {
         dispatch(setShowParkList(false))
         dispatch(setName(''))
         dispatch(setIsLocation(null))
+        dispatch(setIsSearchResults(false))
     }
 
     const handleClearSelection = () => {
