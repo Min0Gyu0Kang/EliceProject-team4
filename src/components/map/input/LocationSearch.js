@@ -29,6 +29,7 @@ import {
     setSearchResults,
     setSelectedChips,
     setSelection,
+    setSelectedParkId,
 } from '../../redux/parkSlice'
 
 const Container = styled.div`
@@ -115,6 +116,7 @@ const LocationSearch = () => {
         dispatch(setDistrict(''))
         dispatch(setSelectedChips([]))
         dispatch(setSearchResults({data: []}))
+        dispatch(setSelectedParkId(''))
     }
 
     // MenuProps 설정
