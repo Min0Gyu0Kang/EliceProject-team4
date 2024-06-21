@@ -1,18 +1,3 @@
-/**
-File Name : SignUp
-Description : 회원가입 페이지
-Author : 임지영
-
-History
-Date        Author   Status    Description
-2024.06.11  임지영    Created
-2024.06.13  임지영    Modified   비밀번호 입력칸 오른쪽 치우침 해결
-2024.06.13  임지영    Modified   폰트 적용
-2024.06.17  임지영    Modified   Login과 겹치는 스타일 InputStyles.js로 분리
-2024.06.19  김유림    Modified   회원가입 api연결
-2024.06.20  김유림    Modified   에러코드 작성
-*/
-
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import '../assets/fonts/font.css'
@@ -84,7 +69,7 @@ const SignUp = () => {
 
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
-    const [errorMessage, setErrorMessage] = useState('')
+    const [error, setError] = useState(null)
     const [successMessage, setSuccessMessage] = useState('')
 
     const navigate = useNavigate()
@@ -107,24 +92,22 @@ const SignUp = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-
+        setError(null)
         const {name, nickname, email, password, confirmPassword} = formData
 
         try {
             if (!name || !nickname || !email || !password || !confirmPassword) {
-                throw new Error('입력하지 않은 데이터가 있습니다.')
+                setError('입력하지 않은 데이터가 있습니다.')
             }
 
             const nameRegex = /^([가-힣]{2,20}|[a-zA-Z]{2,20})$/
             if (!nameRegex.test(name)) {
-                throw new Error(
-                    '이름을 2-20자 이내 한글 또는 영문으로 입력해주세요.',
-                )
+                setError('이름을 2-20자 이내 한글 또는 영문으로 입력해주세요.')
             }
 
             const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,10}$/
             if (!nicknameRegex.test(nickname)) {
-                throw new Error(
+                setError(
                     '닉네임을 2-10자 이내의 한글, 영문자, 숫자로 입력해주세요.',
                 )
             }
@@ -134,25 +117,37 @@ const SignUp = () => {
                 !passwordRegex.test(password) ||
                 !passwordRegex.test(confirmPassword)
             ) {
-                throw new Error(
-                    '비밀번호를 숫자 포함 8자 이상으로 입력해주세요.',
-                )
+                setError('비밀번호를 숫자 포함 8자 이상으로 입력해주세요.')
             }
 
             if (password !== confirmPassword) {
-                throw new Error('비밀번호가 일치하지 않습니다.')
+                setError('비밀번호가 일치하지 않습니다.')
             }
 
             await signUp(formData)
-            setErrorMessage('')
-            setSuccessMessage('회원가입이 완료되었습니다!')
+            setSuccessMessage('회원가입이 완료되었습니다.')
 
             setTimeout(() => {
                 setSuccessMessage('')
                 navigate('/login')
             }, 2000)
         } catch (error) {
-            setErrorMessage(error.message)
+            if (error.response && error.response.data.error) {
+                // 서버에서 반환한 오류 메시지 처리
+                if (
+                    error.response.data.error === '이미 존재하는 닉네임입니다.'
+                ) {
+                    setError('이미 존재하는 닉네임입니다.')
+                } else if (
+                    error.response.data.error === '이미 존재하는 이메일입니다.'
+                ) {
+                    setError('이미 존재하는 이메일입니다.')
+                } else {
+                    setError(error.response.data.error)
+                }
+            } else {
+                setError('회원가입에 실패하였습니다.')
+            }
         }
     }
 
@@ -227,7 +222,7 @@ const SignUp = () => {
                                 />
                             </InputStyles.ToggleButton>
                         </PasswordContainer>
-                        {errorMessage && <ErrorMsg>{errorMessage}</ErrorMsg>}
+                        {error && <ErrorMsg>{error}</ErrorMsg>}
                         {successMessage && (
                             <SuccessMsg>{successMessage}</SuccessMsg>
                         )}
