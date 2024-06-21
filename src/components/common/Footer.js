@@ -6,6 +6,7 @@ Author : 임지영
 History
 Date        Author   Status    Description
 2024.06.11  임지영   Created
+2024.06.21  강민규   Modified  Footer at bottom relative
 */
 
 import React from 'react'
@@ -13,9 +14,9 @@ import styled from 'styled-components'
 
 const FooterContainer = styled.div`
     text-align: center;
-    position: absolute;
+    position: relative;
     bottom: 0;
-    width: 100vw;
+    width: 100%;
     height: 40px;
     font-size: 9pt;
 `
