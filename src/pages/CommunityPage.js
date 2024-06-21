@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.10  김유림     Created
 2024.06.19  김유림     Modified  헤더 삭제 app.js에서 관리
 2024.06.20  강민규     Modified  커뮤니티용 탭 추가
+2024.06.20  강민규     Modified  게시판, 갤러리 헤더 지움
 
 */
 
@@ -45,10 +46,10 @@ const CommunityPage = () => {
     };
     const renderTabComponent = (tabValue) => {
         switch (tabValue) {
-          case 'one':
-            return <CommunityBoard />;
-          case 'two':
-            return <CommunityGallery />;
+          // case 'one':
+          //   return <CommunityBoard />;
+          // case 'two':
+          //   return <CommunityGallery />;
           case 'three':
             return <CommunityReports />;
           default:
@@ -71,8 +72,8 @@ const CommunityPage = () => {
                 indicatorColor="none"
                 sx={{minWidth:'50%'}}
             >
-                <Tab value="one" label="게시판" sx={{bgcolor: value === 'one' ? '#30cb6e' : '',color: value === 'one' ? '#fff' : '#252525', border:'10',borderRadius:'40%',fontFamily:"Pretendard"}}/>
-                <Tab value="two" label="갤러리" sx={{bgcolor: value === 'two' ? '#30cb6e' : '',color: value === 'two' ? '#fff' : '#252525', border:'10',borderRadius:'40%',fontFamily:"Pretendard"}}/>
+                {/* <Tab value="one" label="게시판" sx={{bgcolor: value === 'one' ? '#30cb6e' : '',color: value === 'one' ? '#fff' : '#252525', border:'10',borderRadius:'40%',fontFamily:"Pretendard"}}/> */}
+                {/* <Tab value="two" label="갤러리" sx={{bgcolor: value === 'two' ? '#30cb6e' : '',color: value === 'two' ? '#fff' : '#252525', border:'10',borderRadius:'40%',fontFamily:"Pretendard"}}/> */}
                 <Tab value="three" label="민원넣기" sx={{bgcolor: value === 'three' ? '#30cb6e' : '',color: value === 'three' ? '#fff' : '#252525', border:'10',borderRadius:'40%',fontFamily:"Pretendard"}}/>
             </Tabs>
             {renderTabComponent(value)}
