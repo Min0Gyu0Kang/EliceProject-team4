@@ -20,12 +20,20 @@ const initialState = {
     isLocation: null,
     //리뷰 아이디
     reviewId: null,
+    url: '/park/recommend?city=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C&district=%EC%9A%A9%EC%82%B0%EA%B5%AC',
+    isSearchResults: false,
 }
 
 const parkSlice = createSlice({
     name: 'park',
     initialState,
     reducers: {
+        setIsSearchResults: (state, action) => {
+            state.isSearchResults = action.payload
+        },
+        setUrl: (state, action) => {
+            state.url = action.payload
+        },
         setSelection: (state, action) => {
             state.city = action.payload.city
             state.district = action.payload.district
@@ -96,6 +104,8 @@ const parkSlice = createSlice({
 })
 
 export const {
+    setIsSearchResults,
+    setUrl,
     setSelection,
     setView,
     setShowParkList,

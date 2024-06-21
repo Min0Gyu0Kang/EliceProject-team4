@@ -28,31 +28,35 @@ import {setSelectedParkId} from '../../redux/parkSlice'
 
 const Map = () => {
     const [parkData, setParkData] = useState([])
+    const searchResults = useSelector(state => state.park.searchResults)
+
     const {city, district, selectedChips} = useSelector(state => state.park)
     const isLocation = useSelector(state => state.park.isLocation)
+    const isSearchResults = useSelector(state => state.park.isSearchResults)
     const showParkList = useSelector(state => state.park.showParkList)
     const {getName} = useSelector(state => state.park)
     const dispatch = useDispatch()
     let url = ''
 
-    if (isLocation === null) {
-        // 기본 화면 == 서울시 용산구
-        url = `/park/recommend?city=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C&district=%EC%9A%A9%EC%82%B0%EA%B5%AC`
-    } else if (isLocation === true) {
-        const queryParams = new URLSearchParams()
-        if (city) queryParams.append('city', city)
-        if (district) queryParams.append('district', district)
-        if (selectedChips && selectedChips.length > 0) {
-            queryParams.append('facilities', selectedChips.join(','))
-        }
-        url = `/park/recommend?${queryParams.toString()}`
-    } else {
-        url = `/park/search/${getName}`
-    }
+    // if (isLocation === null) {
+    //     // 기본 화면 == 서울시 용산구
+    // } else if (isLocation === true) {
+    //     const queryParams = new URLSearchParams()
+    //     if (city) queryParams.append('city', city)
+    //     if (district) queryParams.append('district', district)
+    //     if (selectedChips && selectedChips.length > 0) {
+    //         queryParams.append('facilities', selectedChips.join(','))
+    //     }
+    //     url = `/park/recommend?${queryParams.toString()}`
+    // } else {
+    //     url = `/park/search/${getName}`
+    // }
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                url = `/park/recommend?city=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C&district=%EC%9A%A9%EC%82%B0%EA%B5%AC`
+
                 const response = await axios.get(url)
                 return response.data.data // 데이터 반환
             } catch (error) {
@@ -67,8 +71,14 @@ const Map = () => {
         }
 
         getData() // 비동기 데이터를 처리하기 위한 함수를 호출
-    }, [url])
-    console.log(parkData)
+    }, [])
+
+    useEffect(() => {
+        if (!searchResults.data || searchResults?.data?.length === 0) return
+        console.log('searchResults.data', searchResults.data)
+        setParkData(searchResults.data)
+    }, [searchResults])
+
     useEffect(() => {
         // 카카오 객체가 로드된 후에 실행되도록 함
         const script = document.createElement('script')
@@ -170,12 +180,12 @@ const Map = () => {
         return () => {
             document.head.removeChild(script)
         }
-    }, [parkData, showParkList, dispatch])
+    }, [parkData, showParkList])
 
     return (
         <div style={{position: 'relative', width: '100%', height: '100%'}}>
             <div id="map" style={{width: '100%', height: '100%'}}></div>
-            {parkData && parkData.length === 0 && showParkList && (
+            {isSearchResults && (
                 <div
                     style={{
                         position: 'absolute',
