@@ -8,6 +8,7 @@ Date        Author   Status    Description
 2024.06.19  강민규   Created
 2024.06.19  강민규   Modified
 2024.06.20  강민규   Modified  민원으로 구청 불러오기(초기값에 공원이 없다고 뜸, 아이콘 버튼으로 연동 안 됨)
+2024.06.21  강민규   Modified  초기값에 공원이 없다고 안 뜸, 아이콘 버튼으로 연동 안 됨, 결과 CSS 수정, 새탭으로 구청 열림
 */
 
 import {React,useState,useEffect} from 'react'
@@ -77,63 +78,107 @@ const ParkSearchContainer = styled.p`
     color: #555;
 `
 
+const ParkSearchName = styled.p`
+    font-size:1.3rem;
+    font-family: 'Pretendard';
+    font-weight: 700;
+`
+
+const ParkSearchManagement = styled.p`
+    position: relative;
+    top: 4px;
+    font-weight: 500;
+`
+
 const StyledLink = styled.a`
     color: #252525;
+    font-size:1rem;
     cursor: pointer;
     text-decoration: none;
 `;
 
 const CommunityReports = () => {
+    // 확인할 공원 이름
     const [textFieldValue, setTextFieldValue] = useState('');
+    // axios get으로 불러진 공원 이름
     const [parkComplaint, setParkComplaint] = useState([]);
-    const [resultValue, setResultValue] = useState(null);
+    // 공원 유/무에 따라 추가할 div
+    const [resultValue, setResultValue] = useState(null); 
 
+    
     const handleInputChange = (event, value) => {
         setTextFieldValue(value);
     };
 
+    //이미지 클릭 시 검색 보내기
+    // const handleSearchClick = (event,value) => {
+    //     if (textFieldValue.trim() !== '') {
+    //         handleInputChange(value); // Explicitly set the state to trigger useEffect
+    //     }
+    // };
+
+    //검색 결과 axios get
+    const delay = 2000; //입력 시 2초 후 결과 목록 가져오기 
     useEffect(() => {
-        if (textFieldValue !== ' ') {
-        axios.get(`http://localhost:3000/community/complaint/${textFieldValue}`)
-          .then(function (response) {
-            setParkComplaint(response.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        if (textFieldValue !== '') {
+          const fetchData = () => {
+            axios.get(`http://localhost:3000/community/complaint/${textFieldValue}`)
+              .then(response => {
+                setParkComplaint(response.data.slice(0, 10)); //get only up to 10 park data
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          };
+    
+          const timeoutId = setTimeout(fetchData, delay);
+    
+          // 지연 초기화
+          return () => clearTimeout(timeoutId);
         }
-    }, [textFieldValue]);
+      }, [textFieldValue]);
 
-    const park = parkComplaint.find(park => park.name === textFieldValue);
+    
 
+    //해당되는 공원 목록 있으면 출력, 없으면 대체 텍스트 띄우기
     useEffect(() => {
+        const park = parkComplaint.find(park => park.name === textFieldValue);
+        //아예 공원정보를 안 주고 검색하면
         if (park) {
+            console.log('park exists');
             setResultValue(
                 <ContentWrapper>
                     <ParkSearchContainer>
-                        <Stack direction = 'row'>
+                        <Stack direction = 'row' spacing={1}>
                         <img
                             src={IconLinkto}
                             alt="Linkto"
-                            height='20px'
-                            style={{ }}
+                            height='25 px'
+                            style={{ paddingBottom: '1px' }}
                         />
-                        {park.name}{park.management}
+                        <ParkSearchName>{park.name}</ParkSearchName> <ParkSearchManagement>{park.management}</ParkSearchManagement>
                         </Stack>
+                        <StyledLink href={park.link} target="_blank" rel="noopener noreferrer" >{park.link}</StyledLink>
                     </ParkSearchContainer>
-                    <StyledLink href={park.link}  >{park.link}</StyledLink>
+                    
                 </ContentWrapper>
             );
-        } else {
+        } else{
+            if(!park && textFieldValue.trim() !== ''){
+            console.log('Park not exist');
             setResultValue(
                 <div style={{ textAlign: 'center', marginRight: '30%', marginTop: '10%' }}>
                     찾을 수 없는 공원을 입력하셨어요.
                     공원 이름을 다시 확인해주세요.
                 </div>
             );
+            }
+            else{ //입력 지웠을 때 초기화
+                setResultValue(' ');
+            }
         }
-    }, [park]);
-
+        
+    }, [parkComplaint, textFieldValue]);
     return (
         <PageContainer>
             <ContentWrapper>
@@ -149,16 +194,17 @@ const CommunityReports = () => {
                                 borderColor: '#555',
                             }}
                             value={textFieldValue}
+                            onInputChange={handleInputChange}
                             freeSolo
                             options={parkComplaint.map((option) => option.name)}
-                            onChange={handleInputChange}
                             renderInput={(params) => <TextField {...params} label="공원 이름을 검색해보세요" />}
                         />
                         <img
                             src={IconSearch1}
                             alt="Search"
                             height='40px'
-                            style={{ marginRight: '30px',}}
+                            // onClick={handleSearchClick}
+                            style={{ marginRight: '30px', cursor:'pointer'}}
                         />
                     </Stack>
                 </SearchBar>
@@ -167,6 +213,6 @@ const CommunityReports = () => {
             </ContentWrapper>
         </PageContainer>
     );
-};
+}
 
 export default CommunityReports;

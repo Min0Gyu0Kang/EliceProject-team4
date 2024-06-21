@@ -19,7 +19,10 @@ Date        Author   Status    Description
 2024.06.21  이유민   Modified  지도 바운드 설정
 2024.06.21  이유민   Modified  지도 버튼 클릭 시에만 화면 전환하도록 수정
 2024.06.21  이유민   Modified  검색된 공원이 없습니다 추가
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a816abda19df0b08d708bede5f4a1c81f6759e6
 */
 
 import React, {useEffect, useState} from 'react'
@@ -51,6 +54,12 @@ const Map = () => {
         url = `/park/search/${getName}`
     }
 
+<<<<<<< HEAD
+=======
+    // console.log(isLocation)
+    // console.log(url)
+
+>>>>>>> 5a816abda19df0b08d708bede5f4a1c81f6759e6
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -163,7 +172,10 @@ const Map = () => {
                         )
                         return marker
                     })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a816abda19df0b08d708bede5f4a1c81f6759e6
                     clusterer.addMarkers(markers)
                 }
             })
