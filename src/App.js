@@ -10,10 +10,18 @@ Date        Author   Status      Description
 2024.06.19  김유림   Modified    헤더 로그인/로그아웃 시 변경
 2024.06.20  박수정   Modified    회원 Index 페이지, 마이페이지, 회원정보 수정, 회원탈퇴 기능 추가
 2024.06.21  박수정   Modified    회원 Index 페이지, 회원탈퇴 기능 수정
+2024.06.22  김유림   Modified    div스타일 적용
+2024.06.23  이유민   Modified    404 오류 해결
 */
 
 import React, {useState, useEffect} from 'react'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    useLocation,
+    Navigate,
+} from 'react-router-dom'
 import Header from './components/common/Header'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -26,10 +34,11 @@ import IndexPage from './pages/UserIndexPage'
 import Mypage from './pages/Mypage'
 import UpdateUser from './pages/UpdateUser'
 import Withdraw from './pages/Withdraw'
+import NotFound from './pages/NotFound'
 
-const App = () => {
+const AppContent = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+    const location = useLocation()
     useEffect(() => {}, [])
 
     const handleLogin = () => {
@@ -40,13 +49,16 @@ const App = () => {
         setIsLoggedIn(false)
     }
 
+    const hideHeaderPaths = ['/']
+
     return (
-        <BrowserRouter>
+        <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
+            {!hideHeaderPaths.includes(location.pathname) && (
+                <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+            )}
+
             <Routes>
                 <Route path="/" element={<Home />} />
-            </Routes>
-            <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-            <Routes>
                 <Route
                     path="/login"
                     element={<Login onLogin={handleLogin} />}
@@ -63,7 +75,17 @@ const App = () => {
                     path="/users/withdraw"
                     element={<Withdraw onWithdraw={handleLogout} />}
                 />
+                <Route path="*" element={<Navigate to="/404" replace />} />
+                <Route path="/404" element={<NotFound />} />
             </Routes>
+        </div>
+    )
+}
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <AppContent />
         </BrowserRouter>
     )
 }

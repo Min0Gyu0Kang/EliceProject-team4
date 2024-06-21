@@ -13,6 +13,7 @@ Date        Author   Status    Description
 2024.06.17  강민규   Modified  handleInputChange 작동 확인
 2024.06.17  임지영   Modified  버튼 및 전체 스타일 수정
 2024.06.18  임지영   Modified  버튼 및 전체 스타일 수정
+2024.06.22  김유림   Modified  StyledTextField 수정, 전체 레이아웃 수정 
 */
 
 import React from 'react'
@@ -28,9 +29,8 @@ const Container = styled.div``
 
 const StyledTextField = styled(TextField)`
     & .MuiOutlinedInput-root {
-        height: 40px;
         & fieldset {
-            border-radius: 15px;
+            border-radius: 20px;
         }
     }
     & .MuiOutlinedInput-input {
@@ -65,21 +65,22 @@ function DirectSearch() {
     return (
         <Container>
             <Keyword text="이름 검색" />
-            <Box sx={{padding: '10px 0'}} />
+            <Box sx={{padding: '20px 0px'}} />
             <Box component="form" noValidate autoComplete="off">
-                <Stack direction="row" spacing={1}>
+                <Stack direction="row">
                     <StyledTextField
                         id="outlined-basic"
-                        placeholder="공원 이름을 검색해보세요"
+                        placeholder="공원 이름을 검색해보세요."
                         variant="outlined"
                         value={name}
                         onChange={handleChange}
                         onClick={handleCityClick}
                         InputProps={{
                             sx: {
-                                height: '40px',
+                                width: '100%',
+                                height: '50px',
                                 padding: '0 50px',
-                                marginLeft: '10px',
+                                marginLeft: '1px',
                             },
                         }}
                         InputLabelProps={{
@@ -89,11 +90,16 @@ function DirectSearch() {
                             },
                         }}
                     />
-                    <img src={IconSearch1} alt="Search" height="40px" />
+                    <img
+                        src={IconSearch1}
+                        alt="Search"
+                        height="40px"
+                        style={{marginTop: '5px', marginLeft: '2px'}}
+                    />
                 </Stack>
             </Box>
             {/* <Result value={resultValue} /> */}
-            <div style={{height: '563.5px'}}></div>
+            <div style={{height: '612px'}}></div>
         </Container>
     )
 }

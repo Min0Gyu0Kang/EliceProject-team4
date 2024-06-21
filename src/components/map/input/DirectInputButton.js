@@ -7,6 +7,8 @@ History
 Date        Author   Status    Description
 2024.06.18  임지영    Created
 2024.06.20  임지영    Modified   fetch -> axios
+2024.06.22  김유림    Modified   칩 크기 레이아웃 수정
+2024.06.22  이유민    Modified   비활성화 추가
 */
 
 import React from 'react'
@@ -32,6 +34,7 @@ import {StyledEngineProvider} from '@mui/styled-engine'
 function DirectInputButton() {
     const dispatch = useDispatch()
     const {name} = useSelector(state => state.park)
+    const isNameValid = name !== ''
 
     const handleClick = async () => {
         dispatch(setIsSearchResults(false))
@@ -62,33 +65,33 @@ function DirectInputButton() {
     }
 
     return (
-        <StyledEngineProvider injectFirst>
-            <Stack direction="row" spacing={6.5} justifyContent="center">
-                <Chip
-                    label="선택 초기화"
-                    sx={{
-                        backgroundColor: '#ffffff',
-                        color: 'grey',
-                        padding: '5% 8%',
-                        fontSize: '1rem',
-                    }}
-                    variant="outlined"
-                    size="large"
-                    onClick={handleClearClick}
-                />
-                <Chip
-                    label="추천 공원 검색"
-                    sx={{
-                        backgroundColor: '#30cb6e',
-                        color: 'white',
-                        padding: '5.3% 5.3%',
-                        fontSize: '1rem',
-                    }}
-                    size="large"
-                    onClick={handleClick}
-                />
-            </Stack>
-        </StyledEngineProvider>
+        <Stack direction="row" spacing={4} justifyContent="center">
+            <Chip
+                label="선택 초기화"
+                sx={{
+                    backgroundColor: '#ffffff',
+                    color: 'grey',
+                    padding: '18px 20px',
+                    fontSize: '1rem',
+                }}
+                variant="outlined"
+                size="large"
+                onClick={handleClearClick}
+            />
+            <Chip
+                label="추천 공원 검색"
+                sx={{
+                    backgroundColor: '#30cb6e',
+                    color: 'white',
+                    padding: '19px 18px',
+                    fontSize: '1rem',
+                    cursor: isNameValid ? 'pointer' : 'not-allowed', // name 입력 안 하면 선택 못함
+                }}
+                size="large"
+                onClick={handleClick}
+                disabled={!isNameValid} // name 입력 안 하면 비활성화
+            />
+        </Stack>
     )
 }
 

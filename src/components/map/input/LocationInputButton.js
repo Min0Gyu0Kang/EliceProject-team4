@@ -8,6 +8,8 @@ Date        Author   Status    Description
 2024.06.17  임지영    Created   유림님이 만들어주신 Button 적용
 2024.06.18  임지영      Done    스타일 완성
 2024.06.20  임지영    Modified   fetch -> axios
+2024.06.22  김유림    Modified   칩 위치 수정, 전체 레이아웃 수정 
+2024.06.22  이유민    Modified   비활성화 추가
 */
 
 import React, {useEffect} from 'react'
@@ -38,6 +40,7 @@ const LocationInputButton = () => {
     const {city, district, selectedChips, star} = useSelector(
         state => state.park,
     )
+    const isCityValid = city !== ''
 
     const handleSearchClick = async () => {
         dispatch(setIsSearchResults(false))
@@ -76,33 +79,33 @@ const LocationInputButton = () => {
     }
 
     return (
-        <StyledEngineProvider injectFirst>
-            <Stack direction="row" spacing={6.5} justifyContent="center">
-                <Chip
-                    label="선택 초기화"
-                    sx={{
-                        backgroundColor: '#ffffff',
-                        color: 'grey',
-                        padding: '5% 8%',
-                        fontSize: '1rem',
-                    }}
-                    variant="outlined"
-                    size="large"
-                    onClick={handleClearClick}
-                />
-                <Chip
-                    label="추천 공원 검색"
-                    sx={{
-                        backgroundColor: '#30cb6e',
-                        color: 'white',
-                        padding: '5.3% 5.3%',
-                        fontSize: '1rem',
-                    }}
-                    size="large"
-                    onClick={handleSearchClick}
-                />
-            </Stack>
-        </StyledEngineProvider>
+        <Stack direction="row" spacing={4} justifyContent="center">
+            <Chip
+                label="선택 초기화"
+                sx={{
+                    backgroundColor: '#ffffff',
+                    color: 'grey',
+                    padding: '18px 20px',
+                    fontSize: '1rem',
+                }}
+                variant="outlined"
+                size="large"
+                onClick={handleClearClick}
+            />
+            <Chip
+                label="추천 공원 검색"
+                sx={{
+                    backgroundColor: '#30cb6e',
+                    color: 'white',
+                    padding: '19px 18px',
+                    fontSize: '1rem',
+                    cursor: isCityValid ? 'pointer' : 'not-allowed', // city 선택 안 하면 선택 못함
+                }}
+                size="large"
+                onClick={handleSearchClick}
+                disabled={!isCityValid} // city 선택 안 하면 비활성화
+            />
+        </Stack>
     )
 }
 

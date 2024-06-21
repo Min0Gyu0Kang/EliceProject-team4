@@ -48,7 +48,7 @@ const StyledBox = styled(Box)`
 const SubText = styled.div`
     color: #262627;
     margin-left: 10px;
-    font-size: 10pt;
+    font-size: 11pt;
 `
 
 const Search = styled.div`
@@ -62,7 +62,7 @@ const Text = styled.text`
 const StyledChip = styled(Chip)`
     border-radius: 30px;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
     background-color: #7f7777;
     font-weight: 500;
     background-color: #7f7777;
@@ -166,11 +166,11 @@ const LocationSearch = () => {
                 <Search>
                     <StyledBox>
                         <SubText> 시 / 도 </SubText>
-                        <FormControl sx={{width: '85%'}}>
+                        <FormControl sx={{width: '100%'}}>
                             <Select
                                 sx={{
-                                    height: 40,
-                                    borderRadius: '15px',
+                                    height: 50,
+                                    borderRadius: '20px',
                                 }}
                                 labelId="selectCity"
                                 id="selectCity"
@@ -200,11 +200,11 @@ const LocationSearch = () => {
 
                     <StyledBox>
                         <SubText>시 / 군 / 구</SubText>
-                        <FormControl sx={{width: '85%'}}>
+                        <FormControl sx={{width: '100%'}}>
                             <Select
                                 sx={{
-                                    height: 40,
-                                    borderRadius: '15px',
+                                    height: 50,
+                                    borderRadius: '20px',
                                 }}
                                 labelId="selectDistrict"
                                 id="selectDistrict"
@@ -273,7 +273,7 @@ const LocationSearch = () => {
                 </Stack>
             </Search>
             {/* <Result value={ResultValue} /> */}
-            <div style={{height: '335px'}}></div>
+            <div style={{height: '390px'}}></div>
         </Container>
     )
 }

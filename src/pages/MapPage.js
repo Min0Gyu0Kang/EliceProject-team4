@@ -16,7 +16,8 @@ Date        Author   Status    Description
 2024.06.18  김유림   Modified   리뷰 상세보기 연결
 2024.06.18  임지영   Modified   Middle 및 LeftSection 가로폭 수정
 2024.06.19  임지영   Modified   추천공원검색 버튼 중복클릭시 검색결과 안 뜨는 오류 해결
-2024.06.20  임지영    Modified  Redux 적용
+2024.06.20  임지영   Modified   Redux 적용
+2024.06.22  김유림   Modified   전체 레이아웃 수정
 */
 
 import React, {useState} from 'react'
@@ -48,10 +49,11 @@ const ContentWrapper = styled.div`
 
 const LeftSection = styled.div`
     flex: 2.3; /* 왼쪽 섹션이 부모의 1/6을 차지하도록 설정 */
+    margin-right: -8px;
 `
 
 const MiddleSection = styled.div`
-    flex: 4; /* 가운데 섹션이 부모의 4/6을 차지하도록 설정 */
+    flex: 5; /* 가운데 섹션이 부모의 4/6을 차지하도록 설정 */
     background-color: #e0e0e0; /* 예제용 배경색 */
     display: flex;
     justify-content: center;
@@ -59,7 +61,7 @@ const MiddleSection = styled.div`
 `
 
 const RightSection = styled.div`
-    flex: 2.5; /* 오른쪽 섹션이 부모의 2/6을 차지하도록 설정 */
+    flex: 2.7; /* 오른쪽 섹션이 부모의 2/6을 차지하도록 설정 */
     background-color: #ffffff; /* 예제용 배경색 */
     display: flex;
     flex-direction: column; /* 세로로 요소 배치 설정 */

@@ -15,6 +15,7 @@ import React from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import styled from 'styled-components'
 import logoutUser from '../../api/Logout' // 로그아웃 함수 import
+import '../../styles/index.css'
 
 const HeaderWrapper = styled.div`
     font-family: 'gmarket Medium';
@@ -70,45 +71,51 @@ const Header = ({isLoggedIn, onLogout}) => {
             // 오류 처리 (예: 사용자에게 오류 메시지 표시)
         }
     }
-
+    // Home에서 헤더 숨기기
+    if (window.location.pathname === '/') return null
     return (
-        <HeaderWrapper>
-            <Logo to="/">도시의 오아시스</Logo>
-            <div>
-                <Nav to="/map" isActive={location.pathname === '/map'}>
-                    공원 찾기
-                </Nav>
-                <Nav
-                    to="/dataStory"
-                    isActive={location.pathname === '/dataStory'}
-                >
-                    데이터 스토리
-                </Nav>
-                <Nav
-                    to="/community"
-                    isActive={location.pathname === '/community'}
-                >
-                    커뮤니티
-                </Nav>
-                {isLoggedIn ? (
-                    <>
-                        <Nav
-                            to="/users/index"
-                            isActive={location.pathname === '/index'}
-                        >
-                            회원 페이지
-                        </Nav>
-                        <Nav to="/login" onClick={handleLogout}>
-                            로그아웃
-                        </Nav>
-                    </>
-                ) : (
-                    <Nav to="/login" isActive={location.pathname === '/login'}>
-                        로그인
+        <div className="header">
+            <HeaderWrapper>
+                <Logo to="/">도시의 오아시스</Logo>
+                <div>
+                    <Nav to="/map" isActive={location.pathname === '/map'}>
+                        공원 찾기
                     </Nav>
-                )}
-            </div>
-        </HeaderWrapper>
+                    <Nav
+                        to="/dataStory"
+                        isActive={location.pathname === '/dataStory'}
+                    >
+                        데이터 스토리
+                    </Nav>
+                    <Nav
+                        to="/community"
+                        isActive={location.pathname === '/community'}
+                    >
+                        민원넣기
+                    </Nav>
+                    {isLoggedIn ? (
+                        <>
+                            <Nav
+                                to="/users/index"
+                                isActive={location.pathname === '/index'}
+                            >
+                                회원 페이지
+                            </Nav>
+                            <Nav to="/login" onClick={handleLogout}>
+                                로그아웃
+                            </Nav>
+                        </>
+                    ) : (
+                        <Nav
+                            to="/login"
+                            isActive={location.pathname === '/login'}
+                        >
+                            로그인
+                        </Nav>
+                    )}
+                </div>
+            </HeaderWrapper>
+        </div>
     )
 }
 
