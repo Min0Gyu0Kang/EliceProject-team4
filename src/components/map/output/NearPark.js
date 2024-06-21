@@ -14,7 +14,7 @@ Date        Author   Status    Description
 2024.06.20  임지영    Modified  Redux 적용
 */
 
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import Keyword from '../../common/Keyword'
 import Empty from '../../common/Empty'
@@ -36,6 +36,7 @@ const ContentWrapper = styled.div`
 `
 const NearPark = ({onParkClick}) => {
     const showParkList = useSelector(state => state.park.showParkList)
+
     return (
         <RightSection>
             <ContentWrapper>

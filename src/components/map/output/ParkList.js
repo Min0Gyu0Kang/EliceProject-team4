@@ -20,6 +20,7 @@ import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 import ParkName from '../../common/ParkName'
 import {useSelector} from 'react-redux'
+import Empty from '../../common/Empty'
 
 const ParkListContainer = styled.div`
     font-family: 'Pretendard';
@@ -42,28 +43,50 @@ const Number = styled.p`
 
 const ParkList = ({onParkClick}) => {
     const searchResults = useSelector(state => state.park.searchResults)
-
+    console.log(searchResults)
     return (
         <StyledEngineProvider injectFirst>
             <ParkListContainer>
-                {searchResults &&
-                    searchResults.data.slice(0, 5).map((park, index) => (
-                        <List key={index} onClick={() => onParkClick(park.id)}>
-                            <Stack direction="row" spacing={1.5}>
-                                <Number>{index + 1}</Number>
-                                <ParkName
-                                    name={park.name}
-                                    address={park.address}
-                                />
-                                <Rating
-                                    name="half-rating"
-                                    defaultValue={park.average_review}
-                                    precision={0.5}
-                                    readOnly
-                                />
-                            </Stack>
-                        </List>
-                    ))}
+                <ParkListContainer>
+                    {Array.isArray(searchResults.data) ? (
+                        searchResults.data === 99 ? (
+                            <Empty text="공원이름으로 검색해주세요" />
+                        ) : searchResults.data === 98 ? (
+                            <Empty text="검색한 조건에 맞는 공원이 없어요" />
+                        ) : searchResults.data.length === 1 ? (
+                            <Empty text="공원을 검색해보세요" />
+                        ) : searchResults.data.length > 0 ? (
+                            searchResults.data
+                                .slice(0, 5)
+                                .map((park, index) => (
+                                    <List
+                                        key={index}
+                                        onClick={() => onParkClick(park.id)}
+                                    >
+                                        <Stack direction="row" spacing={1.5}>
+                                            <Number>{index + 1}</Number>
+                                            <ParkName
+                                                name={park.name}
+                                                address={park.address}
+                                            />
+                                            <Rating
+                                                name="half-rating"
+                                                defaultValue={
+                                                    park.average_review
+                                                }
+                                                precision={0.5}
+                                                readOnly
+                                            />
+                                        </Stack>
+                                    </List>
+                                ))
+                        ) : (
+                            <Empty text="검색한 조건에 맞는 공원이 없어요" />
+                        )
+                    ) : (
+                        <Empty text="공원을 검색해보세요" />
+                    )}
+                </ParkListContainer>
             </ParkListContainer>
         </StyledEngineProvider>
     )

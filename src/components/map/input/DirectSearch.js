@@ -22,7 +22,7 @@ import Box from '@mui/material/Box'
 import {TextField, Stack} from '@mui/material'
 import IconSearch1 from '../../../assets/images/IconSearch1.svg'
 import {useDispatch, useSelector} from 'react-redux'
-import {setName} from '../../redux/parkSlice'
+import {setGetName, setName, setSearchResults} from '../../redux/parkSlice'
 
 const Container = styled.div``
 
@@ -58,6 +58,9 @@ function DirectSearch() {
     const handleChange = event => {
         dispatch(setName(event.target.value))
     }
+    const handleCityClick = () => {
+        dispatch(setName(''))
+    }
 
     return (
         <Container>
@@ -71,6 +74,7 @@ function DirectSearch() {
                         variant="outlined"
                         value={name}
                         onChange={handleChange}
+                        onClick={handleCityClick}
                         InputProps={{
                             sx: {
                                 height: '40px',

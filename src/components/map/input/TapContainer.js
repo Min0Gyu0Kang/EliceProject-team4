@@ -70,6 +70,7 @@ export default function TapContainer() {
         dispatch(clearSelection())
         dispatch(setShowParkList(false))
         dispatch(setName(''))
+        dispatch(setIsLocation(null))
     }
 
     const handleClearSelection = () => {

@@ -31,7 +31,10 @@ const Map = () => {
     const dispatch = useDispatch()
     let url = ''
 
-    if (isLocation === true) {
+    if (isLocation === null) {
+        // 기본 화면 == 서울시 용산구
+        url = `/park/recommend?city=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C&district=%EC%9A%A9%EC%82%B0%EA%B5%AC`
+    } else if (isLocation === true) {
         const queryParams = new URLSearchParams()
         if (city) queryParams.append('city', city)
         if (district) queryParams.append('district', district)
@@ -53,7 +56,7 @@ const Map = () => {
                 return response.data.data // 데이터 반환
             } catch (error) {
                 console.error('Error fetching data:', error)
-                return null // 에러 발생 시 null 반환
+                return parkData // 에러 발생 시 null 반환
             }
         }
 

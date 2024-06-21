@@ -19,6 +19,8 @@ import {
     resetSelection,
     clearSelection,
     setIsLocation,
+    setSelectedParkId,
+    setSelectedChips,
 } from '../../redux/parkSlice'
 import {StyledEngineProvider} from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
@@ -32,6 +34,10 @@ const LocationInputButton = () => {
     const {city, district, selectedChips} = useSelector(state => state.park)
 
     const handleSearchClick = async () => {
+        dispatch(setSelectedParkId(null))
+        // dispatch(setSelectedChips([]))
+        dispatch(setIsLocation(true))
+
         const queryParams = new URLSearchParams()
         if (city) queryParams.append('city', city)
         if (district) queryParams.append('district', district)
@@ -44,10 +50,10 @@ const LocationInputButton = () => {
         try {
             const response = await axios.get(url)
             console.log('response', response)
+            dispatch(setSearchResults(response.data))
+            dispatch(setShowParkList(true))
+            dispatch(setIsLocation(true))
             if (response.data.data.length !== 0) {
-                dispatch(setSearchResults(response.data))
-                dispatch(setShowParkList(true))
-                dispatch(setIsLocation(true))
             }
         } catch (error) {
             console.error('Error fetching park recommendations:', error)

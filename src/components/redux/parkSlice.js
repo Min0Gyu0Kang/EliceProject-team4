@@ -17,7 +17,7 @@ const initialState = {
     ratings: 0,
     getData: {},
     getName: '',
-    isLocation: true,
+    isLocation: null,
 }
 
 const parkSlice = createSlice({

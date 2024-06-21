@@ -20,6 +20,7 @@ import {
     setIsLocation,
     clearSelection,
     setName,
+    setSelectedParkId,
 } from '../../redux/parkSlice'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
@@ -28,23 +29,29 @@ import {StyledEngineProvider} from '@mui/styled-engine'
 // 추천공원 검색 시
 function DirectInputButton() {
     const dispatch = useDispatch()
-    const name = useSelector(state => state.park.name)
+    const {name} = useSelector(state => state.park)
 
     const handleClick = async () => {
+        dispatch(setSelectedParkId(null))
         dispatch(setGetName(name))
+        dispatch(setName(null))
+        dispatch(setIsLocation(false))
+
         const url = `/park/search/${name}`
 
         try {
             const response = await axios.get(url)
+            dispatch(setSearchResults(response.data)) // 상위 컴포넌트로 데이터 전달
+            dispatch(setShowParkList(true)) // 검색이 완료되면 openParkList 함수 호출
+            dispatch(setIsLocation(false))
 
             if (response.status !== 200 && response.status !== 201) {
                 throw new Error('네트워크 응답이 올바르지 않습니다.')
             }
-            dispatch(setSearchResults(response.data)) // 상위 컴포넌트로 데이터 전달
-            dispatch(setShowParkList(true)) // 검색이 완료되면 openParkList 함수 호출
-            dispatch(setIsLocation(false))
         } catch (error) {
             console.error('Error fetching park recommendations:', error)
+            dispatch(setIsLocation(null))
+            dispatch(setSearchResults({data: [99]})) // 지도 null값 url 위치로 고정
         }
     }
 

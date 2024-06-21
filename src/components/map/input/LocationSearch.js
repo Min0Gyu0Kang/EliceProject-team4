@@ -26,6 +26,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {
     setCity,
     setDistrict,
+    setSearchResults,
     setSelectedChips,
     setSelection,
 } from '../../redux/parkSlice'
@@ -110,6 +111,12 @@ const LocationSearch = () => {
         }
     }, [city, districtData])
 
+    const handleCityClick = () => {
+        dispatch(setDistrict(''))
+        dispatch(setSelectedChips([]))
+        dispatch(setSearchResults({data: [99]}))
+    }
+
     // MenuProps 설정
     const menuProps = {
         PaperProps: {
@@ -171,6 +178,7 @@ const LocationSearch = () => {
                                 value={city}
                                 displayEmpty
                                 MenuProps={menuProps}
+                                onClick={handleCityClick}
                             >
                                 <MenuItem value="">
                                     <Text>선택</Text>
