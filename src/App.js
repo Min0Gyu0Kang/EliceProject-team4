@@ -13,7 +13,13 @@ Date        Author   Status      Description
 */
 
 import React, {useState, useEffect} from 'react'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    useLocation,
+    Navigate,
+} from 'react-router-dom'
 import Header from './components/common/Header'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -28,9 +34,9 @@ import UpdateUser from './pages/UpdateUser'
 import Withdraw from './pages/Withdraw'
 import NotFound from './pages/NotFound'
 
-const App = () => {
+const AppContent = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+    const location = useLocation()
     useEffect(() => {}, [])
 
     const handleLogin = () => {
@@ -41,13 +47,15 @@ const App = () => {
         setIsLoggedIn(false)
     }
 
+    const hideHeaderPaths = ['/']
+
     return (
-        <BrowserRouter>
+        <div>
+            {!hideHeaderPaths.includes(location.pathname) && (
+                <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+            )}
             <Routes>
                 <Route path="/" element={<Home />} />
-            </Routes>
-            <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-            <Routes>
                 <Route
                     path="/login"
                     element={<Login onLogin={handleLogin} />}
@@ -64,9 +72,17 @@ const App = () => {
                     path="/users/withdraw"
                     element={<Withdraw onWithdraw={handleLogout} />}
                 />
-                {/* 구현해둔 페이지 접속 */}
-                <Route path="*" element={<NotFound />} />
+                <Route path="*" element={<Navigate to="/404" replace />} />
+                <Route path="/404" element={<NotFound />} />
             </Routes>
+        </div>
+    )
+}
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <AppContent />
         </BrowserRouter>
     )
 }
