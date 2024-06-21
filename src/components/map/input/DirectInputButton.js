@@ -33,6 +33,7 @@ import {StyledEngineProvider} from '@mui/styled-engine'
 function DirectInputButton() {
     const dispatch = useDispatch()
     const {name} = useSelector(state => state.park)
+    const isNameValid = name !== ''
 
     const handleClick = async () => {
         dispatch(setIsSearchResults(false))

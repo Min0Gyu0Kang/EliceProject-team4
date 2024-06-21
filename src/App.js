@@ -14,7 +14,13 @@ Date        Author   Status      Description
 */
 
 import React, {useState, useEffect} from 'react'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    useLocation,
+    Navigate,
+} from 'react-router-dom'
 import Header from './components/common/Header'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -28,9 +34,9 @@ import Mypage from './pages/Mypage'
 import UpdateUser from './pages/UpdateUser'
 import Withdraw from './pages/Withdraw'
 
-const App = () => {
+const AppContent = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+    const location = useLocation()
     useEffect(() => {}, [])
 
     const handleLogin = () => {
@@ -40,6 +46,8 @@ const App = () => {
     const handleLogout = () => {
         setIsLoggedIn(false)
     }
+
+    const hideHeaderPaths = ['/']
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>

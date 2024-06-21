@@ -34,6 +34,7 @@ const ParkListContainer = styled.div`
 
 const List = styled.div`
     margin-bottom: 16px;
+    cursor: pointer;
 `
 
 const Number = styled.p`
