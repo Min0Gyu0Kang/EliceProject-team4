@@ -9,6 +9,7 @@ Date        Author   Status    Description
 2024.06.12  김유림   Modified  컨테이너별 4페이지 초안 생성 
 2024.06.13  김유림   Modified  데이터 출처 추가
 2024.06.19  임지영   Modified  데이터 출처 및 폰트 스타일 변경
+2024.06.21  김유림   Modified  전체 레이아웃 수정
 */
 import React from 'react'
 import styled from 'styled-components'
@@ -20,7 +21,6 @@ import '../../assets/fonts/font.css'
 const DashboardWrapper = styled.div`
     display: flex;
     flex-direction: column; /* 컨테이너들을 세로로 배치 */
-    padding: 50px;
     width: 1200px; /* 고정 너비 */
     margin: 0 auto; /* 중앙 정렬 */
 `
@@ -29,6 +29,7 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 30px;
+    margin-top: 120px;
 `
 
 const Divider = styled.div`
@@ -73,10 +74,10 @@ const LinkTextContainer = styled.div`
     text-align: center; /* 데이터출처 텍스트 가운데 정렬 */
     width: 100%; /* 전체 너비 사용 */
     color: #888; /* 연한 색상 */
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
 `
+const Link = styled.a`
+    text-decoration: none;
+    color: #95b7b8; /* 연한 색상 */
 
 const LinkText = styled.div`
     color: #888; /* 연한 색상 */
@@ -182,32 +183,37 @@ const Dashboard = () => {
                     <LinkTextContainer>
                         데이터출처
                         <LinkText>
-                            공공데이터 포털:
-                            <a
-                                href="https://www.data.go.kr/index.do"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                https://www.data.go.kr/index.do
-                            </a>
-                            <br />
-                            통계청 KOSIS:
-                            <a
-                                href="https://kosis.kr/index/index.do"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                https://kosis.kr/index/index.do
-                            </a>
-                            <br />
-                            지표누리:
-                            <a
-                                href="https://www.index.go.kr/unity/potal/main.do"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                https://www.index.go.kr/unity/potal/main.do
-                            </a>
+                            <p style={{fontSize: '15pt'}}>📌 데이터 출처</p>
+                            <Source>
+                                공공데이터 포털 :
+                                <Link
+                                    href="https://www.data.go.kr/index.do"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    https://www.data.go.kr/index.do
+                                </Link>
+                            </Source>
+                            <Source>
+                                통계청 KOSIS :
+                                <Link
+                                    href="https://kosis.kr/o"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    https://kosis.kr/
+                                </Link>
+                            </Source>
+                            <Source>
+                                지표누리 :
+                                <Link
+                                    href="https://www.index.go.kr/unity/potal/main.do"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    https://www.index.go.kr/unity/potal/main.do
+                                </Link>
+                            </Source>
                         </LinkText>
                     </LinkTextContainer>
                 </Container>
