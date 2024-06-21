@@ -144,15 +144,14 @@ const SignUp = () => {
             }
 
             await signUp(formData)
-            setErrorMessage('') // 에러 메시지 초기화
+            setErrorMessage('')
             setSuccessMessage('회원가입이 완료되었습니다!')
 
             setTimeout(() => {
                 setSuccessMessage('')
                 navigate('/login')
-            }, 1000)
+            }, 2000)
         } catch (error) {
-            console.error('Sign-up failed:', error.message)
             setErrorMessage(error.message)
         }
     }
