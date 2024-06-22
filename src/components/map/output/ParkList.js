@@ -44,21 +44,17 @@ const Number = styled.p`
     text-align: center;
 `
 
-const ParkList = ({onParkClick}) => {
+const ParkList = () => {
     const dispatch = useDispatch()
-    const searchResults = useSelector(state => state.park.searchResults)
+    const {searchResults, isPark} = useSelector(state => state.park)
     console.log(searchResults)
     return (
         <StyledEngineProvider injectFirst>
             <ParkListContainer>
                 <ParkListContainer>
                     {Array.isArray(searchResults.data) ? (
-                        searchResults.data === 99 ? (
+                        isPark === false ? (
                             <Empty text="공원이름으로 검색해주세요" />
-                        ) : searchResults.data === 98 ? (
-                            <Empty text="검색한 조건에 맞는 공원이 없어요" />
-                        ) : searchResults.data.length === 2 ? (
-                            <Empty text="공원을 검색해보세요" />
                         ) : searchResults.data.length > 0 ? (
                             searchResults.data
                                 .slice(0, 5)

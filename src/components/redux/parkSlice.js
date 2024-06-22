@@ -25,6 +25,7 @@ const initialState = {
     reviewId: null,
     reReview: true,
     star: true,
+    isPark: true,
 }
 
 const parkSlice = createSlice({
@@ -110,6 +111,9 @@ const parkSlice = createSlice({
         setStar: (state, action) => {
             state.star = action.payload
         },
+        setIsPark: (state, action) => {
+            state.render = action.payload
+        },
     },
 })
 
@@ -136,6 +140,7 @@ export const {
     setReviewId,
     setReReview,
     setStar,
+    setIsPark,
 } = parkSlice.actions
 
 export default parkSlice.reducer
