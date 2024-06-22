@@ -17,7 +17,7 @@ Date        Author   Status    Description
 2024.06.20  임지영    Modified  Redux
 */
 
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import Keyword from '../../common/Keyword'
 import Empty from '../../common/Empty'
@@ -65,6 +65,8 @@ const InfoPark = ({onReviewDetailClick}) => {
 
     const selectedParkId = useSelector(state => state.park.selectedParkId)
     const data = useSelector(state => state.park.data)
+    const [re, setRe] = useState(false)
+    const prevReRef = useRef(re)
 
     useEffect(() => {
         if (selectedParkId) {
@@ -80,8 +82,13 @@ const InfoPark = ({onReviewDetailClick}) => {
                 }
             }
             fetchData()
+            setRe(!re)
         }
-    }, [selectedParkId, dispatch])
+    }, [selectedParkId])
+
+    useEffect(() => {
+        prevReRef.current = re
+    }, [re])
 
     if (!selectedParkId) {
         return (
@@ -100,32 +107,35 @@ const InfoPark = ({onReviewDetailClick}) => {
         ) // 데이터를 아직 가져오지 않았을 때 아무 것도 렌더링하지 않음
     }
 
-    const park = data?.park.find(p => p.id === selectedParkId)
-    let facilities = data.facilities
+    if (re == prevReRef.current && data) {
+        const park = data?.park.find(p => p.id === selectedParkId)
+        let facilities = data.facilities
+        console.log(park?.average_review)
 
-    return (
-        <RightSection>
-            <ContentWrapper>
-                <Keyword text="공원 정보" />
-                <ParkNameContainer>
-                    <Name>{park?.name}</Name>
-                    <Rating
-                        name="half-rating"
-                        value={park?.average_review}
-                        precision={0.5}
-                        readOnly
-                    />
-                </ParkNameContainer>{' '}
-                <InfoList park={park} facilities={facilities} />
-                <ButtonWrapper>
-                    <Button
-                        park={park}
-                        onReviewDetailClick={onReviewDetailClick}
-                    />
-                </ButtonWrapper>
-            </ContentWrapper>
-        </RightSection>
-    )
+        return (
+            <RightSection>
+                <ContentWrapper>
+                    <Keyword text="공원 정보" />
+                    <ParkNameContainer>
+                        <Name>{park?.name}</Name>
+                        <Rating
+                            name="half-rating"
+                            value={park?.average_review}
+                            precision={0.5}
+                            readOnly
+                        />
+                    </ParkNameContainer>{' '}
+                    <InfoList park={park} facilities={facilities} />
+                    <ButtonWrapper>
+                        <Button
+                            park={park}
+                            onReviewDetailClick={onReviewDetailClick}
+                        />
+                    </ButtonWrapper>
+                </ContentWrapper>
+            </RightSection>
+        )
+    }
 }
 
 export default InfoPark

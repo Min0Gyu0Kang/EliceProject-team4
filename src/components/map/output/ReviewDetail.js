@@ -29,7 +29,6 @@ import axios from 'axios'
 import Button from './Button'
 import {useDispatch, useSelector} from 'react-redux'
 import EditButton from './EditButton'
-import {setStar} from '../../redux/parkSlice'
 
 const Container = styled.div`
     width: 100%;
@@ -76,7 +75,7 @@ const Loading = styled.div`
 const ReviewDetail = ({onBackClick, onReviewDetailClick}) => {
     const dispatch = useDispatch()
     const reReview = useSelector(state => state.park.reReview)
-    const {selectedParkId, star} = useSelector(state => state.park)
+    const {selectedParkId} = useSelector(state => state.park)
     const [data, setData] = useState(null) // 초기값을 null로 설정
 
     console.log('Selected Park ID:', selectedParkId)
@@ -105,7 +104,6 @@ const ReviewDetail = ({onBackClick, onReviewDetailClick}) => {
     const handleBackClick = () => {
         // 뒤로가기 버튼 클릭
         onBackClick()
-        dispatch(setStar(!star))
     }
 
     // 데이터가 로드되지 않았을 때 로딩 상태를 표시

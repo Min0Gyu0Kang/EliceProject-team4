@@ -47,6 +47,7 @@ const Number = styled.p`
 const ParkList = () => {
     const dispatch = useDispatch()
     const {searchResults, isPark} = useSelector(state => state.park)
+
     console.log(searchResults)
     return (
         <StyledEngineProvider injectFirst>
