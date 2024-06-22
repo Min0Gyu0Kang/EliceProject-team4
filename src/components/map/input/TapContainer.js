@@ -27,6 +27,7 @@ import {
     setName,
     setIsLocation,
     setIsSearchResults,
+    setSelectedParkId,
 } from '../../redux/parkSlice'
 
 function CustomTabPanel(props) {
@@ -58,7 +59,7 @@ function a11yProps(index) {
     }
 }
 
-export default function TapContainer() {
+export default function TapContainer({openParkList}) {
     const dispatch = useDispatch()
 
     // // Redux state를 가져옴
@@ -74,6 +75,7 @@ export default function TapContainer() {
         dispatch(setName(''))
         dispatch(setIsLocation(null))
         dispatch(setIsSearchResults(false))
+        dispatch(setSelectedParkId(null))
     }
 
     const handleClearSelection = () => {
@@ -143,13 +145,14 @@ export default function TapContainer() {
             </Box>
             <CustomTabPanel value={value} index={0}>
                 <LocationSearch />
-                <LocationInputButton />
+                <LocationInputButton openParkList={openParkList} />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
                 <DirectSearch name={name} />
                 <DirectInputButton
                     name={name}
                     onClearSelection={handleClearSelection}
+                    openParkList={openParkList}
                 />
             </CustomTabPanel>
         </Box>

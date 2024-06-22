@@ -31,7 +31,7 @@ import Stack from '@mui/material/Stack'
 import {StyledEngineProvider} from '@mui/styled-engine'
 
 // 추천공원 검색 시
-function DirectInputButton() {
+function DirectInputButton({openParkList}) {
     const dispatch = useDispatch()
     const {name} = useSelector(state => state.park)
     const isNameValid = name !== ''
@@ -62,6 +62,7 @@ function DirectInputButton() {
         dispatch(setShowParkList(false)) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
         dispatch(clearSelection())
         dispatch(setName(''))
+        openParkList()
     }
 
     return (

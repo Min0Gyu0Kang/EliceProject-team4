@@ -98,8 +98,8 @@ const MapPage = () => {
         dispatch(setView('main')) /*메인 뷰로 돌아가기 뷰 상태 업데이트 */
     }
 
-    const openParkList = isSearched => {
-        dispatch(setShowParkList(isSearched))
+    const openParkList = () => {
+        dispatch(setShowParkList())
         dispatch(setSelectedParkId(null))
         dispatch(setView('main'))
     }

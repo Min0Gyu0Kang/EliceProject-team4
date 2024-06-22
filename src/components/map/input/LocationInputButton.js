@@ -34,7 +34,7 @@ import {useSelector} from 'react-redux'
 import {assignNestedKeys} from '@mui/system/cssVars/cssVarsParser'
 
 // 추천공원 검색 시
-const LocationInputButton = () => {
+const LocationInputButton = ({openParkList}) => {
     const dispatch = useDispatch()
 
     const {city, district, selectedChips, star} = useSelector(
@@ -76,6 +76,7 @@ const LocationInputButton = () => {
         dispatch(clearSelection())
         dispatch(setShowParkList(false)) // 초기화 버튼 누르면 내주변공원 출력 상태가 false가 되도록
         dispatch(setIsLocation(null))
+        openParkList()
     }
 
     return (
