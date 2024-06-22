@@ -36,7 +36,6 @@ const ContentWrapper = styled.div`
 const DashboardPage = () => {
     return (
         <div>
-            <Header />
             <PageContainer>
                 <Navigation
                     title="데이터 스토리"

@@ -49,19 +49,6 @@ const HorizontalSection = styled(Section)`
     align-items: center;
 `
 
-const Image = styled.img`
-    width: 709px;
-    height: 386px;
-    margin-top: 30px;
-    filter: drop-shadow(6px 6px 4px rgba(0, 0, 0, 0.25));
-`
-
-const HalfImage = styled.img`
-    width: 385px;
-    height: 304px;
-    filter: drop-shadow(6px 6px 4px rgba(0, 0, 0, 0.25));
-`
-
 const TextContainer = styled.div`
     letter-spacing: -0.07em;
 
