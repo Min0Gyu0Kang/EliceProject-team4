@@ -23,7 +23,7 @@ const Center = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80%;
+    height: 100%;
     width: 100%;
     text-align: center;
 `
