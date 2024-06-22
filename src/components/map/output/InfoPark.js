@@ -63,7 +63,7 @@ const ButtonWrapper = styled.div`
 const InfoPark = ({onReviewDetailClick}) => {
     const dispatch = useDispatch()
 
-    const {selectedParkId} = useSelector(state => state.park)
+    const selectedParkId = useSelector(state => state.park.selectedParkId)
     const data = useSelector(state => state.park.data)
 
     useEffect(() => {
@@ -81,7 +81,7 @@ const InfoPark = ({onReviewDetailClick}) => {
             }
             fetchData()
         }
-    }, [selectedParkId])
+    }, [selectedParkId, dispatch])
 
     if (!selectedParkId) {
         return (
