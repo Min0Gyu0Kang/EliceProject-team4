@@ -82,7 +82,7 @@ const MainPage = () => {
     const navigate = useNavigate()
 
     const handleStartClick = () => {
-        navigate('/login')
+        navigate('/map')
     }
 
     return (
