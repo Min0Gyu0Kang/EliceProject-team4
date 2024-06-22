@@ -98,14 +98,12 @@ const CommunityReports = () => {
     // };
 
     //검색 결과 axios get
-    const delay = 1500 //입력 시 2초 후 결과 목록 가져오기
+    const delay = 500 //입력 시 2초 후 결과 목록 가져오기
     useEffect(() => {
         if (textFieldValue !== '') {
             const fetchData = () => {
                 axios
-                    .get(
-                        `http://localhost:3000/community/complaint/${textFieldValue}`,
-                    )
+                    .get(`/community/complaint/${textFieldValue}`)
                     .then(response => {
                         setParkComplaint(response.data.slice(0, 10)) //get only up to 10 park data
                     })
