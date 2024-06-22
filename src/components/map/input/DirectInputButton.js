@@ -18,7 +18,7 @@ import {
     setSearchResults,
     setShowParkList,
     resetSelection,
-    setGetName,
+    setIsPark,
     setIsLocation,
     clearSelection,
     setName,
@@ -28,12 +28,11 @@ import {
 } from '../../redux/parkSlice'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
-import {StyledEngineProvider} from '@mui/styled-engine'
 
 // 추천공원 검색 시
 function DirectInputButton({openParkList}) {
     const dispatch = useDispatch()
-    const {name} = useSelector(state => state.park)
+    const {name, isPark} = useSelector(state => state.park)
     const isNameValid = name !== ''
 
     const handleClick = async () => {
@@ -48,11 +47,13 @@ function DirectInputButton({openParkList}) {
             dispatch(setSearchResults(response.data)) // 상위 컴포넌트로 데이터 전달
             dispatch(setShowParkList(true)) // 검색이 완료되면 openParkList 함수 호출
             dispatch(setIsLocation(false))
-
+            dispatch(setIsPark(true))
             if (response.data.data.length === 0) {
                 dispatch(setIsSearchResults(true))
             }
         } catch (error) {
+            dispatch(setShowParkList(false))
+            dispatch(setIsSearchResults(true))
             console.error('Error fetching park recommendations:', error)
         }
     }
