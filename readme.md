@@ -4,6 +4,4 @@
 2. 프로젝트 기간 동안 엘리스의 요구 사항에 따라 프로젝트 첫 날부터 바로 개발을 진행하고, 
 요구 사항을 모두 구현한 팀은 자유롭게 기능을 추가 개발 혹은 고도함으로써 개발 역량을 향상시킵니다.
 3. 팀원들과 Git을 통해 협업을 경험하며 현업 개발자의 분업 및 애자일 프로세스를 체득합니다.
-4. 최종 팀 프로젝트 링크: http://kdt-ai-10-team04.elicecoding.com/
-(git clone 방식으로 안 하고 그냥 링크로 접속하면 된다!)
-team04 gitlab: https://kdt-gitlab.elice.io/ai_track/class_10/web_project/team04/team04/-/tree/master
+4. team04 gitlab: https://kdt-gitlab.elice.io/ai_track/class_10/web_project/team04/team04/-/tree/master
